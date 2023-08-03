@@ -18,7 +18,7 @@ function Header() {
   return (
     <>
       <div className="flex flex-col">
-        <header className="bgDark backdrop-blur  fixed font-sans antialiased px-8 md:px-12 lg:px-32 xl:px-64 w-full py-6 md:py-12 flex flex-row justify-between">
+        <header className="bgDark backdrop-blur  fixed font-sans antialiased px-8 md:px-12 lg:px-32 xl:px-64 w-full py-6 lg:py-12 flex flex-row justify-between">
           <Logo />
           <div className="flex lg:hidden border-2 self-center bg-transparent h-fit p-2 rounded-md">
             {!showMenu ? (

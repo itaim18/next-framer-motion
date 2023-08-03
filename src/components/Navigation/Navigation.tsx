@@ -1,9 +1,9 @@
 "use client";
-
+import { LINKS } from "@/src/config/docs";
 import React from "react";
 import { motion } from "framer-motion";
-
-function Navigation() {
+import Link from "next/link";
+function Navigation({ toggleMenu }: { toggleMenu: () => void }) {
   const [hoveredNavItem, setHoveredNavItem] = React.useState<null | string>(
     null
   );
@@ -35,13 +35,14 @@ function Navigation() {
                 />
               )}
 
-              <a
+              <Link
+                onClick={toggleMenu}
                 href={href}
                 className="flex relative h-full items-center  text-2xl px-8 py-4 text-white font-semibold opacity-75 transition-opacity duration-500 hover:opacity-100"
                 onMouseEnter={() => setHoveredNavItem(slug)}
               >
                 {label}
-              </a>
+              </Link>
             </li>
           )
         )}
@@ -49,23 +50,5 @@ function Navigation() {
     </>
   );
 }
-
-const LINKS = [
-  {
-    slug: "home",
-    label: "Home",
-    href: "/",
-  },
-  {
-    slug: "about",
-    label: "About",
-    href: "/usage",
-  },
-  {
-    slug: "projects",
-    label: "Projects",
-    href: "/integrations",
-  },
-];
 
 export default Navigation;

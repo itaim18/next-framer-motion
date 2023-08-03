@@ -2,7 +2,6 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Menu } from "lucide-react";
 
 function Navigation() {
   const [hoveredNavItem, setHoveredNavItem] = React.useState<null | string>(
@@ -11,7 +10,6 @@ function Navigation() {
 
   return (
     <>
-      <Menu className="flex lg:hidden self-center" />
       <ul
         className="hidden h-fit lg:flex flex-row gap-3 list-none"
         onMouseLeave={() => setHoveredNavItem(null)}

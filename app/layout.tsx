@@ -50,8 +50,8 @@ export const metadata: Metadata = {
   creator: "ItaiM18",
   icons: {
     icon: "/vercel.svg",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    shortcut: "/vercel.svg",
+    apple: "/vercel.svg",
   },
 };
 export default function RootLayout({
@@ -61,9 +61,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-      </head>
       <body className={rajdhani.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <Header />

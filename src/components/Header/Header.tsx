@@ -57,9 +57,9 @@ function Header() {
                     {hoveredNavItem === slug && (
                       <motion.div
                         layoutId="hovered-backdrop"
-                        className="absolute  rounded-lg inset-0 bg-[rgba(255,255,255,0.2)]"
+                        className="absolute   inset-0 bg-[rgba(255,255,255,0.2)]"
                         initial={{
-                          borderRadius: 32,
+                          borderRadius: 20,
                         }}
                       />
                     )}

@@ -10,10 +10,12 @@ const Logo = () => {
   const icon = {
     hidden: {
       pathLength: 0,
+      scale: 0.8,
       fill: "rgba(255, 255, 255, 0)",
     },
     visible: {
       pathLength: 1,
+      scale: 0.8,
       fill: "rgba(255, 255, 255, 1)",
     },
   };
@@ -35,12 +37,13 @@ const Logo = () => {
           viewBox="0 0 94.141 68.36"
           xmlns="http://www.w3.org/2000/svg"
           whileHover={{
-            scale: 1.2,
+            scale: 1,
             textShadow: "5px 5px 5px 0px rgba(255, 255, 255, 0.3)",
           }}
           whileTap={{
             scale: 0.8,
           }}
+          scale={0.8}
           onClick={rerender}
           className="hover:shade"
           style={{ outline: "none" }}
@@ -61,6 +64,7 @@ const Logo = () => {
               variants={icon}
               initial="hidden"
               style={{ pathLength }}
+              scale={0.4}
               animate={animate ? "visible" : "hidden"}
               transition={{
                 default: { duration: animate ? 2 : 0, ease: "easeInOut" },

@@ -19,7 +19,7 @@ function Header() {
     <>
       <header className="bgDark backdrop-blur w-screen fixed font-sans antialiased px-8 md:px-12 lg:px-32 xl:px-64 py-6 lg:py-12 flex flex-row justify-between">
         <Logo />
-        <div className="flex lg:hidden border-2 self-center bg-transparent h-fit p-2 rounded-md">
+        <div className="flex lg:hidden border-2 cursor-pointer self-center bg-transparent h-fit p-2 rounded-md">
           {!showMenu ? (
             <Menu
               color="#424b58"

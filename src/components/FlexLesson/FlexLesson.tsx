@@ -1,25 +1,37 @@
 import React from "react";
 import { motion } from "framer-motion";
+const box = {
+  hidden: { y: -10, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 
 function FlexLesson() {
-  const [flexDirection, setFlexDirection] = React.useState<any>("row");
-  const [justifyContent, setJustifyContent] = React.useState("flex-start");
+  const [flexDirection, setFlexDirection] = React.useState<any>("column");
+  const [justifyContent, setJustifyContent] = React.useState("space-between");
   const [alignItems, setAlignItems] = React.useState("stretch");
 
   return (
-    <section className="flex border mb-96 min-h-[360px] md:min-w-[640px] m-auto flex-col gap-4">
+    <section className="flex border mb-56 min-h-[360px] md:min-w-[640px] m-auto flex-col gap-4">
       <div
         style={{ flexDirection, justifyContent, alignItems }}
         className="flex gap-1 min-w min-h-[300px] flex-wrap border p-1"
       >
-        {ITEMS.map((item) => (
+        {ITEMS.map((item, i) => (
           <motion.div
             layout={true}
             transition={{
               type: "spring",
               stiffness: 500,
               damping: 40,
+              y: { delay: i * 0.2, ease: "easeInOut" },
+              opacity: { delay: i * 0.2, ease: "easeInOut" },
             }}
+            variants={box}
+            initial="hidden"
+            animate="visible"
             key={item.id}
             className="bg-slate-500 p-2 rounded-md"
           >
@@ -60,7 +72,9 @@ function FlexLesson() {
             setAlignItems(event.target.value)
           }
         >
-          <option value="stretch">stretch</option>
+          <option className="rounded-xl" value="stretch">
+            stretch
+          </option>
           <option value="flex-start">flex-start</option>
           <option value="flex-end">flex-end</option>
           <option value="center">center</option>
@@ -74,10 +88,10 @@ function SelectControl({ label, value, onChange, ...delegated }: any) {
   const id = React.useId();
 
   return (
-    <div className="  flex-wrap flex flex-col gap-2">
+    <div className="rounded-e-lg flex-wrap flex flex-col gap-2">
       <label htmlFor={id}>{label}</label>
       <select
-        className=" text-xs p-2 border bg-transparent rounded-sm"
+        className=" text-xs p-2 bg-slate-900 border bg-transparent rounded-sm"
         value={value}
         onChange={onChange}
         {...delegated}

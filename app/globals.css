@@ -94,15 +94,15 @@
     filter: drop-shadow(5px 25px 25px rgba(133, 47, 150, 0.6));
   }
   .glassBg {
-    background: rgba(0, 0, 0, 0.37);
     border-radius: 16px;
     /* box-shadow: 0px 0px 6px 2px rgb(255 255 255 / 60%); */
     backdrop-filter: blur(9.8px);
     -webkit-backdrop-filter: blur(9.8px);
-    border: 1px solid rgba(0, 0, 0, 0.88);
   }
   .bgDark {
     font-family: "Rajdhani", sans-serif;
+
+    /* box-shadow: 0px 0px 6px 2px rgb(255 255 255 / 60%); */
 
     /* background: url(../public/bg2.svg) no-repeat center center fixed;
     -webkit-background-size: cover;

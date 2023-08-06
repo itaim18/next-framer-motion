@@ -17,14 +17,14 @@ export default function Home() {
           Always focused on UX, optimization and sharing great solutions with
           developers.
         </h3>
-        <p className="text-xl tracking-normal flex flex-row flex-wrap gap-3">
+        {/* <p className="text-xl tracking-normal flex flex-row flex-wrap gap-3">
           <motion.span variants={item}> 👨‍💻 Open Source Contributor</motion.span>{" "}
           <motion.span variants={item}> 🏃  Qwikifier</motion.span>{" "}
           <motion.span variants={item}>🧳 Traveler</motion.span>
           <motion.span variants={item}>👨‍⚕️ ❔  Whovian</motion.span>{" "}
           <motion.span variants={item}> 👨‍🍳 Junior Cook</motion.span>{" "}
           <motion.span variants={item}>🥧 quiche Lover</motion.span>
-        </p>
+        </p> */}
       </motion.article>
       <FlexLesson />
     </main>

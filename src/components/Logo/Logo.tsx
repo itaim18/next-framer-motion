@@ -4,7 +4,7 @@ import { motion, useMotionValue } from "framer-motion";
 import Link from "next/link";
 import React from "react";
 
-const Logo = () => {
+const Logo = ({ closeMenu }: { closeMenu: () => void }) => {
   const [animate, setAnimate] = React.useState<boolean>(true);
 
   const icon = {
@@ -21,6 +21,7 @@ const Logo = () => {
   };
 
   const rerender = async () => {
+    closeMenu();
     setAnimate(false);
     setTimeout(() => {
       setAnimate(true);

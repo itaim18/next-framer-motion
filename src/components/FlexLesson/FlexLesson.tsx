@@ -1,10 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 const box = {
-  hidden: { y: -10, opacity: 0 },
+  hidden: { y: -10, opacity: 0, gap: "6px" },
   visible: {
     y: 0,
     opacity: 1,
+    gap: "20px",
   },
 };
 
@@ -14,7 +15,53 @@ function FlexLesson() {
   const [alignItems, setAlignItems] = React.useState("stretch");
 
   return (
-    <section className="flex border mb-56 min-h-[360px] md:min-w-[640px] m-auto flex-col gap-4">
+    <motion.section
+      transition={{
+        type: "spring",
+        stiffness: 500,
+        damping: 40,
+      }}
+      variants={box}
+      initial="hidden"
+      animate="visible"
+      className="flex border mb-56 min-h-[360px] md:min-w-[640px] m-auto mx-4 md:mx-auto flex-col gap-4"
+    >
+      <motion.h1
+        transition={{
+          type: "spring",
+          stiffness: 500,
+          damping: 40,
+          gap: { delay: 0.8, duration: 0.6, ease: "easeInOut" },
+        }}
+        variants={box}
+        initial="hidden"
+        animate="visible"
+        className="text-4xl my-auto flex flex-row  pt-4 self-center"
+      >
+        Lemme{" "}
+        <motion.div
+          transition={{
+            type: "spring",
+            stiffness: 500,
+            damping: 40,
+            scale: { delay: 0.8, ease: "easeInOut" },
+          }}
+          variants={{
+            start: { scale: 1 },
+            finish: {
+              scale: 1.4,
+              transition: { delay: 0.8, duration: 0.6, ease: "easeInOut" },
+            },
+          }}
+          initial="start"
+          animate="finish"
+          className="-z-10"
+        >
+          Flex
+        </motion.div>{" "}
+        💪
+      </motion.h1>
+
       <div
         style={{ flexDirection, justifyContent, alignItems }}
         className="flex gap-1 min-w min-h-[300px] flex-wrap border p-1"
@@ -39,7 +86,6 @@ function FlexLesson() {
           </motion.div>
         ))}
       </div>
-
       <div className="flex gap-4 flex-wrap justify-between">
         <SelectControl
           label="flex-direction"
@@ -72,15 +118,13 @@ function FlexLesson() {
             setAlignItems(event.target.value)
           }
         >
-          <option className="rounded-xl" value="stretch">
-            stretch
-          </option>
+          <option value="stretch">stretch</option>
           <option value="flex-start">flex-start</option>
           <option value="flex-end">flex-end</option>
           <option value="center">center</option>
         </SelectControl>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
@@ -91,7 +135,7 @@ function SelectControl({ label, value, onChange, ...delegated }: any) {
     <div className="rounded-e-lg flex-wrap flex flex-col gap-2">
       <label htmlFor={id}>{label}</label>
       <select
-        className=" text-xs p-2 bg-slate-900 border bg-transparent rounded-sm"
+        className="text-xs p-2 dark:bg-slate-900 bg-slate-200 border  rounded-sm"
         value={value}
         onChange={onChange}
         {...delegated}
@@ -103,7 +147,7 @@ function SelectControl({ label, value, onChange, ...delegated }: any) {
 const ITEMS = [
   {
     id: "001",
-    label: "👨‍💻 Open Source Contributor",
+    label: "👨‍💻  Open Source Contributor",
   },
   {
     id: "002",
@@ -115,7 +159,7 @@ const ITEMS = [
   },
   {
     id: "004",
-    label: "👨‍⚕️ ❔  Whovian",
+    label: "❔  Whovian",
   },
   {
     id: "005",

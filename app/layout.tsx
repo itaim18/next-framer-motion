@@ -27,10 +27,10 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://pricer.itaimiz.com",
-    title: "Price Explorer",
-    description: "The best solution for sale reps in SaaS companies!",
-    siteName: "Price Explorer",
+    url: "https://itaimiz.com",
+    title: "Itai Mizlish",
+    description: "Itai Mizlish - Frontend development done to the fullest 🪐",
+    siteName: "Itai Mizlish",
     images: [
       {
         url: siteConfig.image,

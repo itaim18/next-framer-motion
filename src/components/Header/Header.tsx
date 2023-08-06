@@ -21,10 +21,13 @@ function Header() {
   const toggleMenu = () => {
     setShowMenu((prevState) => !prevState);
   };
+  const closeMenu = () => {
+    setShowMenu(false);
+  };
   return (
     <>
-      <header className="bgDark backdrop-blur w-screen fixed font-sans antialiased px-8 md:px-12 lg:px-32 xl:px-64 py-6 lg:py-12 flex flex-row justify-between">
-        <Logo />
+      <header className="bgDark z-30 backdrop-blur w-screen fixed font-sans antialiased px-8 md:px-12 lg:px-32 xl:px-64 py-6 lg:py-12 flex flex-row justify-between">
+        <Logo closeMenu={closeMenu} />
         <div className="flex gap-3">
           <div className="flex  border-2 cursor-pointer self-center bg-transparent h-fit p-2 rounded-md">
             <Moon
@@ -55,47 +58,61 @@ function Header() {
           <Navigation toggleMenu={toggleMenu} />
         </div>
       </header>
-      {showMenu && (
-        <>
-          <ul
-            className="lg:hidden top-28 inset-0 w-screen fixed glassBg h-fit flex py-24 gap-10 flex-col list-none"
-            onMouseLeave={() => setHoveredNavItem(null)}
-          >
-            {LINKS.map(
-              ({
-                slug,
-                label,
-                href,
-              }: {
-                slug: string;
-                label: string;
-                href: string;
-              }) => (
-                <li key={slug} className="relative w-auto m-auto h-12">
-                  {hoveredNavItem === slug && (
-                    <motion.div
-                      layoutId="hovered-backdrop"
-                      className="absolute   inset-0 bg-[rgba(0,0,0,0.2)] dark:bg-[rgba(255,255,255,0.2)]"
-                      initial={{
-                        borderRadius: 20,
-                      }}
-                    />
-                  )}
 
-                  <Link
-                    onClick={toggleMenu}
-                    href={href}
-                    className="flex relative h-full items-center w-fit m-auto text-2xl px-8 py-4 text-black dark:text-white font-semibold opacity-75 transition-opacity duration-500 hover:opacity-100"
-                    onMouseEnter={() => setHoveredNavItem(slug)}
-                  >
-                    {label}
-                  </Link>
-                </li>
-              )
-            )}
-          </ul>
-        </>
-      )}
+      <>
+        <motion.ul
+          variants={{
+            first: {
+              y: "-135%",
+            },
+            last: {
+              y: "0%",
+            },
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 150,
+            damping: 16,
+          }}
+          initial="first"
+          animate={showMenu ? "last" : "first"}
+          className="lg:hidden  top-28 inset-0 w-screen fixed glassBg h-fit flex py-24 gap-10 flex-col list-none"
+          onMouseLeave={() => setHoveredNavItem(null)}
+        >
+          {LINKS.map(
+            ({
+              slug,
+              label,
+              href,
+            }: {
+              slug: string;
+              label: string;
+              href: string;
+            }) => (
+              <li key={slug} className="relative w-auto m-auto h-12">
+                {hoveredNavItem === slug && (
+                  <motion.div
+                    layoutId="hovered-backdrop"
+                    className="absolute   inset-0 bg-[rgba(0,0,0,0.2)] dark:bg-[rgba(255,255,255,0.2)]"
+                    initial={{
+                      borderRadius: 20,
+                    }}
+                  />
+                )}
+
+                <Link
+                  onClick={toggleMenu}
+                  href={href}
+                  className="flex relative h-full items-center w-fit m-auto text-2xl px-8 py-4 text-black dark:text-white font-semibold opacity-75 transition-opacity duration-500 hover:opacity-100"
+                  onMouseEnter={() => setHoveredNavItem(slug)}
+                >
+                  {label}
+                </Link>
+              </li>
+            )
+          )}
+        </motion.ul>
+      </>
     </>
   );
 }

@@ -28,7 +28,7 @@ function Navigation({ toggleMenu }: { toggleMenu: () => void }) {
               {hoveredNavItem === slug && (
                 <motion.div
                   layoutId="hovered-backdrop"
-                  className="absolute  inset-0 bg-[rgba(255,255,255,0.2)]"
+                  className="absolute  inset-0 bg-[rgba(0,0,0,0.2)] dark:bg-[rgba(255,255,255,0.2)]"
                   initial={{
                     borderRadius: 20,
                   }}
@@ -38,7 +38,7 @@ function Navigation({ toggleMenu }: { toggleMenu: () => void }) {
               <Link
                 onClick={toggleMenu}
                 href={href}
-                className="flex relative h-full items-center  text-2xl px-8 py-4 text-white font-semibold opacity-75 transition-opacity duration-500 hover:opacity-100"
+                className="flex relative h-full items-center  text-2xl px-8 py-4 text-black dark:text-white font-semibold opacity-75 transition-opacity duration-500 hover:opacity-100"
                 onMouseEnter={() => setHoveredNavItem(slug)}
               >
                 {label}

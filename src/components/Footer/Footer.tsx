@@ -13,11 +13,10 @@ function Footer() {
         xmlns="http://www.w3.org/2000/svg"
         height="1.4em"
         viewBox="0 0 512 512"
-        fill="white"
-        className="mr-3"
+        className="mr-3 fill-black dark:fill-white"
       >
         <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM199.4 312.6c-31.2-31.2-31.2-81.9 0-113.1s81.9-31.2 113.1 0c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9c-50-50-131-50-181 0s-50 131 0 181s131 50 181 0c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0c-31.2 31.2-81.9 31.2-113.1 0z" />
-      </svg>{" "}
+      </svg>
       <h4 className="text-2xl mr-3">2023 Itai Mizlish </h4> <X />
       <Link
         className="cursor-pointer"
@@ -27,10 +26,9 @@ function Footer() {
         <motion.svg
           onMouseEnter={() => setHoverGitH(true)}
           onMouseLeave={() => setHoverGitH(false)}
-          className="mr-3"
           xmlns="http://www.w3.org/2000/svg"
           height="1.8em"
-          fill="white"
+          className="mr-3 fill-black dark:fill-white"
           viewBox="0 0 496 512"
         >
           <motion.path
@@ -63,14 +61,14 @@ function Footer() {
           height="2.4rem"
           width="1.7rem"
           viewBox="0 0 24 24"
-          fill="none"
+          className="fill-black dark:fill-white"
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
             className={
               hoverIn
                 ? "fill-[#1da1f2] stroke-[#1da1f2] animate-bounce duration-600 z-20"
-                : "animate-bounce duration-600 z-20"
+                : "animate-bounce duration-600 z-20 fill-black dark:fill-white"
             }
             fillRule="evenodd"
             clipRule="evenodd"
@@ -79,14 +77,22 @@ function Footer() {
             height="1rem"
           />
           <path
-            className={hoverIn ? "fill-[#1da1f2] stroke-[#1da1f2]" : ""}
+            className={
+              hoverIn
+                ? "fill-[#1da1f2] stroke-[#1da1f2]"
+                : " fill-black dark:fill-white"
+            }
             fillRule="evenodd"
             clipRule="evenodd"
             d="M2.25 8C2.25 7.58579 2.58579 7.25 3 7.25H7C7.41421 7.25 7.75 7.58579 7.75 8V21C7.75 21.4142 7.41421 21.75 7 21.75H3C2.58579 21.75 2.25 21.4142 2.25 21V8ZM3.75 8.75V20.25H6.25V8.75H3.75Z"
             fill="white"
           />
           <path
-            className={hoverIn ? "fill-[#1da1f2] stroke-[#1da1f2]" : ""}
+            className={
+              hoverIn
+                ? "fill-[#1da1f2] stroke-[#1da1f2]"
+                : " fill-black dark:fill-white"
+            }
             fillRule="evenodd"
             clipRule="evenodd"
             d="M9.25 8C9.25 7.58579 9.58579 7.25 10 7.25H14C14.4142 7.25 14.75 7.58579 14.75 8V8.43402L15.1853 8.24748C15.9336 7.92676 16.7339 7.72565 17.5433 7.65207C20.3182 7.3998 22.75 9.58038 22.75 12.3802V21C22.75 21.4142 22.4142 21.75 22 21.75H18C17.5858 21.75 17.25 21.4142 17.25 21V14C17.25 13.6685 17.1183 13.3505 16.8839 13.1161C16.6495 12.8817 16.3315 12.75 16 12.75C15.6685 12.75 15.3505 12.8817 15.1161 13.1161C14.8817 13.3505 14.75 13.6685 14.75 14V21C14.75 21.4142 14.4142 21.75 14 21.75H10C9.58579 21.75 9.25 21.4142 9.25 21V8ZM10.75 8.75V20.25H13.25V14C13.25 13.2707 13.5397 12.5712 14.0555 12.0555C14.5712 11.5397 15.2707 11.25 16 11.25C16.7293 11.25 17.4288 11.5397 17.9445 12.0555C18.4603 12.5712 18.75 13.2707 18.75 14V20.25H21.25V12.3802C21.25 10.4759 19.589 8.97227 17.6791 9.14591C17.025 9.20536 16.3784 9.36807 15.7762 9.6262L14.2954 10.2608C14.0637 10.3601 13.7976 10.3363 13.5871 10.1976C13.3767 10.0588 13.25 9.82354 13.25 9.57143V8.75H10.75Z"

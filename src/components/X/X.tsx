@@ -32,7 +32,7 @@ function X() {
           onMouseLeave={() => setHoverX(false)}
           xmlns="http://www.w3.org/2000/svg"
           height="1.6em"
-          className="mr-3 cursor-pointer"
+          className="mr-3 cursor-pointer fill-black dark:fill-white"
           viewBox="0 0 512 512"
           initial={{ scale: 0.8 }}
           animate={{ scale: 1, rotate: 360 }}
@@ -46,10 +46,14 @@ function X() {
         >
           <motion.path
             transition={{
-              default: { duration: 2, ease: "easeInOut" },
-              fill: { delay: 2, duration: 0.5, ease: [1, 0, 0.8, 1] },
+              default: { duration: 0.8, ease: "easeInOut" },
+              fillOpacity: { delay: 2, duration: 0.5, ease: [1, 0, 0.8, 1] },
             }}
-            className={hoverX ? "fill-[#1da1f2] stroke-[#1da1f2]" : ""}
+            className={
+              hoverX
+                ? "fill-[#1da1f2] stroke-[#1da1f2]"
+                : "fill-black stroke-black dark:fill-white "
+            }
             stroke="white"
             variants={icon}
             initial="hidden"
@@ -113,10 +117,10 @@ export default X;
 const icon = {
   hidden: {
     pathLength: 0,
-    fill: "rgba(255, 255, 255, 0)",
+    fillOpacity: 0,
   },
   visible: {
     pathLength: 1,
-    fill: "rgba(255, 255, 255, 1)",
+    fillOpacity: 1,
   },
 };

@@ -26,7 +26,7 @@ function Header() {
   };
   return (
     <>
-      <header className="bgDark z-30 backdrop-blur w-screen fixed font-sans antialiased px-8 md:px-12 lg:px-32 xl:px-64 py-6 lg:py-12 flex flex-row justify-between">
+      <header className="bgDark z-40 backdrop-blur w-screen fixed font-sans antialiased px-8 md:px-12 lg:px-32 xl:px-64 py-6 lg:py-12 flex flex-row justify-between">
         <Logo closeMenu={closeMenu} />
         <div className="flex gap-3">
           <div className="flex  border-2 cursor-pointer self-center bg-transparent h-fit p-2 rounded-md">
@@ -70,13 +70,11 @@ function Header() {
             },
           }}
           transition={{
-            type: "spring",
-            stiffness: 150,
-            damping: 16,
+            borderRadius: { type: "spring", stiffness: 150, damping: 16 },
           }}
           initial="first"
           animate={showMenu ? "last" : "first"}
-          className="lg:hidden  top-28 inset-0 w-screen fixed glassBg h-fit flex py-24 gap-10 flex-col list-none"
+          className="lg:hidden z-30 top-28 inset-0 w-screen fixed glassBg h-fit flex py-24 gap-10 flex-col list-none"
           onMouseLeave={() => setHoveredNavItem(null)}
         >
           {LINKS.map(
@@ -93,7 +91,7 @@ function Header() {
                 {hoveredNavItem === slug && (
                   <motion.div
                     layoutId="hovered-backdrop"
-                    className="absolute   inset-0 bg-[rgba(0,0,0,0.2)] dark:bg-[rgba(255,255,255,0.2)]"
+                    className="absolute  inset-0 bg-[rgba(0,0,0,0.2)] dark:bg-[rgba(255,255,255,0.2)]"
                     initial={{
                       borderRadius: 20,
                     }}

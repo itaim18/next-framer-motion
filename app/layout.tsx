@@ -5,7 +5,7 @@ import Footer from "@/src/components/Footer/Footer";
 import { ThemeProvider } from "../src/components/providers/providers";
 import Header from "@/src/components/Header/Header";
 import { siteConfig } from "@/src/config/site";
-
+import { TailwindIndicator } from "@/src/components/providers/Tailwind-indicator";
 const rajdhani = Rajdhani({ weight: "700", subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -66,6 +66,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <TailwindIndicator />
         </ThemeProvider>
       </body>
     </html>

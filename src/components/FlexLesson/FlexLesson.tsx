@@ -1,5 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { LayoutGroup, AnimatePresence, Reorder } from "framer-motion";
+
 const box = {
   hidden: { y: -10, opacity: 0, gap: "6px" },
   visible: {
@@ -10,6 +12,7 @@ const box = {
 };
 
 function FlexLesson() {
+  const [items, setItems] = React.useState(ITEMS);
   const [flexDirection, setFlexDirection] = React.useState<any>("column");
   const [justifyContent, setJustifyContent] = React.useState("space-between");
   const [alignItems, setAlignItems] = React.useState("stretch");
@@ -24,7 +27,7 @@ function FlexLesson() {
       variants={box}
       initial="hidden"
       animate="visible"
-      className="flex border mb-56 min-h-[360px] md:min-w-[640px] m-auto mx-4 md:mx-auto flex-col gap-4"
+      className="flex overflow-y-hidden border mb-56 min-h-[360px] max-w-[480px] m-auto mx-4 md:mx-auto flex-col gap-4"
     >
       <motion.h1
         transition={{
@@ -58,34 +61,72 @@ function FlexLesson() {
           className="-z-10"
         >
           Flex
-        </motion.div>{" "}
+        </motion.div>
         💪
       </motion.h1>
-
-      <div
-        style={{ flexDirection, justifyContent, alignItems }}
-        className="flex gap-1 min-w min-h-[300px] flex-wrap border p-1"
-      >
-        {ITEMS.map((item, i) => (
-          <motion.div
-            layout={true}
-            transition={{
-              type: "spring",
-              stiffness: 500,
-              damping: 40,
-              y: { delay: i * 0.2, ease: "easeInOut" },
-              opacity: { delay: i * 0.2, ease: "easeInOut" },
-            }}
-            variants={box}
-            initial="hidden"
-            animate="visible"
-            key={item.id}
-            className="bg-slate-500 p-2 rounded-md"
+      {flexDirection === "column" ? (
+        <LayoutGroup>
+          <Reorder.Group
+            axis="y"
+            style={{ flexDirection, justifyContent, alignItems }}
+            values={items}
+            onReorder={setItems}
+            className="flex gap-1 min-h-[300px] flex-wrap border p-1"
           >
-            <motion.p layout="position"> {item.label} </motion.p>
-          </motion.div>
-        ))}
-      </div>
+            <AnimatePresence>
+              {items.map((item, i) => (
+                <Reorder.Item
+                  className="cursor-grab"
+                  value={item}
+                  key={item.id}
+                >
+                  <motion.div
+                    layout={true}
+                    transition={{
+                      type: "spring",
+                      stiffness: 500,
+                      damping: 40,
+                      y: { delay: i * 0.2, ease: "easeInOut" },
+                      opacity: { delay: i * 0.2, ease: "easeInOut" },
+                    }}
+                    variants={box}
+                    initial="hidden"
+                    animate="visible"
+                    className="bg-slate-500 p-2 rounded-md"
+                  >
+                    <motion.p layout="position"> {item.label} </motion.p>
+                  </motion.div>
+                </Reorder.Item>
+              ))}
+            </AnimatePresence>
+          </Reorder.Group>
+        </LayoutGroup>
+      ) : (
+        <div
+          style={{ flexDirection, justifyContent, alignItems }}
+          className="flex gap-1 min-h-[300px] flex-wrap border p-1"
+        >
+          {items.map((item, i) => (
+            <motion.div
+              key={i}
+              layout={true}
+              transition={{
+                type: "spring",
+                stiffness: 500,
+                damping: 40,
+                y: { delay: i * 0.2, ease: "easeInOut" },
+                opacity: { delay: i * 0.2, ease: "easeInOut" },
+              }}
+              variants={box}
+              initial="hidden"
+              animate="visible"
+              className="bg-slate-500 p-2 rounded-md"
+            >
+              <motion.p layout="position"> {item.label} </motion.p>
+            </motion.div>
+          ))}
+        </div>
+      )}
       <div className="flex gap-4 flex-wrap justify-between">
         <SelectControl
           label="flex-direction"

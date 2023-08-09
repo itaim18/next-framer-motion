@@ -8,7 +8,7 @@ function Footer() {
   const [hoverIn, setHoverIn] = useState(false);
   const [hoverGitH, setHoverGitH] = useState(false);
   return (
-    <div className="border border-x-0 border-b-0 fixed bottom-0 backdrop-blur w-screen items-center justify-center flex py-5 flex-row z-10">
+    <div className="border border-x-0 border-b-0 fixed bottom-0 backdrop-blur w-screen items-center justify-center flex py-3 flex-row z-10">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         height="1.4em"

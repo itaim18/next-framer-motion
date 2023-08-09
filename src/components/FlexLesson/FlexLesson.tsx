@@ -92,7 +92,7 @@ function FlexLesson() {
                     variants={box}
                     initial="hidden"
                     animate="visible"
-                    className="bg-slate-500 p-2 rounded-md"
+                    className="bg-[rgb(255,250,240,0.6)] backdrop-blur border dark:bg-opacity-40  dark:bg-slate-500 p-2 rounded-md"
                   >
                     <motion.p layout="position"> {item.label} </motion.p>
                   </motion.div>
@@ -120,7 +120,8 @@ function FlexLesson() {
               variants={box}
               initial="hidden"
               animate="visible"
-              className="bg-slate-500 p-2 rounded-md"
+              className="bg-[rgb(255,250,240,0.6)]  backdrop-blur 
+              dark:bg-opacity-40  border dark:bg-slate-500 p-2 rounded-md"
             >
               <motion.p layout="position"> {item.label} </motion.p>
             </motion.div>

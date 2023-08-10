@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { InView } from "react-intersection-observer";
 import ProjectsGrid from "@/src/components/ProjectsGrid/ProjectsGrid";
 const DATA = [
   {
@@ -86,7 +85,6 @@ export default function Projects() {
       (item: any) => item.types.includes(myTopic) || myTopic === "All"
     );
     setTopic(myTopic);
-
     setItems(nextProjects);
   }
   return (

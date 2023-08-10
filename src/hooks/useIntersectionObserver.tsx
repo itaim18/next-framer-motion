@@ -12,8 +12,6 @@ export const useIntersectionObserver = (ref: any, options: any) => {
     }
 
     return () => {
-      console.log("I'm disconnecting");
-
       observer.disconnect();
     };
   }, [ref, options]);

@@ -96,7 +96,7 @@ export default function Projects() {
         onClick={() => {
           selectedId && setSelectedId(null);
         }}
-        className={`grid gap-4 relative min-w-fit min-h-[70vh] grid-cols-6 mx-14 lg:mx-24 xl:mx-36 2xl:mx-56 self-center  my-28  lg:my-36 lg:mt-56 ${
+        className={`grid gap-4 relative min-w-fit min-h-[70vh] grid-cols-6 mx-14 lg:mx-24 xl:mx-36 2xl:mx-56 self-center  my-28  lg:mb-36 mt-56 ${
           selectedId && "mb-96 opacity-30"
         }`}
       >

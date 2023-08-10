@@ -10,23 +10,51 @@ import Link from "next/link";
 
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+const useScrollCounter = (offset: number) => {
+  const [reached, setReached] = React.useState(false);
+  React.useEffect(() => {
+    const showTitle = () => setReached(window.scrollY > offset);
+    window.addEventListener("scroll", showTitle);
+    return () => {
+      window.removeEventListener("scroll", showTitle);
+    };
+  }, [offset]);
 
+  return reached;
+};
 function Header() {
   const { setTheme } = useTheme();
   const [showMenu, setShowMenu] = React.useState<boolean>(false);
   const [hoveredNavItem, setHoveredNavItem] = React.useState<null | string>(
     null
   );
-
+  const reached = useScrollCounter(80);
   const toggleMenu = () => {
     setShowMenu((prevState) => !prevState);
   };
   const closeMenu = () => {
     setShowMenu(false);
   };
+  const headerVariants = {
+    open: {
+      paddingTop: 48,
+      paddingBottom: 48,
+      transition: { ease: "easeInOut", duration: 0.3 },
+    },
+    collapsed: {
+      paddingTop: 12,
+      paddingBottom: 12,
+      transition: { ease: "easeInOut", duration: 0.3, delayChildren: 0.5 },
+    },
+  };
   return (
     <>
-      <header className="bgDark z-40 backdrop-blur w-screen fixed font-sans antialiased px-8 md:px-12 lg:px-32 xl:px-64 py-6 lg:py-12 flex flex-row justify-between">
+      <motion.header
+        initial="open"
+        animate={reached ? "collapsed" : "open"}
+        variants={headerVariants}
+        className="bgDark z-40 backdrop-blur w-screen fixed font-sans antialiased px-8 md:px-12 lg:px-32 xl:px-64 py-6 lg:py-12 flex flex-row justify-between"
+      >
         <Logo closeMenu={closeMenu} />
         <div className="flex gap-3">
           <div className="flex  border-2 cursor-pointer self-center bg-transparent h-fit p-2 rounded-md">
@@ -57,7 +85,7 @@ function Header() {
           </div>
           <Navigation toggleMenu={toggleMenu} />
         </div>
-      </header>
+      </motion.header>
 
       <>
         <motion.ul
@@ -74,7 +102,7 @@ function Header() {
           }}
           initial="first"
           animate={showMenu ? "last" : "first"}
-          className="lg:hidden z-30 top-28 inset-0 w-screen fixed glassBg h-fit flex py-24 gap-10 flex-col list-none"
+          className="lg:hidden z-30 top-20 inset-0 w-screen fixed glassBg h-fit flex py-24 gap-10 flex-col list-none"
           onMouseLeave={() => setHoveredNavItem(null)}
         >
           {LINKS.map(

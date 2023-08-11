@@ -4,8 +4,18 @@ import React, { useState } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ProjectsGrid from "@/src/components/ProjectsGrid/ProjectsGrid";
+import PriceExplorer from "../../public/assets/projects/priceExplorer.png";
+import chitchat from "../../public/assets/projects/chitchat.png";
+import coop from "../../public/assets/projects/coop.png";
+import portfolio from "../../public/assets/projects/portfolio.png";
+import qwikui from "../../public/assets/projects/qwikui.png";
+import sportodo from "../../public/assets/projects/sportodo.png";
+import startach from "../../public/assets/projects/startach.png";
+import unishield from "../../public/assets/projects/unishield.png";
+import zits from "../../public/assets/projects/zits.png";
 const DATA = [
   {
+    image: PriceExplorer,
     id: crypto.randomUUID(),
     subtitle: "hello there people of earth",
     title: "Price Explorer",
@@ -14,6 +24,7 @@ const DATA = [
   },
 
   {
+    image: zits,
     id: crypto.randomUUID(),
     subtitle: "hello there people of earth",
     title: "Zits",
@@ -21,6 +32,7 @@ const DATA = [
     types: ["Volunteer", "Web", "Mobile"],
   },
   {
+    image: chitchat,
     id: crypto.randomUUID(),
     subtitle: "hello there people of earth",
     title: "Chit Chat",
@@ -28,6 +40,7 @@ const DATA = [
     types: ["Web"],
   },
   {
+    image: sportodo,
     id: crypto.randomUUID(),
     subtitle: "hello there people of earth",
     title: "Sportodo",
@@ -35,6 +48,7 @@ const DATA = [
     types: ["Web"],
   },
   {
+    image: coop,
     id: crypto.randomUUID(),
     subtitle: "hello there people of earth",
     title: "Coop",
@@ -42,6 +56,7 @@ const DATA = [
     types: ["Mobile", "Open Source"],
   },
   {
+    image: qwikui,
     id: crypto.randomUUID(),
     subtitle: "hello there people of earth",
     title: "Qwik-UI",
@@ -49,13 +64,15 @@ const DATA = [
     types: ["Open Source", "Web"],
   },
   {
+    image: portfolio,
     id: crypto.randomUUID(),
     subtitle: "hello there people of earth",
     title: "Portfolio",
-    myClass: "col-span-6 md:col-span-4 xl:col-span-3",
+    myClass: "col-span-6 md:col-span-3 md:col-span-4 xl:col-span-3",
     types: ["Web"],
   },
   {
+    image: unishield,
     id: crypto.randomUUID(),
     subtitle: "hello there people of earth",
     title: "UniShield",
@@ -63,6 +80,7 @@ const DATA = [
     types: ["Mobile", "Volunteer"],
   },
   {
+    image: startach,
     id: crypto.randomUUID(),
     subtitle: "hello there people of earth",
     title: "StartAch",
@@ -135,7 +153,15 @@ export default function Projects() {
                 onClick={() => setSelectedId(null)}
               />
             </motion.div>
-            <motion.div className="inset-0 w-full aspect-video bg-purple-600 rounded-lg my-4"></motion.div>
+            {items.find((item) => item.id === selectedId)?.image ? (
+              <motion.img
+                src={items.find((item) => item.id === selectedId)?.image?.src}
+                className="inset-0 w-full aspect-video bg-purple-600 rounded-lg my-4"
+              />
+            ) : (
+              <motion.div className="inset-0 w-full aspect-video bg-purple-600 rounded-lg my-4"></motion.div>
+            )}
+
             <motion.h5 className="text-lg">
               {items.find((item) => item.id === selectedId)?.subtitle}
             </motion.h5>

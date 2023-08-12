@@ -2,9 +2,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useIntersectionObserver } from "@/src/hooks/useIntersectionObserver";
+import { Link2, Link2Off, Terminal, Maximize } from "lucide-react";
+
+import Link from "next/link";
 function Project({ item, handleChooseProject, i }: any) {
   const ref = React.useRef<any>();
-  const onScreen = useIntersectionObserver(ref, {});
+  const onScreen = useIntersectionObserver(ref, { threshold: 0 });
 
   return (
     <motion.div
@@ -25,10 +28,7 @@ function Project({ item, handleChooseProject, i }: any) {
       }}
       initial="start"
       animate={onScreen ? "finish" : "start"}
-      className={`border-red-400 justify-start flex flex-col bg-transparent dark:bg-opacity-25 bg-opacity-25 aspect-square lg:aspect-auto cursor-pointer col-span-2 rounded-lg py-8 px-4 border-2 ${item.myClass}`}
-      onClick={() => {
-        handleChooseProject(item.id);
-      }}
+      className={`border-red-400 justify-start relative flex flex-col bg-transparent dark:bg-opacity-25 bg-opacity-25 aspect-square lg:aspect-auto col-span-2 rounded-lg py-8 px-4 border-2 ${item.myClass}`}
     >
       {item.image ? (
         <motion.img
@@ -41,8 +41,30 @@ function Project({ item, handleChooseProject, i }: any) {
 
       <div>
         <motion.h5 className="text-lg sm:text-2xl">{item.subtitle}</motion.h5>
+
         <motion.h2 className="text-2xl sm:text-5xl">{item.title}</motion.h2>
       </div>
+      <div className="absolute flex gap-3 bottom-6 right-6 font-bold">
+        {item.code && (
+          <Link href={item.code} target="_blank">
+            <Terminal className="hover:text-red-400" />
+          </Link>
+        )}
+        {item.live ? (
+          <Link href={item.live} target="_blank">
+            <Link2 className="hover:text-red-400" />
+          </Link>
+        ) : (
+          <Link2Off className="text-black dark:text-white dark:text-opacity-50 text-opacity-50" />
+        )}
+      </div>
+
+      <Maximize
+        onClick={() => {
+          handleChooseProject(item.id);
+        }}
+        className="hover:text-red-400 hover:scale-150 transition-all duration-300 cursor-pointer absolute top-4 right-5 font-bold"
+      />
     </motion.div>
   );
 }

@@ -3,6 +3,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
 import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import "../styles.css";
+import Strong from "@/src/components/Strong/Strong";
 async function About() {
   const { content } = await loadPost();
 
@@ -15,6 +16,7 @@ async function About() {
           components={{
             pre: CodeSnippet,
             blockquote: BlockQuote,
+            strong: Strong,
           }}
         />
       </div>

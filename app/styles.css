@@ -31,15 +31,6 @@ textarea,
 select {
   font: inherit;
 }
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
-}
 
 /* THEME VARIABLES */
 html {
@@ -87,7 +78,6 @@ h3 {
 }
 p {
   font-size: 1.25rem;
-  margin-bottom: 1.5em;
 }
 p code {
   display: inline-block;

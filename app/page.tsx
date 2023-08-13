@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import FlexLesson from "@/src/components/FlexLesson/FlexLesson";
+
 export default function Home() {
   return (
     <main className="flex  flex-col ">

@@ -24,12 +24,8 @@ export default function DevStreamHub() {
   return (
     <main className="flex flex-col items-center min-h-screen justify-between">
       <LeadingVideo />
-      <div className="flex my-44  flex-col">
-        <MoviesGrid
-          className="flex mt-[70vh] min-h-screen overflow-hidden"
-          books={unselectedBooks}
-          handleSelectBook={toggleBook}
-        />
+      <div className="flex flex-col z-10">
+        <MoviesGrid books={unselectedBooks} handleSelectBook={toggleBook} />
         {selectedBooks.length > 0 && (
           <StreamList books={selectedBooks} handleRemoveBook={toggleBook} />
         )}

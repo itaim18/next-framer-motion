@@ -1,24 +1,24 @@
 "use client";
+import { usePathname } from "next/navigation";
 import React from "react";
 import Logo from "../Logo/Logo";
 import Navigation from "../Navigation";
 import { motion } from "framer-motion";
-import { Menu } from "lucide-react";
-import { XIcon } from "lucide-react";
 import { LINKS } from "@/src/config/docs";
 import Link from "next/link";
-
-import { Moon, Sun } from "lucide-react";
+import { Menu, Moon, Sun, XIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 const useScrollCounter = (offset: number) => {
-  const [reached, setReached] = React.useState(false);
+  const pName = usePathname();
+  const [reached, setReached] = React.useState(pName === "/DevStream");
   React.useEffect(() => {
-    const showTitle = () => setReached(window.scrollY > offset);
+    const showTitle = () =>
+      setReached(window.scrollY > offset || pName === "/DevStream");
     window.addEventListener("scroll", showTitle);
     return () => {
       window.removeEventListener("scroll", showTitle);
     };
-  }, [offset]);
+  }, [offset, pName]);
 
   return reached;
 };
@@ -70,17 +70,9 @@ function Header() {
           </div>
           <div className="flex lg:hidden border-2 cursor-pointer self-center bg-transparent h-fit p-2 rounded-md">
             {!showMenu ? (
-              <Menu
-                color="#424b58"
-                className="flex lg:hidden"
-                onClick={toggleMenu}
-              />
+              <Menu className="flex lg:hidden " onClick={toggleMenu} />
             ) : (
-              <XIcon
-                color="#424b58"
-                className="flex lg:hidden "
-                onClick={toggleMenu}
-              />
+              <XIcon className="flex lg:hidden " onClick={toggleMenu} />
             )}
           </div>
           <Navigation toggleMenu={toggleMenu} />

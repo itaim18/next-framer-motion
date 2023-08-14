@@ -22,7 +22,7 @@ export default function DevStreamHub() {
   const unselectedBooks = books.filter((book: any) => !book?.selected);
 
   return (
-    <main className="flex flex-col items-center min-h-screen justify-between p-24">
+    <main className="flex flex-col items-center min-h-screen justify-between">
       <LeadingVideo />
       <div className="flex my-44  flex-col">
         <MoviesGrid

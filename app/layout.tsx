@@ -1,4 +1,6 @@
+
 import "./globals.css";
+
 import type { Metadata } from "next";
 import { Rajdhani } from "next/font/google";
 import Footer from "@/src/components/Footer/Footer";
@@ -55,10 +57,14 @@ export const metadata: Metadata = {
   },
 };
 export default function RootLayout({
+  params,
   children,
 }: {
   children: React.ReactNode;
+  params: any;
 }) {
+
+
   return (
     <html lang="en">
       <body className={rajdhani.className}>

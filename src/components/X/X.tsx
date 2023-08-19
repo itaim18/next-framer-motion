@@ -66,19 +66,16 @@ function X() {
         <div className="grid gap-4">
           <div className="space-y-2">
             <div className="flex flex-row items-center">
-              {" "}
               <Image title="Twix" src={twix} alt="Twix" width={48} />
               <h4 className="font-medium text-md ml-3 leading-none">
                 or Twitter
               </h4>
             </div>
             <AlertDialog>
-              {" "}
               <p className="text-sm text-muted-foreground flex flex-row">
                 or even X for that matter, click{" "}
                 <AlertDialogTrigger asChild>
                   <h1 className="text-sm cursor-pointer text-indigo-600  hover:text-indigo-400 font-bold ml-1">
-                    {" "}
                     here
                   </h1>
                 </AlertDialogTrigger>

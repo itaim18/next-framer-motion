@@ -1,17 +1,18 @@
 "use client";
 
-import { motion, useMotionValue } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
 
 const Logo = ({ closeMenu }: { closeMenu: () => void }) => {
+  const shouldReduceMotion = useReducedMotion();
   const [animate, setAnimate] = React.useState<boolean>(true);
 
   const icon = {
     hidden: {
-      pathLength: 0,
+      pathLength: shouldReduceMotion ? 1 : 0,
       scale: 0.8,
-      fillOpacity: 0,
+      fillOpacity: shouldReduceMotion ? 1 : 0,
     },
     visible: {
       pathLength: 1,

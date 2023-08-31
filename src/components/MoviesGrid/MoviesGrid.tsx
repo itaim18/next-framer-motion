@@ -5,7 +5,7 @@ import { Movie } from "./Movie";
 const MoviesGrid = ({ books }: any) => {
   return (
     <section className="mt-[86vh] min-h-screen  flex flex-col">
-      <div className="flex flex-row overflow-x-auto h-full w-screen list-none">
+      <div className="flex flex-row gap-4 mr-4 overflow-x-auto h-full w-screen list-none">
         {books.slice(0, 10).map((book: any, i: number) => (
           <Movie key={i} book={book} i={i} />
         ))}

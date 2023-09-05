@@ -22,7 +22,7 @@ export const Movie = ({ book, i }: any) => {
       <button className="relative bg-transparent  items-start h-44  flex flex-row aspect-video cursor-pointer">
         <span
           style={{ textShadow: " 2px 2px 1px red" }}
-          className="text-[8rem] absolute  w-fit inset-0 -left-6 text-slate-900 drop-shadow-2xl sm:text-[11rem] leading-[0.7] scale-x-125 z-10 p-0 font-light tracking-tighter"
+          className="text-[8rem] absolute  w-fit inset-0 -left-10 text-slate-900 drop-shadow-2xl sm:text-[11rem] leading-[0.7] scale-x-125 z-10 p-0 font-light tracking-tighter"
         >
           {i + 1}
         </span>

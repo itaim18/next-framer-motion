@@ -4,28 +4,28 @@ import MoviesGrid from "@/src/components/MoviesGrid/MoviesGrid";
 import LeadingVideo from "@/src/components/LeadingVideo/LeadingVideo";
 
 export default function DevStreamHub() {
-  const [books, setBooks] = React.useState<any>(DATA);
-  function toggleBook(toggledBook: any) {
-    const nextBooks = books.filter(
-      (book: any) => book.isbn !== toggledBook.isbn
-    );
+  // const [books, setBooks] = React.useState<any>(DATA);
+  // function toggleBook(toggledBook: any) {
+  //   const nextBooks = books.filter(
+  //     (book: any) => book.isbn !== toggledBook.isbn
+  //   );
 
-    nextBooks.push({
-      ...toggledBook,
-      selected: !toggledBook.selected,
-    });
+  //   nextBooks.push({
+  //     ...toggledBook,
+  //     selected: !toggledBook.selected,
+  //   });
 
-    setBooks(nextBooks);
-  }
+  //   setBooks(nextBooks);
+  // }
 
-  const selectedBooks = books.filter((book: any) => book?.selected);
-  const unselectedBooks = books.filter((book: any) => !book?.selected);
+  // const selectedBooks = books.filter((book: any) => book?.selected);
+  // const unselectedBooks = books.filter((book: any) => !book?.selected);
 
   return (
     <main className="flex flex-col items-center min-h-screen justify-between">
       <LeadingVideo />
       {/* <div className="flex flex-col z-10"> */}
-      <MoviesGrid books={books} handleSelectBook={toggleBook} />
+      <MoviesGrid books={DATA} />
       {/* {selectedBooks.length > 0 && (
         <StreamList books={selectedBooks} handleRemoveBook={toggleBook} />
       )} */}

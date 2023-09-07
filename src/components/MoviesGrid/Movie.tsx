@@ -29,7 +29,7 @@ export const Movie = ({ book, i }: any) => {
         <div className="relative h-44 aspect-video ml-8">
           {movie ? (
             <Image
-              quality={100}
+              loading="lazy"
               width={480}
               height={360}
               alt={movie?.items[0].snippet.title}

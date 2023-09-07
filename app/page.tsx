@@ -1,5 +1,5 @@
 "use client";
-import Toasty from "@/src/components/Toasty/Toasty";
+// import Toasty from "@/src/components/Toasty/Toasty";
 import { motion } from "framer-motion";
 import FlexLesson from "@/src/components/FlexLesson/FlexLesson";
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
         </motion.article>
         <FlexLesson />
       </main>
-      <Toasty />
+      {/* <Toasty /> */}
     </>
   );
 }

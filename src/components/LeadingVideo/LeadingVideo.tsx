@@ -17,6 +17,7 @@ function LeadingVideo() {
         quality={100}
         width={480}
         height={360}
+        priority
         className="h-5/6 lg:h-screen relative object-cover object-left w-11/12 lg:w-screen m-auto border border-red-600 lg:border-none inset-0 top-24 lg:top-0 rounded-xl lg:rounded-none"
         src="https://i3.ytimg.com/vi/x7cQ3mrcKaY/maxresdefault.jpg"
         alt="Leading Video"

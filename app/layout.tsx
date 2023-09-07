@@ -6,6 +6,7 @@ import Footer from "@/src/components/Footer/Footer";
 import { ThemeProvider } from "../src/components/providers/providers";
 import Header from "@/src/components/Header/Header";
 import { siteConfig } from "@/src/config/site";
+import RespectMotionPreferences from "@/src/components/providers/RespectMotionPreferences";
 import { TailwindIndicator } from "@/src/components/providers/Tailwind-indicator";
 const rajdhani = Rajdhani({ weight: "700", subsets: ["latin"] });
 
@@ -65,12 +66,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={rajdhani.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <Header />
-          {children}
-          <Footer />
-          <TailwindIndicator />
-        </ThemeProvider>
+        <RespectMotionPreferences>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+            <Header />
+            {children}
+            <Footer />
+            <TailwindIndicator />
+          </ThemeProvider>
+        </RespectMotionPreferences>
       </body>
     </html>
   );

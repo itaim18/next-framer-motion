@@ -69,8 +69,8 @@ function Footer() {
           <path
             className={
               hoverIn
-                ? "fill-[#1da1f2] stroke-[#1da1f2] animate-bounce duration-600 z-20"
-                : "animate-bounce duration-600 z-20 fill-black dark:fill-white"
+                ? "fill-[#1da1f2] stroke-[#1da1f2] motion-safe:animate-bounce duration-600 z-20"
+                : "motion-safe:animate-bounce duration-600 z-20 fill-black dark:fill-white"
             }
             fillRule="evenodd"
             clipRule="evenodd"

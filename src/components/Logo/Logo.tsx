@@ -53,7 +53,7 @@ const Logo = ({ closeMenu }: { closeMenu: () => void }) => {
 
   return (
     <>
-      <Link href={"/"}>
+      <Link aria-label="back to home page" href={"/"}>
         <div className="relative">
           <motion.svg
             width="94.141"

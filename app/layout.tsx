@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "Tailwind",
     "Framer-Motion",
     "Itai Mizlish",
-    "UiShadcn",
+    "ui-shadcn",
   ],
   authors: [
     {

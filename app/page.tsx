@@ -1,9 +1,17 @@
 "use client";
 // import Toasty from "@/src/components/Toasty/Toasty";
+import React from "react";
 import { motion } from "framer-motion";
 import FlexLesson from "@/src/components/FlexLesson/FlexLesson";
 
 export default function Home() {
+  const [progress, setProgress] = React.useState(13);
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => setProgress(66), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <main className="flex  flex-col ">

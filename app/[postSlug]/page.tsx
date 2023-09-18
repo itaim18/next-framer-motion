@@ -52,7 +52,7 @@ async function BlogPost({ params }: any) {
               h1: (props) => (
                 <h1
                   {...props}
-                  id={remarkHeading(props.children)}
+                  // id={remarkHeading(props.children)}
                   data-toc
                   className="text-2xl my-8 scroll-smooth scroll-mt-36"
                 />
@@ -60,7 +60,7 @@ async function BlogPost({ params }: any) {
               h2: (props) => (
                 <h2
                   {...props}
-                  id={remarkHeading(props.children)}
+                  // id={remarkHeading(props.children)}
                   data-toc
                   className="text-xl mt-8 scroll-smooth mb-4 scroll-mt-24"
                 />
@@ -68,7 +68,7 @@ async function BlogPost({ params }: any) {
               h3: (props) => (
                 <h3
                   {...props}
-                  id={remarkHeading(props.children)}
+                  // id={remarkHeading(props.children)}
                   data-toc
                   className="text-xl mt-6 mb-4 scroll-smooth scroll-mt-24"
                 />

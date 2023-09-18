@@ -1,13 +1,21 @@
 import fs from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
+import { serialize } from "next-mdx-remote/serialize";
+import rehypeSlug from "rehype-slug";
+
+const options = {
+  mdxOptions: {
+    rehypePlugins: [rehypeSlug],
+  },
+};
 
 export async function loadPost(slug) {
   const rawContent = await readFile(`/content/${slug}.mdx`);
 
   const { data: frontmatter, content } = matter(rawContent);
-
-  return { frontmatter, content };
+  const mdxSource = await serialize(content, options);
+  return { frontmatter, content, source: mdxSource };
 }
 
 function readFile(localPath) {

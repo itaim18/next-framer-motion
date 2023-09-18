@@ -9,11 +9,30 @@ import Strong from "@/src/components/Strong/Strong";
 import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
 import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 import Link from "next/link";
-import { extractHeadings } from "extract-md-headings";
+const remarkHeading = (name: any) => {
+  return name
+    .toLowerCase() // Convert the string to lowercase
+    .replace(/[^a-z0-9-]+/g, "-") // Replace non-alphanumeric characters with hyphens
+    .replace(/^-+|-+$/g, "");
+};
+const H1 = (props: any) => (
+  <Link href={`#${remarkHeading(props.children)}`}>
+    <h1 {...props} />
+  </Link>
+);
+const H2 = (props: any) => (
+  <Link href={`#${remarkHeading(props.children)}`}>
+    <h2 {...props} />
+  </Link>
+);
+const H3 = (props: any) => (
+  <Link href={`#${remarkHeading(props.children)}`}>
+    <h3 {...props} />
+  </Link>
+);
+
 export async function generateMetadata({ params }: any) {
   const blogPostData = await loadPost(params.postSlug);
-  const mdxContent = extractHeadings(`content/${params.postSlug}.mdx`);
-  console.log(mdxContent);
 
   if (!blogPostData) {
     return null;
@@ -25,21 +44,16 @@ export async function generateMetadata({ params }: any) {
     description: frontmatter.abstract,
   };
 }
-const remarkHeading = (slug: any) => {
-  return slug
-    .toString()
-    .toLowerCase()
-    .replace(/[^a-z0-9-]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-};
+
 async function BlogPost({ params }: any) {
   const blogPostData = await loadPost(params.postSlug);
+  const { frontmatter, content, source } = blogPostData;
+
+  console.log(source);
 
   if (!blogPostData) {
     notFound();
   }
-
-  const { frontmatter, content } = blogPostData;
 
   return (
     <>
@@ -50,33 +64,13 @@ async function BlogPost({ params }: any) {
         />
         <div className="relative max-w-2xl text-lg m-auto p-8">
           <MDXRemote
+            {...source}
             source={content}
             components={{
               pre: CodeSnippet,
-              h1: (props) => (
-                <h1
-                  {...props}
-                  id={remarkHeading(props.children)}
-                  data-toc
-                  className="text-2xl my-8 scroll-smooth scroll-mt-36"
-                />
-              ),
-              h2: (props) => (
-                <h2
-                  {...props}
-                  id={remarkHeading(props.children)}
-                  data-toc
-                  className="text-xl mt-8 scroll-smooth mb-4 scroll-mt-24"
-                />
-              ),
-              h3: (props) => (
-                <h3
-                  {...props}
-                  id={remarkHeading(props.children)}
-                  data-toc
-                  className="text-xl mt-6 mb-4 scroll-smooth scroll-mt-24"
-                />
-              ),
+              h1: H1,
+              h2: H2,
+              h3: H3,
               blockquote: BlockQuote,
               strong: Strong,
               PixelatedApple,

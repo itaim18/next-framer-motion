@@ -12,7 +12,7 @@ function TableOfContents() {
   }, []);
   return (
     <div className="relative hidden xl:flex">
-      <div className="flex flex-col dark:text-white text-black fixed inset-y-0 top-1/3 max-h-[40vh] right-20">
+      <div className="flex flex-col max-w-[20vw] dark:text-white text-black fixed inset-y-0 top-1/3 max-h-[40vh] right-20">
         <h1 className="text-2xl">Table of Contents</h1>
         {headings
           ? headings.map((heading: any) => {

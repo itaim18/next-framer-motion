@@ -6,7 +6,7 @@ import { loadPost } from "@/src/helpers/file-helper";
 import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
 import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import Strong from "@/src/components/Strong/Strong";
-import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
+// import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
 import Link from "next/link";
 
 export async function generateMetadata({ params }: any) {
@@ -45,7 +45,6 @@ async function BlogPost({ params }: any) {
               pre: CodeSnippet,
               blockquote: BlockQuote,
               strong: Strong,
-              PixelatedApple,
             }}
           />
         </div>

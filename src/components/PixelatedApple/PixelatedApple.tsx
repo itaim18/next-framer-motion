@@ -22,13 +22,11 @@ return (<div style={{border:"solid", position:"relative"}}>
 </div>
 <ImagePixelated pixelSize={5} fillTransparencyColor="transparent" src={apple} width={120} height={120}  />
   
-  </div>
+</div>
 )
 }`,
-        "/constants.js": `const honey="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/564-honey-pot.svg/1200px-564-honey-pot.svg.png";
-const apple ="https://static.vecteezy.com/system/resources/previews/013/442/160/original/red-apple-on-transparent-background-free-png.png"
-export default {honey,apple}
-        `,
+        "/constants.js": `export const honey="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/564-honey-pot.svg/1200px-564-honey-pot.svg.png";
+export const apple ="https://static.vecteezy.com/system/resources/previews/013/442/160/original/red-apple-on-transparent-background-free-png.png"`,
       }}
     />
   );

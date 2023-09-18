@@ -7,29 +7,7 @@ import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
 import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import Strong from "@/src/components/Strong/Strong";
 import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
-import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 import Link from "next/link";
-const remarkHeading = (name: any) => {
-  return name
-    .toLowerCase() // Convert the string to lowercase
-    .replace(/[^a-z0-9-]+/g, "-") // Replace non-alphanumeric characters with hyphens
-    .replace(/^-+|-+$/g, "");
-};
-const H1 = (props: any) => (
-  <Link href={`#${remarkHeading(props.children)}`}>
-    <h1 {...props} />
-  </Link>
-);
-const H2 = (props: any) => (
-  <Link href={`#${remarkHeading(props.children)}`}>
-    <h2 {...props} />
-  </Link>
-);
-const H3 = (props: any) => (
-  <Link href={`#${remarkHeading(props.children)}`}>
-    <h3 {...props} />
-  </Link>
-);
 
 export async function generateMetadata({ params }: any) {
   const blogPostData = await loadPost(params.postSlug);
@@ -49,8 +27,6 @@ async function BlogPost({ params }: any) {
   const blogPostData = await loadPost(params.postSlug);
   const { frontmatter, content, source } = blogPostData;
 
-  console.log(source);
-
   if (!blogPostData) {
     notFound();
   }
@@ -64,20 +40,16 @@ async function BlogPost({ params }: any) {
         />
         <div className="relative max-w-2xl text-lg m-auto p-8">
           <MDXRemote
-            {...source}
             source={content}
             components={{
               pre: CodeSnippet,
-              h1: H1,
-              h2: H2,
-              h3: H3,
               blockquote: BlockQuote,
               strong: Strong,
               PixelatedApple,
             }}
           />
         </div>
-        <TableOfContents />
+
         <p className="border-t-2 text-lg">
           Hey there! 👋 I&apos;m Itai Mizlish, a passionate frontend web
           developer with a knack for crafting captivating digital experiences
@@ -93,7 +65,7 @@ async function BlogPost({ params }: any) {
           >
             here
           </Link>
-        </p>{" "}
+        </p>
       </article>
     </>
   );

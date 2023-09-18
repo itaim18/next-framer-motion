@@ -3,7 +3,7 @@ import Link from "next/link";
 import { format } from "date-fns";
 
 function BlogSummaryCard({ slug, title, publishedOn, abstract }: any) {
-  const href = `/${slug}`;
+  const href = `/blog/${slug}`;
   const humanizedDate = format(new Date(publishedOn), "MMMM do, yyyy");
 
   return (

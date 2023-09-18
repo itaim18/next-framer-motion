@@ -9,8 +9,12 @@ import Strong from "@/src/components/Strong/Strong";
 import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
 import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 import Link from "next/link";
+import { extractHeadings } from "extract-md-headings";
 export async function generateMetadata({ params }: any) {
   const blogPostData = await loadPost(params.postSlug);
+  const mdxContent = extractHeadings(`content/${params.postSlug}.mdx`);
+  console.log(mdxContent);
+
   if (!blogPostData) {
     return null;
   }
@@ -24,8 +28,8 @@ export async function generateMetadata({ params }: any) {
 const remarkHeading = (slug: any) => {
   return slug
     .toString()
-    .toLowerCase() // Convert the string to lowercase
-    .replace(/[^a-z0-9-]+/g, "-") // Replace non-alphanumeric characters with hyphens
+    .toLowerCase()
+    .replace(/[^a-z0-9-]+/g, "-")
     .replace(/^-+|-+$/g, "");
 };
 async function BlogPost({ params }: any) {
@@ -52,7 +56,7 @@ async function BlogPost({ params }: any) {
               h1: (props) => (
                 <h1
                   {...props}
-                  // id={remarkHeading(props.children)}
+                  id={remarkHeading(props.children)}
                   data-toc
                   className="text-2xl my-8 scroll-smooth scroll-mt-36"
                 />
@@ -60,7 +64,7 @@ async function BlogPost({ params }: any) {
               h2: (props) => (
                 <h2
                   {...props}
-                  // id={remarkHeading(props.children)}
+                  id={remarkHeading(props.children)}
                   data-toc
                   className="text-xl mt-8 scroll-smooth mb-4 scroll-mt-24"
                 />
@@ -68,7 +72,7 @@ async function BlogPost({ params }: any) {
               h3: (props) => (
                 <h3
                   {...props}
-                  // id={remarkHeading(props.children)}
+                  id={remarkHeading(props.children)}
                   data-toc
                   className="text-xl mt-6 mb-4 scroll-smooth scroll-mt-24"
                 />

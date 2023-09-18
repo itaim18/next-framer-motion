@@ -12,7 +12,7 @@ function TableOfContents() {
   }, []);
   return (
     <div className="relative hidden xl:flex">
-      <div className="flex flex-col max-w-[20vw] overflow-auto dark:text-white text-black fixed inset-y-0 top-1/3 max-h-[50vh] right-20">
+      <div className="flex flex-col max-w-[20vw] gap-1 overflow-auto dark:text-white text-black fixed inset-y-0 top-1/3 max-h-[50vh] right-20">
         <h1 className="text-2xl">Table of Contents</h1>
         {headings
           ? headings.map((heading: any) => {
@@ -32,7 +32,7 @@ function TableOfContents() {
                       : heading.tagName === "H3"
                       ? "ml-5"
                       : ""
-                  } scroll-smooth text-lg block mt-3 focus-visible:outline-accent`}
+                  } scroll-smooth text-lg block mr-3 focus-visible:outline-accent`}
                 >
                   <li className=" hover:bg-slate-600 font-medium hover:text-purple-700 hover:bg-opacity-40 transition-all duration-200 ease-in-out hover:font-bold list-none px-2 py-1 rounded-md">
                     {heading.innerText}

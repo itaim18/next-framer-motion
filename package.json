@@ -26,6 +26,7 @@
     "date-fns": "^2.30.0",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
+    "extract-md-headings": "^0.2.5",
     "framer-motion": "^10.15.0",
     "fs": "^0.0.1-security",
     "gray-matter": "^4.0.3",

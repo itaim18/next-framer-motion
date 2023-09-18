@@ -64,7 +64,7 @@ export default function RootLayout({
   params: any;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className={rajdhani.className}>
         <RespectMotionPreferences>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>

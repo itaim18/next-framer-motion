@@ -66,4 +66,3 @@ const DATA = [
     isbn: "FUxMgk_CTYI",
   },
 ];
-console.log(DATA.length);

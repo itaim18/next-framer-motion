@@ -6,16 +6,17 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
-* {
-  margin: 0;
-}
+
 html {
   scrollbar-gutter: stable;
+  scroll-behavior: smooth;
 }
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
 }
 img,
 picture,
@@ -34,6 +35,7 @@ select {
 
 /* THEME VARIABLES */
 html {
+  scroll-behavior: smooth;
   --content-width: 55rem;
   --outer-content-width: 80rem;
   --viewport-padding: 16px;

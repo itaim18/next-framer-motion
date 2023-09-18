@@ -5,7 +5,7 @@ import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import "../styles.css";
 import Strong from "@/src/components/Strong/Strong";
 async function About() {
-  const { content } = await loadPost();
+  const { content } = await loadPost("about");
 
   return (
     <main className="flex flex-col items-center min-h-screen justify-between p-8">

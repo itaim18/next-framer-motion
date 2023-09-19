@@ -14,4 +14,9 @@ export const LINKS = [
     label: "Projects",
     href: "/projects",
   },
+  {
+    slug: "blog",
+    label: "Blog",
+    href: "/blog",
+  },
 ];

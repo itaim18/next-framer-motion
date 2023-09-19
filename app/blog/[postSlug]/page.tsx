@@ -10,6 +10,7 @@ import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
 import Strong from "@/src/components/Strong/Strong";
 import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import matter from "gray-matter";
+import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
 import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 export default async function Home({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
@@ -69,21 +70,25 @@ export default async function Home({ params }: any) {
             }}
           />
         </div>
-        <p className="border-t-2 text-lg">
-          Hey there! 👋 I&apos;m Itai Mizlish, a passionate frontend web
-          developer with a knack for crafting captivating digital experiences
-          using the magical world of React JS frameworks. 🚀 When I&apos;m not
-          immersed in lines of code, you&apos;ll find me exploring the diverse
-          landscapes of Israel, contributing to open source projects, and
-          getting lost in the time-traveling adventures of Doctor Who! 🌌🌟{" "}
+        <p className="border-t-2 text-lg leading-8 pt-10 text-justify font-extrabold">
+          Hey there! 👋 I&apos;m{" "}
+          <Strong>
+            <SpecialLink
+              target="_blank"
+              href="https://www.linkedin.com/in/itai-mizlish/"
+            >
+              Itai Mizlish
+            </SpecialLink>
+          </Strong>
+          , a passionate frontend web developer with a knack for crafting
+          captivating digital experiences using the magical world of JS
+          frameworks and <Strong>magical</Strong> UI libraries. 🚀 When I&apos;m
+          not immersed in lines of code, you&apos;ll find me exploring the
+          diverse landscapes of Israel, contributing to open source projects,
+          and getting lost in the time-traveling adventures of Doctor Who! 🌌🌟{" "}
           <br />
           You can read more about me{" "}
-          <Link
-            href="/about"
-            className="text-indigo-600 hover:text-indigo-300 hover:underline transition-all ease-in-out duration-200"
-          >
-            here
-          </Link>
+          <SpecialLink href="/about">here</SpecialLink>
         </p>
         <TableOfContents />
       </article>

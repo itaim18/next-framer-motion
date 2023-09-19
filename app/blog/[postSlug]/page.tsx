@@ -2,7 +2,7 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import fs from "fs/promises";
 import path from "path";
 import React from "react";
-import Link from "next/link";
+import MDXImage from "@/src/components/MDXImage/MDXImage";
 import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
 import BlogHero from "@/src/components/BlogHero/BlogHero";
 import { MDXRemote } from "next-mdx-remote/rsc";
@@ -66,6 +66,7 @@ export default async function Home({ params }: any) {
               blockquote: BlockQuote,
               strong: Strong,
               PixelatedApple,
+              MDXImage,
               p: (props) => <p {...props} className="text-lg mt-6 mb-4 " />,
             }}
           />

@@ -21,7 +21,7 @@ function BlogSummaryCard({ slug, title, publishedOn, abstract }: any) {
         <br />
         <Link
           href={href}
-          className="absolute bottom-4 left-3/4 text-indigo-400 group hover:text-indigo-200"
+          className="absolute bottom-4 w-max left-2/3 md:left-3/4 text-indigo-400 group hover:text-indigo-200"
         >
           <span className="group-hover:mr-2 transition-all ease-in-out duration-300">
             {" "}

@@ -1,10 +1,6 @@
 import React from "react";
 
-import { loadBlogPost } from "../../../src/helpers/file-helper";
-
 async function BlogPostPage({ params }: any) {
-  const { content } = await loadBlogPost("about");
-
   return (
     <article>
       <div>

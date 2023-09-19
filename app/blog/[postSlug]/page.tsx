@@ -1,7 +1,7 @@
 import React from "react";
 
 // import COMPONENT_MAP from "@/src/helpers/mdx-components";
-import BlogHero from "@/src/components/BlogHero/BlogHero";
+// import BlogHero from "@/src/components/BlogHero/BlogHero";
 import { loadBlogPost } from "../../../src/helpers/file-helper";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
@@ -18,25 +18,24 @@ import Strong from "@/src/components/Strong/Strong";
 // }
 
 async function BlogPostPage({ params }: any) {
-  console.log(params);
-
-  const { frontmatter, content } = await loadBlogPost(params.postSlug);
+  // const { content } = await loadBlogPost(params.postSlug);
 
   return (
     <article>
-      <BlogHero
+      {/* <BlogHero
         title={frontmatter.title}
         publishedOn={frontmatter.publishedOn}
-      />
+      /> */}
       <div>
-        <MDXRemote
+        {/* <MDXRemote
           source={content}
           components={{
             pre: CodeSnippet,
             blockquote: BlockQuote,
             strong: Strong,
           }}
-        />
+        /> */}
+        <h1 className="mt-64">{params.postSlug}</h1>
       </div>
     </article>
   );

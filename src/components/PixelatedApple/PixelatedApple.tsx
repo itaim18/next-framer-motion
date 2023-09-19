@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Sandbox from "../Sandbox/Sandbox";
-import apple from "./apple.jpg";
+
 function PixelatedApple() {
   return (
     <Sandbox

@@ -10,6 +10,7 @@ import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
 import Strong from "@/src/components/Strong/Strong";
 import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import matter from "gray-matter";
+import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 export default async function Home({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
   const res = await fs.readFile(myPath, "utf8");
@@ -21,7 +22,7 @@ export default async function Home({ params }: any) {
       .replace(/[^a-z0-9-]+/g, "-") // Replace non-alphanumeric characters with hyphens
       .replace(/^-+|-+$/g, "");
   };
-  const { content, frontmatter } = await compileMDX<any>({
+  const { frontmatter } = await compileMDX<any>({
     source: res,
     options: { parseFrontmatter: true },
   });
@@ -42,7 +43,7 @@ export default async function Home({ params }: any) {
                   {...props}
                   id={remarkHeading(props.children)}
                   data-toc
-                  className="text-2xl my-8 scroll-smooth scroll-mt-36"
+                  className="text-3xl my-8 scroll-smooth scroll-mt-36"
                 />
               ),
               h2: (props) => (
@@ -50,7 +51,7 @@ export default async function Home({ params }: any) {
                   {...props}
                   id={remarkHeading(props.children)}
                   data-toc
-                  className="text-xl mt-8 scroll-smooth mb-4 scroll-mt-24"
+                  className="text-2xl mt-8 scroll-smooth mb-4 scroll-mt-24"
                 />
               ),
               h3: (props) => (
@@ -64,6 +65,7 @@ export default async function Home({ params }: any) {
               blockquote: BlockQuote,
               strong: Strong,
               PixelatedApple,
+              p: (props) => <p {...props} className="text-lg mt-6 mb-4 " />,
             }}
           />
         </div>
@@ -82,7 +84,8 @@ export default async function Home({ params }: any) {
           >
             here
           </Link>
-        </p>{" "}
+        </p>
+        <TableOfContents />
       </article>
     </>
   );

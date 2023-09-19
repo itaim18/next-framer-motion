@@ -1,8 +1,8 @@
 import React from "react";
-// import { format } from "date-fns";
+import { format } from "date-fns";
 
 function BlogHero({ title, publishedOn, className, ...delegated }: any) {
-  // const humanizedDate = format(new Date(publishedOn), "MMMM do, yyyy");
+  const humanizedDate = format(new Date(publishedOn), "MMMM do, yyyy");
 
   return (
     <header
@@ -13,9 +13,9 @@ function BlogHero({ title, publishedOn, className, ...delegated }: any) {
         <h1 className="mb-1 text-3xl font-bold">{title}</h1>
         <p className="text-xl text-slate-500 mb-0 font-semibold">
           Published on{" "}
-          {/* <time dateTime={publishedOn} className="font-bold"> */}
-          {publishedOn}
-          {/* </time> */}
+          <time dateTime={publishedOn} className="font-bold">
+            {humanizedDate}
+          </time>
         </p>
       </div>
     </header>

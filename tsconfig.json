@@ -29,7 +29,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/components/X/index.tsx"
+    "src/components/X/index.tsx",
+    "src/hooks/useHighlighted.js"
   ],
   "exclude": ["node_modules"]
 }

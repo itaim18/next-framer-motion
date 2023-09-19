@@ -4,7 +4,7 @@ import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
 import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import Strong from "@/src/components/Strong/Strong";
 async function BlogPost() {
-  const { content } = await loadBlogPost("about");
+  const { content } = await loadBlogPost();
 
   return (
     <main className="flex flex-col items-center min-h-screen justify-between p-8">

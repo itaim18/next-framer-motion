@@ -19,10 +19,14 @@ export async function getBlogPostList() {
     });
   }
 
-  return blogPosts.sort((p1, p2) => (p1.publishedOn < p2.publishedOn ? 1 : -1));
+  return blogPosts.sort((p1: any, p2: any) =>
+    p1.publishedOn < p2.publishedOn ? 1 : -1
+  );
 }
 
-export const loadBlogPost = React.cache(async function loadBlogPost(slug) {
+export const loadBlogPost = React.cache(async function loadBlogPost(
+  slug = "about"
+) {
   const rawContent = await readFile(`/content/${slug}.mdx`);
 
   const { data: frontmatter, content } = matter(rawContent);
@@ -30,10 +34,10 @@ export const loadBlogPost = React.cache(async function loadBlogPost(slug) {
   return { frontmatter, content };
 });
 
-function readFile(localPath) {
+function readFile(localPath: string) {
   return fs.readFile(path.join(process.cwd(), localPath), "utf8");
 }
 
-function readDirectory(localPath) {
+function readDirectory(localPath: string) {
   return fs.readdir(path.join(process.cwd(), localPath));
 }

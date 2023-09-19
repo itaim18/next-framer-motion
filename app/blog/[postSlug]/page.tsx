@@ -18,7 +18,8 @@ import Strong from "@/src/components/Strong/Strong";
 // }
 
 async function BlogPostPage({ params }: any) {
-  // const { content } = await loadBlogPost(params.postSlug);
+  const { content } = await loadBlogPost(params.postSlug);
+  console.log(content);
 
   return (
     <article>

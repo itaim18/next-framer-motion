@@ -1,11 +1,11 @@
-import { loadPost } from "../../src/helpers/file-helper";
+import { loadBlogPost } from "../../src/helpers/file-helper";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
 import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import "../styles.css";
 import Strong from "@/src/components/Strong/Strong";
 async function About() {
-  const { content } = await loadPost("about");
+  const { content } = await loadBlogPost("about");
 
   return (
     <main className="flex flex-col items-center min-h-screen justify-between p-8">

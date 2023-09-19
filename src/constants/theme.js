@@ -26,10 +26,10 @@ const itaiMizTheme = {
     string: "#81cf90",
   },
   font: {
-    body: "'League Mono','Fira Mono',monospace;",
-    mono: "'League Mono','Fira Mono',monospace;",
-    size: "13px",
-    lineHeight: "24px",
+    body: "'Source Code Pro','Fira Mono',monospace",
+    mono: "'Source Code Pro','Fira Mono',monospace",
+    size: "14px",
+    lineHeight: "20px",
   },
 };
 

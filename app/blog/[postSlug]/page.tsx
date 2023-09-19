@@ -70,7 +70,7 @@ export default async function Home({ params }: any) {
             }}
           />
         </div>
-        <p className="border-t-2 text-lg leading-8 pt-10 text-justify font-extrabold">
+        <p className="border-t-2 text-lg leading-8 p-10 text-justify font-extrabold">
           Hey there! 👋 I&apos;m{" "}
           <Strong>
             <SpecialLink

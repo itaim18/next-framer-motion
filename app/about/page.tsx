@@ -2,7 +2,7 @@ import { loadBlogPost } from "../../src/helpers/file-helper";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
 import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
-import "../styles.css";
+
 import Strong from "@/src/components/Strong/Strong";
 async function About() {
   const { content } = await loadBlogPost("about");
@@ -15,8 +15,28 @@ async function About() {
           source={content}
           components={{
             pre: CodeSnippet,
+            h1: (props) => (
+              <h1
+                {...props}
+                className="text-3xl my-8 scroll-smooth scroll-mt-36"
+              />
+            ),
+            h2: (props) => (
+              <h2
+                {...props}
+                className="text-2xl mt-8 scroll-smooth mb-4 scroll-mt-24"
+              />
+            ),
+            h3: (props) => (
+              <h3
+                {...props}
+                className="text-xl mt-6 mb-4 scroll-smooth scroll-mt-24"
+              />
+            ),
             blockquote: BlockQuote,
             strong: Strong,
+
+            p: (props) => <p {...props} className="text-lg mt-6 mb-4 " />,
           }}
         />
       </div>

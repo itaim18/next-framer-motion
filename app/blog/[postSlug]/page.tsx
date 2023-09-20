@@ -30,10 +30,10 @@ export async function generateMetadata({ params }: any) {
       locale: "en_US",
       title: "Itai Mizlish's Blog",
       description: frontmatter.abstract,
-      siteName: "Itai Mizlish",
+      siteName: "Itai Mizlish's Blog",
       images: [
         {
-          url: frontmatter.image,
+          url: `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/holidays-pixelated.png`,
           width: 1920,
           height: 1080,
           alt: params.postSlug,

@@ -12,6 +12,37 @@ import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import matter from "gray-matter";
 import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
 import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
+import img from "@/public/assets/holidays-pixelated.png";
+export async function generateMetadata({ params }: any) {
+  const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
+  const res = await fs.readFile(myPath, "utf8");
+  const { frontmatter } = await compileMDX<any>({
+    source: res,
+    options: { parseFrontmatter: true },
+  });
+
+  return {
+    title: `${frontmatter.title} • Blog`,
+    description: frontmatter.abstract,
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      title: "Itai Mizlish",
+      description: "Itai Mizlish - Frontend development done to the fullest 🪐",
+      siteName: "Itai Mizlish",
+      images: [
+        {
+          src:
+            path.join(process.cwd(), `/public/assets/${params.postSlug}.mdx`) ||
+            "https://nextjs.org/api/og?title=Functions:%20generateMetadata",
+          width: 1200,
+          height: 630,
+          alt: params.postSlug,
+        },
+      ],
+    },
+  };
+}
 export default async function Home({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
   const res = await fs.readFile(myPath, "utf8");

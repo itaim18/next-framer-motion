@@ -7,59 +7,65 @@ publishedOn: "2023-09-18T12:00:00-0400"
 ## Introduction
 
 Icons and featured elements can add visual appeal and context to your blog posts.
-For our 'Jewish Holidays' blog, we want to create unique and eye-catching pixelated
-React nodes that capture the essence of the holidays.
+For a 'Jewish Holidays' blog/landing page, we want to create unique and eye-catching pixelated
+React nodes that capture the essence and importance of the jewish holidays for us.
 
-Incorporating custom visuals can make your blog stand out and provide a more immersive experience for your readers. In this tutorial, we'll guide you through the process of creating pixelated React nodes step by step.
+Incorporating custom visuals can make your app stand out and provide a more immersive experience for your readers. In this tutorial, we'll guide you through the process of creating pixelated React nodes and use it for icons, games and hero components step by step.
 
 <PixelatedApple />
 
 ## Getting Started
 
-To begin, make sure you have a React project set up. If you don't, you can create a new one using [Create React App](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app).
+To begin, make sure you have a React project set up. If you don't, you can create a new one using [Vite](https://vitejs.dev/guide/#scaffolding-your-first-vite-project) or a [meta-framework of your choice](https://reactjs.org/docs/create-a-new-react-app.html#create-react-app).
 
-## Step 1: Install Dependencies
+### Step 1: Install Dependencies
 
-You'll need a few dependencies to create pixelated React nodes. These dependencies will enable you to style and display pixelated images effectively.
+You'll need to install the "react-pixelate" package in order to create pixelated React nodes.
 
 ```bash
-npm install react react-dom
-npm install @emotion/react @emotion/styled
+npm install react-pixelate
 ```
 
-## Step 2: Create a Pixelation Component
+{/* <Warning text="you can use other other package managers" /> */}
+
+This dependency will allow you to use this library and control the pixel rate along with background centering etc.
+
+### Step 2: Create a Pixelated Component
 
 Let's dive into the technical aspects of creating pixelated React nodes. We'll start by crafting a reusable React component for pixelation.
 
 ```jsx
 import React from "react";
-import styled from "@emotion/styled";
-
-const PixelatedImage = styled.div`
-  width: 100px; /* Adjust the size as needed */
-  height: 100px;
-  image-rendering: pixelated;
-  background-image: url("your-image-url.jpg");
-`;
-
-export default PixelatedImage;
+import { ImagePixelated } from "react-pixelate";
+import { shofar } from "./constants.js";
+export default function PixelatedShofar() {
+  return (
+    <ImagePixelated
+      pixelSize={5}
+      fillTransparencyColor="transparent"
+      src={shofar}
+      width={120}
+      height={120}
+    />
+  );
+}
 ```
 
-This code defines a React component named `PixelatedImage` that renders an image with pixelated styling. You can adjust the width, height, and background image URL to match your specific design requirements.
+This code defines a React component named _PixelatedShofar_ that renders an image of a **[Shofar](https://en.m.wikipedia.org/wiki/Shofar)** with pixelated styling. You can adjust the width, height, and the background color along with centering to match your specific design requirements.
 
-## Using the Pixelated React Node
+### step 3: Using the Pixelated React Node
 
-Now that you have your pixelation component ready, let's incorporate it into your 'Jewish Holidays' blog.
+Now that you have your pixelation component ready, let's incorporate it into your 'Jewish Holidays' blog:
 
 ```jsx
 import React from 'react';
-import PixelatedImage from './PixelatedImage';
+import PixelatedShofar from './PixelatedShofar';
 
 function BlogPost() {
   return (
     <div>
-      <h2>Jewish Holidays Icons</h2>
-      <PixelatedImage />
+      <h2>Ever blew that?🎶</h2>
+      <PixelatedShofar />
       <!-- Add more pixelated images here -->
     </div>
   );
@@ -69,6 +75,8 @@ export default BlogPost;
 ```
 
 In this section, you'll integrate the `PixelatedImage` component into your blog post, creating pixelated icons or featured elements related to 'Jewish Holidays.' Feel free to include multiple images to make your blog visually engaging.
+
+##Now for our game
 
 ## Conclusion
 

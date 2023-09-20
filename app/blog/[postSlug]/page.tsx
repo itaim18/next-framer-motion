@@ -32,8 +32,11 @@ export async function generateMetadata({ params }: any) {
       siteName: "Itai Mizlish",
       images: [
         {
+          url:
+            path.join(process.cwd(), `/public/assets/${params.postSlug}.png`) ||
+            "https://nextjs.org/api/og?title=Functions:%20generateMetadata",
           src:
-            path.join(process.cwd(), `/public/assets/${params.postSlug}.mdx`) ||
+            path.join(process.cwd(), `/public/assets/${params.postSlug}.png`) ||
             "https://nextjs.org/api/og?title=Functions:%20generateMetadata",
           width: 1200,
           height: 630,

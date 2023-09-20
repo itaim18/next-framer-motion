@@ -40,6 +40,15 @@ export async function generateMetadata({ params }: any) {
         },
       ],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: "Itai Mizlish's Blog",
+      description: frontmatter.abstract,
+      images: [
+        `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/holidays-pixelated.png`,
+      ],
+      creator: "@IMizlish",
+    },
   };
 }
 export default async function Home({ params }: any) {

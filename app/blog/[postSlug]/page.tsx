@@ -12,7 +12,7 @@ import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import matter from "gray-matter";
 import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
 import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
-import Image from "next/image";
+import HolidaysTest from "@/src/components/HolidaysTest/HolidaysTest";
 
 export async function generateMetadata({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: any) {
       siteName: "Itai Mizlish's Blog",
       images: [
         {
-          url: `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/holidays-pixelated.png`,
+          url: `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/${params.postSlug}.png`,
           width: 1920,
           height: 1080,
           alt: params.postSlug,
@@ -106,6 +106,14 @@ export default async function Home({ params }: any) {
               strong: Strong,
               PixelatedApple,
               MDXImage,
+              HolidaysTest,
+              a: (props) => (
+                <a
+                  {...props}
+                  target="_blank"
+                  className="text-indigo-600 hover:text-indigo-300 underline hover:no-underline transition-all ease-in-out duration-200"
+                />
+              ),
               p: (props) => <p {...props} className="text-lg mt-6 mb-4 " />,
             }}
           />

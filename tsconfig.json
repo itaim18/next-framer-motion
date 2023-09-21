@@ -30,7 +30,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/components/X/index.tsx",
-    "src/hooks/useHighlighted.js"
+    "src/hooks/useHighlighted.js",
+    "src/components/HolidaysTest/HolidaysTest.jsx"
   ],
   "exclude": ["node_modules"]
 }

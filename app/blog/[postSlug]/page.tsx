@@ -78,7 +78,7 @@ export default async function Home({ params }: any) {
             source={myContent}
             components={{
               pre: CodeSnippet,
-              h1: (props) => (
+              h1: (props: any) => (
                 <h1
                   {...props}
                   id={remarkHeading(props.children)}
@@ -86,7 +86,7 @@ export default async function Home({ params }: any) {
                   className="text-3xl my-8 scroll-smooth scroll-mt-36"
                 />
               ),
-              h2: (props) => (
+              h2: (props: any) => (
                 <h2
                   {...props}
                   id={remarkHeading(props.children)}
@@ -94,7 +94,7 @@ export default async function Home({ params }: any) {
                   className="text-2xl mt-8 scroll-smooth mb-4 scroll-mt-24"
                 />
               ),
-              h3: (props) => (
+              h3: (props: any) => (
                 <h3
                   {...props}
                   id={remarkHeading(props.children)}
@@ -107,14 +107,16 @@ export default async function Home({ params }: any) {
               PixelatedApple,
               MDXImage,
               HolidaysTest,
-              a: (props) => (
+              a: (props: any) => (
                 <a
                   {...props}
                   target="_blank"
                   className="text-indigo-600 hover:text-indigo-300 underline hover:no-underline transition-all ease-in-out duration-200"
                 />
               ),
-              p: (props) => <p {...props} className="text-lg mt-6 mb-4 " />,
+              p: (props: any) => (
+                <p {...props} className="text-lg mt-6 mb-4 " />
+              ),
             }}
           />
         </div>

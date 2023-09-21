@@ -39,7 +39,7 @@ const Questions = [
   },
 ];
 
-export const range = (start, end, step = 1) => {
+export const range = (start: number, end: number, step = 1) => {
   let output = [];
   if (typeof end === "undefined") {
     end = start;
@@ -67,7 +67,7 @@ function HolidaysTest() {
     }, 1000);
   }, [currentQuestion]);
 
-  function handleSubmit(event) {
+  function handleSubmit(event: any) {
     event.preventDefault();
 
     if (
@@ -115,7 +115,6 @@ function HolidaysTest() {
             <h1 className="text-xl">Guess The Holiday:</h1>
 
             <OtpInput
-              className="flex flex-row gap-2"
               value={otp}
               onChange={setOtp}
               numInputs={answerLength}

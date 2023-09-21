@@ -15,19 +15,19 @@ async function About() {
           source={content}
           components={{
             pre: CodeSnippet,
-            h1: (props) => (
+            h1: (props: any) => (
               <h1
                 {...props}
                 className="text-3xl my-8 scroll-smooth scroll-mt-36"
               />
             ),
-            h2: (props) => (
+            h2: (props: any) => (
               <h2
                 {...props}
                 className="text-2xl mt-8 scroll-smooth mb-4 scroll-mt-24"
               />
             ),
-            h3: (props) => (
+            h3: (props: any) => (
               <h3
                 {...props}
                 className="text-xl mt-6 mb-4 scroll-smooth scroll-mt-24"
@@ -36,7 +36,7 @@ async function About() {
             blockquote: BlockQuote,
             strong: Strong,
 
-            p: (props) => <p {...props} className="text-lg mt-6 mb-4 " />,
+            p: (props: any) => <p {...props} className="text-lg mt-6 mb-4 " />,
           }}
         />
       </div>

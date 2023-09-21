@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: any) {
       title: "Itai Mizlish's Blog",
       description: frontmatter.abstract,
       images: [
-        `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/holidays-pixelated.png`,
+        `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/${params.postSlug}.png`,
       ],
       creator: "@IMizlish",
     },

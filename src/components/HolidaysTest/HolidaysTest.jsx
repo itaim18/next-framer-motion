@@ -114,9 +114,10 @@ function HolidaysTest() {
   }
 
   return (
-    <div>
-      <h1 className="text-center text-3xl text-lime-200">Holidays Test</h1>
-      <br />
+    <div className="rounded-md overflow-hidden border">
+      <h1 className="text-center text-3xl text-lime-200 bg-slate-500 py-3">
+        Holidays Test
+      </h1>
       {gameStatus === "completed" ? (
         <></>
       ) : (
@@ -126,7 +127,7 @@ function HolidaysTest() {
               padding: "64px",
               backgroundImage: Questions[currentQuestion].backgroundImage,
             }}
-            className="flex flex-row w-full rounded-md h-64 border m-auto justify-center"
+            className="flex flex-row w-full rounded-md  h-64 border m-auto justify-center"
           >
             <Pixelify
               pixelSize={pixelSize}
@@ -145,7 +146,9 @@ function HolidaysTest() {
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-2 mt-4">
-            <h1 className="text-xl">Guess The Holiday:</h1>
+            <h1 className="text-xl ml-12" style={{ marginLeft: "48px" }}>
+              Guess The Holiday:
+            </h1>
 
             <OtpInput
               value={otp}
@@ -185,7 +188,7 @@ function HolidaysTest() {
               }
               variant="ghost"
               type="submit"
-              className="text-xl"
+              className="text-xl mx-8"
             >
               SOLVE
             </Button>

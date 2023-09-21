@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { ImagePixelated } from "react-pixelate";
+import { Pixelify } from "react-pixelify";
 import { Button } from "@/components/ui/button";
 import OtpInput from "react-otp-input";
 
@@ -39,7 +39,7 @@ const Questions = [
   },
 ];
 
-export const range = (start: number, end: number, step = 1) => {
+export const range = (start, end, step = 1) => {
   let output = [];
   if (typeof end === "undefined") {
     end = start;
@@ -67,7 +67,7 @@ function HolidaysTest() {
     }, 1000);
   }, [currentQuestion]);
 
-  function handleSubmit(event: any) {
+  function handleSubmit(event) {
     event.preventDefault();
 
     if (
@@ -95,14 +95,14 @@ function HolidaysTest() {
       ) : (
         <>
           <div className="flex flex-row w-64 h-36 border">
-            <ImagePixelated
+            <Pixelify
               pixelSize={pixelSize}
               fillTransparencyColor="transparent"
               src={Questions[currentQuestion].question[0]}
               width={120}
               height={120}
             />
-            <ImagePixelated
+            <Pixelify
               width={120}
               height={120}
               pixelSize={pixelSize}

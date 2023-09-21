@@ -21,7 +21,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["./*"]
       // "react": ["./node_modules/@types/react"]
     }
   },
@@ -32,7 +32,8 @@
     ".next/types/**/*.ts",
     "src/components/X/index.tsx",
     "src/hooks/useHighlighted.js",
-    "src/components/HolidaysTest/HolidaysTest.tsx"
+    "src/components/HolidaysTest/HolidaysTest.jsx",
+    "src/components/HolidaysTest/index.jsx"
   ],
   "exclude": ["node_modules"]
 }

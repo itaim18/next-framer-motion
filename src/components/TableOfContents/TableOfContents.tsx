@@ -1,7 +1,17 @@
 "use client";
-
+import { range } from "../HolidaysTest";
 import React from "react";
 import ToCLink from "./ToCLink";
+const lines = [
+  "Introduction",
+  "Getting Started",
+  "Step 1: Install Dependencies",
+  "Step 2: Create a Pixelated Component",
+  "step 3: Using the Pixelated React Node",
+  "Now for our game",
+  "Now for our game",
+  "Conclusion",
+];
 function TableOfContents() {
   const [headings, setHeadings] = React.useState<any>(null);
   React.useEffect(() => {
@@ -18,7 +28,16 @@ function TableOfContents() {
           ? headings.map((heading: any) => (
               <ToCLink key={heading.id} heading={heading} />
             ))
-          : "loading.."}
+          : range(8).map((num) => (
+              <h1
+                key={num}
+                style={{
+                  fontFamily: "var(--font-family-loading)",
+                }}
+              >
+                {lines[num]}
+              </h1>
+            ))}
       </div>
     </div>
   );

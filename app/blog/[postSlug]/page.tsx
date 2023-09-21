@@ -1,7 +1,7 @@
 import { compileMDX } from "next-mdx-remote/rsc";
 import fs from "fs/promises";
 import path from "path";
-import React from "react";
+import React, { HtmlHTMLAttributes } from "react";
 import MDXImage from "@/src/components/MDXImage/MDXImage";
 import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
 import BlogHero from "@/src/components/BlogHero/BlogHero";

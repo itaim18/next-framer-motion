@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 import { ImagePixelated } from "react-pixelate";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import OtpInput from "react-otp-input";
 

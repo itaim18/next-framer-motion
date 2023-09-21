@@ -1,7 +1,7 @@
 import { compileMDX } from "next-mdx-remote/rsc";
 import fs from "fs/promises";
 import path from "path";
-import React, { HtmlHTMLAttributes } from "react";
+import React from "react";
 import MDXImage from "@/src/components/MDXImage/MDXImage";
 import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
 import BlogHero from "@/src/components/BlogHero/BlogHero";
@@ -51,6 +51,7 @@ export async function generateMetadata({ params }: any) {
     },
   };
 }
+
 export default async function Home({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
   const res = await fs.readFile(myPath, "utf8");
@@ -62,6 +63,7 @@ export default async function Home({ params }: any) {
       .replace(/[^a-z0-9-]+/g, "-") // Replace non-alphanumeric characters with hyphens
       .replace(/^-+|-+$/g, "");
   };
+
   const { frontmatter } = await compileMDX<any>({
     source: res,
     options: { parseFrontmatter: true },

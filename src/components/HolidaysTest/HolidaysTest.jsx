@@ -65,7 +65,7 @@ function HolidaysTest() {
   const [pixelSize, setPixelSize] = React.useState(15);
   const [otp, setOtp] = React.useState("");
   const [gameStatus, setGameStatus] = React.useState("running");
-
+  const [submitted, setSubmitted] = React.useState(false);
   const answerLength = Questions[currentQuestion]?.secondAnswer.length;
 
   React.useEffect(() => {
@@ -78,10 +78,15 @@ function HolidaysTest() {
       setPixelSize(15);
     };
   }, [currentQuestion]);
-
+  const handleRetry = () => {
+    setCurrentQuestion(0);
+    setGameStatus("running");
+    setOtp("");
+    setSubmitted(false);
+  };
   async function handleSubmit(event) {
     event.preventDefault();
-
+    setSubmitted(true);
     if (
       otp.toUpperCase() ===
       Questions[currentQuestion].secondAnswer.toUpperCase()
@@ -90,7 +95,8 @@ function HolidaysTest() {
       setGameStatus("won");
       if (currentQuestion < Questions.length - 1) {
         setTimeout(function () {
-          setCurrentQuestion((prevState) => prevState + 1); //your code to be executed after 1 second
+          setCurrentQuestion((prevState) => prevState + 1);
+          setGameStatus("running"); //your code to be executed after 1 second
         }, 3000);
       } else {
         setTimeout(function () {
@@ -104,14 +110,15 @@ function HolidaysTest() {
     } else {
       setGameStatus("lost");
     }
+    setSubmitted(false);
   }
 
   return (
     <div>
-      <h1 className="text-center">Holiday Test</h1>
+      <h1 className="text-center text-3xl text-lime-200">Holidays Test</h1>
       <br />
       {gameStatus === "completed" ? (
-        <h1>Yay! you completed all questions</h1>
+        <></>
       ) : (
         <>
           <div
@@ -151,6 +158,13 @@ function HolidaysTest() {
                 justifyContent: "center",
               }}
               inputStyle={{
+                borderColor:
+                  gameStatus === "lost"
+                    ? "red"
+                    : gameStatus === "won"
+                    ? "green"
+                    : "white",
+                borderWidth: gameStatus !== "running" && 2,
                 borderRadius: "8px",
                 width: "28px",
                 height: "28px",
@@ -158,16 +172,27 @@ function HolidaysTest() {
                 textTransform: "uppercase",
               }}
               renderSeparator={<span className="mr-1"> </span>}
-              renderInput={(props) => <input {...props} />}
+              renderInput={(props) => (
+                <input {...props} onFocus={() => setGameStatus("running")} />
+              )}
             />
 
-            <Button variant="ghost" type="submit" className="text-xl">
+            <Button
+              disabled={
+                gameStatus !== "running" ||
+                submitted ||
+                otp.length !== Questions[currentQuestion].secondAnswer.length
+              }
+              variant="ghost"
+              type="submit"
+              className="text-xl"
+            >
               SOLVE
             </Button>
           </form>
         </>
       )}{" "}
-      <ResultCard result={gameStatus} />
+      <ResultCard result={gameStatus} handleRetry={handleRetry} />
     </div>
   );
 }

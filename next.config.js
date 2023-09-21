@@ -8,6 +8,7 @@ const nextConfig = {
       "i.ytimg.com",
       "media0.giphy.com",
       "raw.githubusercontent.com",
+      "user-images.githubusercontent.com",
     ],
   },
   env: {

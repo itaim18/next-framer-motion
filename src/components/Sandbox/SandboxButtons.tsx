@@ -42,8 +42,8 @@ export const CustomClearConsoleButton = () => {
 };
 export const CustomOpenInSandboxButton = () => {
   return (
-    <UnstyledOpenInCodeSandboxButton className="h-10 w-10 border">
-      <motion.button
+    <UnstyledOpenInCodeSandboxButton className="h-10 w-10 flex place-content-center items-center">
+      <motion.div
         whileTap={{
           scale: 0.8,
         }}
@@ -52,7 +52,7 @@ export const CustomOpenInSandboxButton = () => {
         }}
       >
         <ExternalLink size={18} />
-      </motion.button>
+      </motion.div>
     </UnstyledOpenInCodeSandboxButton>
   );
 };

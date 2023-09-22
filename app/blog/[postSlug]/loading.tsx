@@ -1,6 +1,7 @@
 export default function Loading() {
   return (
     <article
+      suppressHydrationWarning
       className="my-36 relative max-w-2xl m-auto py-24"
       style={{
         fontFamily: "var(--font-family-loading)",

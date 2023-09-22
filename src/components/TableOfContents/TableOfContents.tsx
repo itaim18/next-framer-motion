@@ -30,6 +30,7 @@ function TableOfContents() {
             ))
           : range(8).map((num) => (
               <h1
+                suppressHydrationWarning
                 key={num}
                 style={{
                   fontFamily: "var(--font-family-loading)",

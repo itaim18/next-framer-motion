@@ -1,16 +1,17 @@
-import { compileMDX } from "next-mdx-remote/rsc";
-import fs from "fs/promises";
-import path from "path";
+"use client";
+// import { compileMDX } from "next-mdx-remote/rsc";
+// import fs from "fs/promises";
+// import path from "path";
 import React from "react";
 // import MDXImage from "@/src/components/MDXImage/MDXImage";
 // // import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
 // import BlogHero from "@/src/components/BlogHero/BlogHero";
 // import { MDXRemote } from "next-mdx-remote/rsc";
 // import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
-import Strong from "@/src/components/Strong/Strong";
+// import Strong from "@/src/components/Strong/Strong";
 // import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 // import matter from "gray-matter";
-import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
+// import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
 // import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 
 // export async function generateMetadata({ params }: any) {
@@ -51,7 +52,7 @@ import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
 //   };
 // }
 
-export default async function Home({ params }: any) {
+export default function Home({ params }: any) {
   // const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
   // const res = await fs.readFile(myPath, "utf8");
   // const { content: myContent } = matter(res);

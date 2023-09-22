@@ -71,15 +71,15 @@ export default function RootLayout({
   params: any;
 }) {
   return (
-    <html
-      lang="en"
-      style={
-        {
-          "--font-family-loading": loadingFont.style.fontFamily,
-        } as CSSProperties
-      }
-    >
-      <body className={rajdhani.className}>
+    <html lang="en">
+      <body
+        className={rajdhani.className}
+        style={
+          {
+            "--font-family-loading": loadingFont.style.fontFamily,
+          } as CSSProperties
+        }
+      >
         <RespectMotionPreferences>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <Header />

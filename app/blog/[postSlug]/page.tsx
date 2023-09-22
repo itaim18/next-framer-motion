@@ -2,54 +2,54 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import fs from "fs/promises";
 import path from "path";
 import React from "react";
-import MDXImage from "@/src/components/MDXImage/MDXImage";
-// import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
-import BlogHero from "@/src/components/BlogHero/BlogHero";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
+// import MDXImage from "@/src/components/MDXImage/MDXImage";
+// // import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
+// import BlogHero from "@/src/components/BlogHero/BlogHero";
+// import { MDXRemote } from "next-mdx-remote/rsc";
+// import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
 import Strong from "@/src/components/Strong/Strong";
-import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
-import matter from "gray-matter";
+// import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
+// import matter from "gray-matter";
 import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
-import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
+// import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 
-export async function generateMetadata({ params }: any) {
-  const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
-  const res = await fs.readFile(myPath, "utf8");
-  const { frontmatter } = await compileMDX<any>({
-    source: res,
-    options: { parseFrontmatter: true },
-  });
+// export async function generateMetadata({ params }: any) {
+//   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
+//   const res = await fs.readFile(myPath, "utf8");
+//   const { frontmatter } = await compileMDX<any>({
+//     source: res,
+//     options: { parseFrontmatter: true },
+//   });
 
-  return {
-    title: `${frontmatter.title} • Blog`,
-    description: frontmatter.abstract,
-    openGraph: {
-      type: "website",
-      locale: "en_US",
-      title: "Itai Mizlish's Blog",
-      description: frontmatter.abstract,
-      siteName: "Itai Mizlish's Blog",
-      images: [
-        {
-          url: `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/${params.postSlug}.png`,
-          width: 1920,
-          height: 1080,
-          alt: params.postSlug,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Itai Mizlish's Blog",
-      description: frontmatter.abstract,
-      images: [
-        `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/${params.postSlug}.png`,
-      ],
-      creator: "@IMizlish",
-    },
-  };
-}
+//   return {
+//     title: `${frontmatter.title} • Blog`,
+//     description: frontmatter.abstract,
+//     openGraph: {
+//       type: "website",
+//       locale: "en_US",
+//       title: "Itai Mizlish's Blog",
+//       description: frontmatter.abstract,
+//       siteName: "Itai Mizlish's Blog",
+//       images: [
+//         {
+//           url: `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/${params.postSlug}.png`,
+//           width: 1920,
+//           height: 1080,
+//           alt: params.postSlug,
+//         },
+//       ],
+//     },
+//     twitter: {
+//       card: "summary_large_image",
+//       title: "Itai Mizlish's Blog",
+//       description: frontmatter.abstract,
+//       images: [
+//         `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/${params.postSlug}.png`,
+//       ],
+//       creator: "@IMizlish",
+//     },
+//   };
+// }
 
 export default async function Home({ params }: any) {
   // const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
@@ -120,7 +120,7 @@ export default async function Home({ params }: any) {
           />
         </div> */}
         <h1>{params.postSlug}</h1>
-        <p className="border-t-2 text-lg leading-8 p-10 text-justify font-extrabold">
+        {/* <p className="border-t-2 text-lg leading-8 p-10 text-justify font-extrabold">
           Hey there! 👋 I&apos;m{" "}
           <Strong>
             <SpecialLink
@@ -139,7 +139,7 @@ export default async function Home({ params }: any) {
           <br />
           You can read more about me{" "}
           <SpecialLink href="/about">here</SpecialLink>
-        </p>
+        </p> */}
         {/* <TableOfContents /> */}
       </article>
     </>

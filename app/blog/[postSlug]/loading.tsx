@@ -3,9 +3,9 @@ export default function Loading() {
     <article
       suppressHydrationWarning
       className="my-36 relative max-w-2xl m-auto py-24"
-      style={{
-        fontFamily: "var(--font-family-loading)",
-      }}
+      // style={{
+      //   fontFamily: "var(--font-family-loading)",
+      // }}
     >
       <header className="relative flex flex-col justify-end items-center w-full max-w-xl m-auto">
         <div className="relative w-full max-w-lg p-8">

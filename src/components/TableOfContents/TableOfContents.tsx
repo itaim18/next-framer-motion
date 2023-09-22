@@ -32,9 +32,9 @@ function TableOfContents() {
               <h1
                 suppressHydrationWarning
                 key={num}
-                style={{
-                  fontFamily: "var(--font-family-loading)",
-                }}
+                // style={{
+                //   fontFamily: "var(--font-family-loading)",
+                // }}
               >
                 {lines[num]}
               </h1>

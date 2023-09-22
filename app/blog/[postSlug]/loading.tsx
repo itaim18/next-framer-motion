@@ -1,20 +1,19 @@
 export default function Loading() {
   return (
     <article
-      suppressHydrationWarning
       className="my-36 relative max-w-2xl m-auto py-24"
-      // style={{
-      //   fontFamily: "var(--font-family-loading)",
-      // }}
+      style={{
+        fontFamily: "var(--font-family-loading)",
+      }}
     >
       <header className="relative flex flex-col justify-end items-center w-full max-w-xl m-auto">
         <div className="relative w-full max-w-lg p-8">
-          <h1 className="mb-1 text-3xl font-bold">{`Celebrating the holidays with 'React-Pixelated'`}</h1>
+          <h1 className="mb-1 text-3xl font-bold">
+            {"Celebrating the holidays with 'React-Pixelated'"}
+          </h1>
           <p className="text-xl text-slate-500 mb-0 font-semibold">
             Published on{" "}
-            <time dateTime={"2023-07-11T12:00:00-0400"} className="font-bold">
-              {"September 18th, 2023"}
-            </time>
+            <span className="font-bold">{"September 18th, 2023"}</span>
           </p>
         </div>
       </header>

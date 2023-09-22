@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import React from "react";
 import MDXImage from "@/src/components/MDXImage/MDXImage";
-// // import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
+import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
 import BlogHero from "@/src/components/BlogHero/BlogHero";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
@@ -11,7 +11,7 @@ import Strong from "@/src/components/Strong/Strong";
 import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import matter from "gray-matter";
 import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
-// import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
+import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 
 export async function generateMetadata({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
@@ -109,6 +109,7 @@ async function Home({ params }: any) {
               blockquote: BlockQuote,
               strong: Strong,
               MDXImage,
+              PixelatedApple,
               a: (props: any) => (
                 <a
                   {...props}
@@ -143,7 +144,7 @@ async function Home({ params }: any) {
           You can read more about me{" "}
           <SpecialLink href="/about">here</SpecialLink>
         </p>
-        {/* <TableOfContents /> */}
+        <TableOfContents />
       </article>
     </>
   );

@@ -73,11 +73,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      style={
-        {
-          "--font-family-loading": loadingFont.style.fontFamily,
-        } as CSSProperties
-      }
+      // style={
+      //   {
+      //     "--font-family-loading": loadingFont.style.fontFamily,
+      //   } as CSSProperties
+      // }
     >
       <body className={rajdhani.className}>
         <RespectMotionPreferences>

@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import path from "path";
 import React from "react";
 import MDXImage from "@/src/components/MDXImage/MDXImage";
-import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
+// import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
 import BlogHero from "@/src/components/BlogHero/BlogHero";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
@@ -12,7 +12,6 @@ import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import matter from "gray-matter";
 import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
 import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
-import HolidaysTest from "@/src/components/HolidaysTest/HolidaysTest";
 
 export async function generateMetadata({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
@@ -106,9 +105,7 @@ export default async function Home({ params }: any) {
               ),
               blockquote: BlockQuote,
               strong: Strong,
-              PixelatedApple,
               MDXImage,
-              HolidaysTest,
               a: (props: any) => (
                 <a
                   {...props}

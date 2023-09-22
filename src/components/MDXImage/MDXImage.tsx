@@ -4,7 +4,6 @@ import React from "react";
 function MDXImage({ src }: any) {
   return (
     <Image
-      quality={100}
       width={240}
       height={240}
       className="w-2/3 self-center m-auto"

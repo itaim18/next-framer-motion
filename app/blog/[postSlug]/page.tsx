@@ -140,7 +140,7 @@ export default async function Home({ params }: any) {
           You can read more about me{" "}
           <SpecialLink href="/about">here</SpecialLink>
         </p>
-        <TableOfContents />
+        {/* <TableOfContents /> */}
       </article>
     </>
   );

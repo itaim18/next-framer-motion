@@ -1,7 +1,6 @@
-"use client";
 import React from "react";
 import { RotateCcw } from "lucide-react";
-import { motion } from "framer-motion";
+
 const ResultCard = ({ result, handleRetry }) => {
   return (
     <div
@@ -17,15 +16,15 @@ const ResultCard = ({ result, handleRetry }) => {
         result !== "completed" && "hidden"
       }`}
     >
-      <motion.button
-        whileHover={{ rotate: -30 }}
-        whileTap={{ rotate: -180 }}
+      <button
+        // whileHover={{ rotate: -30 }}
+        // whileTap={{ rotate: -180 }}
         onClick={handleRetry}
         style={{ top: "14px", right: "14px", borderRadius: "100%" }}
         className="absolute top-2 p-3 right-2 border rounded-xl bg-slate-800 bg-opacity-60 hover:bg-opacity-80"
       >
         <RotateCcw size={36} />
-      </motion.button>
+      </button>
       {result === "completed" ? "Yay! you completed all questions🥳" : result}
     </div>
   );

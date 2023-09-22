@@ -2,13 +2,13 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import fs from "fs/promises";
 import path from "path";
 import React from "react";
-// import MDXImage from "@/src/components/MDXImage/MDXImage";
+import MDXImage from "@/src/components/MDXImage/MDXImage";
 // // import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
 import BlogHero from "@/src/components/BlogHero/BlogHero";
-// import { MDXRemote } from "next-mdx-remote/rsc";
-// import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
 import Strong from "@/src/components/Strong/Strong";
-// import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
+import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import matter from "gray-matter";
 import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
 // import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
@@ -78,7 +78,7 @@ async function Home({ params }: any) {
           publishedOn={frontmatter.publishedOn}
         />
         <div className="relative max-w-2xl text-lg m-auto p-8">
-          {/* <MDXRemote
+          <MDXRemote
             source={myContent}
             components={{
               pre: CodeSnippet,
@@ -120,9 +120,9 @@ async function Home({ params }: any) {
                 <p {...props} className="text-lg mt-6 mb-4 " />
               ),
             }}
-          /> */}
+          />
         </div>
-        <h1>{params.postSlug}</h1>
+
         <p className="border-t-2 text-lg leading-8 p-10 text-justify font-extrabold">
           Hey there! 👋 I&apos;m{" "}
           <Strong>

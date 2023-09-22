@@ -97,16 +97,16 @@ function HolidaysTest() {
         setTimeout(function () {
           setCurrentQuestion((prevState) => prevState + 1);
           setGameStatus("running"); //your code to be executed after 1 second
-        }, 3000);
+        }, 2000);
       } else {
         setTimeout(function () {
           setGameStatus("completed"); //your code to be executed after 1 second
-        }, 3000);
+        }, 2000);
       }
 
       setTimeout(function () {
         setOtp(""); //your code to be executed after 1 second
-      }, 3000);
+      }, 2000);
     } else {
       setGameStatus("lost");
     }
@@ -114,8 +114,8 @@ function HolidaysTest() {
   }
 
   return (
-    <div className="rounded-md overflow-hidden border">
-      <h1 className="text-center text-3xl text-lime-200 bg-slate-500 py-3">
+    <div>
+      <h1 className="text-center rounded-md text-3xl text-lime-200 bg-slate-500 py-3">
         Holidays Test
       </h1>
       {gameStatus === "completed" ? (
@@ -146,9 +146,7 @@ function HolidaysTest() {
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-2 mt-4">
-            <h1 className="text-xl ml-12" style={{ marginLeft: "48px" }}>
-              Guess The Holiday:
-            </h1>
+            <h1 className="text-xl ml-12">Guess The Holiday:</h1>
 
             <OtpInput
               value={otp}

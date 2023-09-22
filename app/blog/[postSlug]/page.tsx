@@ -7,10 +7,10 @@ import React from "react";
 // import BlogHero from "@/src/components/BlogHero/BlogHero";
 // import { MDXRemote } from "next-mdx-remote/rsc";
 // import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
-// import Strong from "@/src/components/Strong/Strong";
+import Strong from "@/src/components/Strong/Strong";
 // import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
-// import matter from "gray-matter";
-// import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
+import matter from "gray-matter";
+import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
 // import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 
 export async function generateMetadata({ params }: any) {
@@ -52,9 +52,9 @@ export async function generateMetadata({ params }: any) {
 }
 
 async function Home({ params }: any) {
-  // const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
-  // const res = await fs.readFile(myPath, "utf8");
-  // const { content: myContent } = matter(res);
+  const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
+  const res = await fs.readFile(myPath, "utf8");
+  const { content: myContent } = matter(res);
   // const remarkHeading = (slug: any) => {
   //   return slug
   //     .toString()
@@ -63,10 +63,12 @@ async function Home({ params }: any) {
   //     .replace(/^-+|-+$/g, "");
   // };
 
-  // const { frontmatter } = await compileMDX<any>({
-  //   source: res,
-  //   options: { parseFrontmatter: true },
-  // });
+  const { frontmatter } = await compileMDX<any>({
+    source: res,
+    options: { parseFrontmatter: true },
+  });
+  console.log(myContent, frontmatter);
+
   return (
     <>
       <article className="my-36 relative max-w-2xl m-auto py-24">
@@ -120,7 +122,7 @@ async function Home({ params }: any) {
           />
         </div> */}
         <h1>{params.postSlug}</h1>
-        {/* <p className="border-t-2 text-lg leading-8 p-10 text-justify font-extrabold">
+        <p className="border-t-2 text-lg leading-8 p-10 text-justify font-extrabold">
           Hey there! 👋 I&apos;m{" "}
           <Strong>
             <SpecialLink
@@ -139,7 +141,7 @@ async function Home({ params }: any) {
           <br />
           You can read more about me{" "}
           <SpecialLink href="/about">here</SpecialLink>
-        </p> */}
+        </p>
         {/* <TableOfContents /> */}
       </article>
     </>

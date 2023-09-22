@@ -13,64 +13,64 @@ import matter from "gray-matter";
 import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
 import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 
-// export async function generateMetadata({ params }: any) {
-//   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
-//   const res = await fs.readFile(myPath, "utf8");
-//   const { frontmatter } = await compileMDX<any>({
-//     source: res,
-//     options: { parseFrontmatter: true },
-//   });
-
-//   return {
-//     title: `${frontmatter.title} • Blog`,
-//     description: frontmatter.abstract,
-//     openGraph: {
-//       type: "website",
-//       locale: "en_US",
-//       title: "Itai Mizlish's Blog",
-//       description: frontmatter.abstract,
-//       siteName: "Itai Mizlish's Blog",
-//       images: [
-//         {
-//           url: `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/${params.postSlug}.png`,
-//           width: 1920,
-//           height: 1080,
-//           alt: params.postSlug,
-//         },
-//       ],
-//     },
-//     twitter: {
-//       card: "summary_large_image",
-//       title: "Itai Mizlish's Blog",
-//       description: frontmatter.abstract,
-//       images: [
-//         `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/${params.postSlug}.png`,
-//       ],
-//       creator: "@IMizlish",
-//     },
-//   };
-// }
-
-export default async function Home({ params }: any) {
+export async function generateMetadata({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
   const res = await fs.readFile(myPath, "utf8");
-  const { content: myContent } = matter(res);
-  const remarkHeading = (slug: any) => {
-    return slug
-      .toString()
-      .toLowerCase() // Convert the string to lowercase
-      .replace(/[^a-z0-9-]+/g, "-") // Replace non-alphanumeric characters with hyphens
-      .replace(/^-+|-+$/g, "");
-  };
-
   const { frontmatter } = await compileMDX<any>({
     source: res,
     options: { parseFrontmatter: true },
   });
+
+  return {
+    title: `${frontmatter.title} • Blog`,
+    description: frontmatter.abstract,
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      title: "Itai Mizlish's Blog",
+      description: frontmatter.abstract,
+      siteName: "Itai Mizlish's Blog",
+      images: [
+        {
+          url: `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/${params.postSlug}.png`,
+          width: 1920,
+          height: 1080,
+          alt: params.postSlug,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Itai Mizlish's Blog",
+      description: frontmatter.abstract,
+      images: [
+        `https://raw.githubusercontent.com/itaim18/next-framer-motion/main/public/assets/${params.postSlug}.png`,
+      ],
+      creator: "@IMizlish",
+    },
+  };
+}
+
+export default async function Home({ params }: any) {
+  // const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
+  // const res = await fs.readFile(myPath, "utf8");
+  // const { content: myContent } = matter(res);
+  // const remarkHeading = (slug: any) => {
+  //   return slug
+  //     .toString()
+  //     .toLowerCase()
+  //     .replace(/[^a-z0-9-]+/g, "-")
+  //     .replace(/^-+|-+$/g, "");
+  // };
+
+  // const { frontmatter } = await compileMDX<any>({
+  //   source: res,
+  //   options: { parseFrontmatter: true },
+  // });
   return (
     <>
       <article className="my-36 relative max-w-2xl m-auto py-24">
-        <BlogHero
+        {/* <BlogHero
           title={frontmatter.title}
           publishedOn={frontmatter.publishedOn}
         />
@@ -118,7 +118,8 @@ export default async function Home({ params }: any) {
               ),
             }}
           />
-        </div>
+        </div> */}
+        <h1>{params.postSlug}</h1>
         <p className="border-t-2 text-lg leading-8 p-10 text-justify font-extrabold">
           Hey there! 👋 I&apos;m{" "}
           <Strong>

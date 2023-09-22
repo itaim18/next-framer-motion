@@ -12,7 +12,7 @@ import BlockQuote from "@/src/components/BlockQuote/BlockQuote";
 import matter from "gray-matter";
 import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
 import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
-
+import HolidaysTest from "@/src/components/HolidaysTest";
 export async function generateMetadata({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
   const res = await fs.readFile(myPath, "utf8");
@@ -68,7 +68,6 @@ async function Home({ params }: any) {
     source: res,
     options: { parseFrontmatter: true },
   });
-  console.log(myContent, frontmatter);
 
   return (
     <>
@@ -110,6 +109,7 @@ async function Home({ params }: any) {
               strong: Strong,
               MDXImage,
               PixelatedApple,
+              HolidaysTest,
               a: (props: any) => (
                 <a
                   {...props}

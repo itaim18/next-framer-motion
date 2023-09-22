@@ -1,4 +1,3 @@
-"use client";
 // import { compileMDX } from "next-mdx-remote/rsc";
 // import fs from "fs/promises";
 // import path from "path";

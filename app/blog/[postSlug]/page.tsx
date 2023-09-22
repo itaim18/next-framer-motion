@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: any) {
   };
 }
 
-export default function Home({ params }: any) {
+async function Home({ params }: any) {
   // const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
   // const res = await fs.readFile(myPath, "utf8");
   // const { content: myContent } = matter(res);
@@ -145,3 +145,4 @@ export default function Home({ params }: any) {
     </>
   );
 }
+export default Home;

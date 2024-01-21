@@ -175,7 +175,7 @@ function SelectControl({ label, value, onChange, ...delegated }: any) {
 
   return (
     <div className="rounded-e-lg flex-wrap flex flex-col gap-2">
-      <label htmlFor={id}>{label}</label>
+      <label>{label}</label>
       <select
         className="text-xs p-2 dark:bg-slate-900 bg-slate-200 border  rounded-sm"
         value={value}

@@ -6,6 +6,9 @@ const nextConfig = {
       "learnbestcoding.com",
       "i3.ytimg.com",
       "i.ytimg.com",
+      "media0.giphy.com",
+      "raw.githubusercontent.com",
+      "user-images.githubusercontent.com",
     ],
   },
   env: {

@@ -3,6 +3,9 @@ import { LINKS } from "@/src/config/docs";
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
+import Strong from "../Strong/Strong";
+
 function Navigation({ toggleMenu }: { toggleMenu: () => void }) {
   const [hoveredNavItem, setHoveredNavItem] = React.useState<null | string>(
     null
@@ -43,6 +46,11 @@ function Navigation({ toggleMenu }: { toggleMenu: () => void }) {
               >
                 {label}
               </Link>
+              {slug === "blog" && (
+                <Badge className="bg-transparent hover:bg-transparent absolute inset-y-0 -right-8">
+                  <Strong>New</Strong>
+                </Badge>
+              )}
             </li>
           )
         )}

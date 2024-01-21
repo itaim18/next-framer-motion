@@ -5,9 +5,12 @@ import Logo from "../Logo/Logo";
 import Navigation from "../Navigation";
 import { motion } from "framer-motion";
 import { LINKS } from "@/src/config/docs";
+import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { Menu, Moon, Sun, XIcon } from "lucide-react";
+import Strong from "../Strong/Strong";
 import { useTheme } from "next-themes";
+
 const useScrollCounter = (offset: number) => {
   const pName = usePathname();
   const [reached, setReached] = React.useState(pName === "/DevStream");
@@ -158,6 +161,11 @@ function Header() {
                 >
                   {label}
                 </Link>
+                {slug === "blog" && (
+                  <Badge className="bg-transparent hover:bg-transparent absolute inset-y-0 -right-8">
+                    <Strong>New</Strong>
+                  </Badge>
+                )}
               </li>
             )
           )}

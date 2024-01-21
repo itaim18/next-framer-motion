@@ -1,14 +1,21 @@
 import "./globals.css";
 
 import type { Metadata } from "next";
-import { Rajdhani } from "next/font/google";
+import { Rajdhani, Redacted_Script } from "next/font/google";
 import Footer from "@/src/components/Footer/Footer";
 import { ThemeProvider } from "../src/components/providers/providers";
 import Header from "@/src/components/Header/Header";
 import { siteConfig } from "@/src/config/site";
 import RespectMotionPreferences from "@/src/components/providers/RespectMotionPreferences";
 import { TailwindIndicator } from "@/src/components/providers/Tailwind-indicator";
+import { CSSProperties } from "react";
+
 const rajdhani = Rajdhani({ weight: "700", subsets: ["latin"] });
+
+const loadingFont = Redacted_Script({
+  weight: ["400"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Itai Mizlish",
@@ -18,7 +25,7 @@ export const metadata: Metadata = {
     "Tailwind",
     "Framer-Motion",
     "Itai Mizlish",
-    "UiShadcn",
+    "ui-shadcn",
   ],
   authors: [
     {
@@ -65,7 +72,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={rajdhani.className}>
+      <body
+        className={rajdhani.className}
+        style={
+          {
+            "--font-family-loading": loadingFont.style.fontFamily,
+          } as CSSProperties
+        }
+      >
         <RespectMotionPreferences>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <Header />

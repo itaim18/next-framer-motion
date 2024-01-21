@@ -22,6 +22,7 @@ function Footer() {
         className="cursor-pointer"
         target="_blank"
         href="https://github.com/itaim18"
+        aria-label="check out my github"
       >
         <motion.svg
           onMouseEnter={() => setHoverGitH(true)}
@@ -51,6 +52,7 @@ function Footer() {
         </motion.svg>
       </Link>
       <Link
+        aria-label="check out my linkedin"
         className="cursor-pointer"
         target="_blank"
         href="https://www.linkedin.com/in/itai-mizlish/"

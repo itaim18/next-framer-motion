@@ -57,16 +57,48 @@ function Header() {
       >
         <Logo closeMenu={closeMenu} />
         <div className="flex gap-3">
-          <div className="flex  border-2 cursor-pointer self-center bg-transparent h-fit p-2 rounded-md">
+          <div className="flex border-2 cursor-pointer self-center bg-transparent h-fit p-2 rounded-md">
             <Moon
               onClick={() => setTheme("light")}
               className="absolute h-[24px] w-[24px] rotate-0 scale-0 transition-all dark:rotate-0 dark:scale-100"
             />
 
-            <Sun
+            <motion.svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              strokeLinecap={"round"}
+              onClick={() => setTheme("dark")}
+              className="h-[24px] w-[24px] stroke-2 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+            >
+              <motion.path
+                d="M12.4058 17.7625C15.1672 17.7625 17.4058 15.5239 17.4058 12.7625C17.4058 10.0011 15.1672 7.76251 12.4058 7.76251C9.64434 7.76251 7.40576 10.0011 7.40576 12.7625C7.40576 15.5239 9.64434 17.7625 12.4058 17.7625Z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{
+                  pathLength: 0,
+                }}
+              />
+              <motion.path d="M12 2v2" />
+              <motion.path d="M12 20v2" />
+              <motion.path d="m4.93 4.93 1.41 1.41" />
+              <motion.path d="m17.66 17.66 1.41 1.41" />
+              <motion.path d="M2 12h2" />
+              <motion.path d="M20 12h2" />
+              <motion.path d="m6.34 17.66-1.41 1.41" />
+              <motion.path d="m19.07 4.93-1.41 1.41" />
+            </motion.svg>
+            {/* <Sun
               onClick={() => setTheme("dark")}
               className="h-[24px] w-[24px] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-            />
+            /> */}
           </div>
           <div className="flex lg:hidden border-2 cursor-pointer self-center bg-transparent h-fit p-2 rounded-md">
             {!showMenu ? (

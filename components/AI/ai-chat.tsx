@@ -2,9 +2,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import Message from "../ui/message";
 import AIForm from "./ai-form";
-const messages = [];
+interface msg {
+  index: number;
+  isQuestion: boolean;
+  msg: string;
+}
 const AIChat = () => {
-  const [msgs, setMsgs] = useState(messages);
+  const [msgs, setMsgs] = useState<msg[]>([]);
   const listRef: any = useRef(null);
 
   //2️⃣ watch for when new items are added

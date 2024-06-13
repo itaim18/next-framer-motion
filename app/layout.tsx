@@ -9,7 +9,7 @@ import { siteConfig } from "@/src/config/site";
 import RespectMotionPreferences from "@/src/components/providers/RespectMotionPreferences";
 import { TailwindIndicator } from "@/src/components/providers/Tailwind-indicator";
 import { CSSProperties } from "react";
-
+import AIButtonWrapper from "@/components/AI/ai-button";
 const rajdhani = Rajdhani({ weight: "700", subsets: ["latin"] });
 
 const loadingFont = Redacted_Script({
@@ -84,6 +84,7 @@ export default function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <Header />
             {children}
+            <AIButtonWrapper />
             <Footer />
             <TailwindIndicator />
           </ThemeProvider>

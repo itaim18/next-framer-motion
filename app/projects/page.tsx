@@ -42,6 +42,18 @@ const DATA = [
     subtitle: "The best tool for sales to handle their workforce",
     description:
       "The optimal solution for sales professionals to manage their company's workforce involves utilizing a combination of technologies including React, Airtable, Framer Motion, Next.js, Radix UI, UIShadcn, React Hook Form, and NextAuth.",
+    title: "AI-Mirror",
+    myClass: "col-span-6 md:col-span-3 lg:col-span-4 xl:col-span-4",
+    types: ["AI"],
+    live: "http://google.com/",
+    skills: [BiLogoTailwindCss],
+  },
+  {
+    image: PriceExplorer,
+    id: crypto.randomUUID(),
+    subtitle: "The best tool for sales to handle their workforce",
+    description:
+      "The optimal solution for sales professionals to manage their company's workforce involves utilizing a combination of technologies including React, Airtable, Framer Motion, Next.js, Radix UI, UIShadcn, React Hook Form, and NextAuth.",
     title: "Pricer",
     myClass: "col-span-6 md:col-span-3 lg:col-span-4 xl:col-span-4",
     types: ["Web"],
@@ -55,7 +67,17 @@ const DATA = [
       SiAirtable,
     ],
   },
-
+  {
+    image: unishield,
+    id: crypto.randomUUID(),
+    description:
+      "A mobile application built with React Native that empowers women by providing them with the tools and information needed to identify and address instances of technology-related violence or abuse.",
+    subtitle: "App that helps women under tech violence",
+    title: "UniShield",
+    myClass: "col-span-6 md:col-span-3 lg:col-span-4",
+    types: ["Data", "ML"],
+    skills: [TbBrandReactNative, TbBrandCss3, FaReact],
+  },
   {
     image: zits,
     id: crypto.randomUUID(),
@@ -157,7 +179,7 @@ const DATA = [
     skills: [SiFlutter, SiHasura],
   },
 ];
-const topics = ["All", "Web", "Mobile", "Volunteer"];
+const topics = ["All", "Web", "Mobile", "Volunteer", "AI", "Data", "ML"];
 export default function Projects() {
   const [items, setItems] = React.useState(DATA);
   const [selectedId, setSelectedId] = useState<any>(null);

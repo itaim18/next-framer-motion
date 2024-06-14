@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { ArrowUp } from "lucide-react";
+import { useChat } from "@ai-sdk/react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,8 +19,10 @@ const AIForm = ({ msgs, setMsgs }: any) => {
           { msg: question, index: msgs.length - 1, isQuestion: 1 },
           { msg: "I'm stupid", index: msgs.length, isQuestion: 0 },
         ];
-        setMsgs(newMessages);
-        setQuestion("");
+        if (question.length >= 1) {
+          setMsgs(newMessages);
+          setQuestion("");
+        }
       }}
     >
       <div className="flex items-center space-x-2">

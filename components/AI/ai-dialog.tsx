@@ -13,10 +13,11 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import Link from "next/link";
-import AIForm from "./ai-form";
+import { useChat } from "@ai-sdk/react";
 import AIChat from "./ai-chat";
 export function DialogCloseButton() {
   const [clicked, setClicked] = useState(false);
+
   return (
     <Dialog>
       <DialogTrigger asChild>

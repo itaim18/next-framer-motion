@@ -13,5 +13,26 @@ export async function POST(req: Request) {
     messages,
   });
 
+  //   const sendMessage = (prompt: string) =>
+  //     generateText({
+  //       model: "gpt-3.5-turbo",
+  //       system: "you are a friendly weather assistant!",
+  //       prompt,
+  //       tools: {
+  //         getWeather: {
+  //           description: "Get the weather in a location",
+  //           parameters: z.object({
+  //             location: z
+  //               .string()
+  //               .describe("The location to get the weather for"),
+  //           }),
+  //           execute: async ({ location }: { location: string }) => ({
+  //             location,
+  //             temperature: 72 + Math.floor(Math.random() * 21) - 10,
+  //           }),
+  //         },
+  //       },
+  //     });
+
   return result.toAIStreamResponse();
 }

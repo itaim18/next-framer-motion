@@ -1,15 +1,47 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { ArrowUp } from "lucide-react";
-import { useChat } from "@ai-sdk/react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-const AIForm = ({ onSubmit, value, onChange }: any) => {
+import { Message } from "../ui/message";
+import { nanoid } from "@/lib/utils";
+import { useActions } from "ai/rsc";
+const AIForm = ({ value, onChange, setMessages }: any) => {
+  const { submitUserMessage } = useActions();
   return (
-    <form method="post" onSubmit={onSubmit}>
+    <form
+      method="post"
+      onSubmit={async (e: any) => {
+        e.preventDefault();
+
+        // Blur focus on mobile
+        if (window.innerWidth < 600) {
+          e.target["message"]?.blur();
+        }
+
+        if (!value) return;
+
+        // Optimistically add user message UI
+        setMessages((currentMessages: any) => [
+          ...currentMessages,
+          {
+            id: nanoid(),
+            display: <Message isUser={true}>{value}</Message>,
+          },
+        ]);
+
+        // Submit and get response message
+        const responseMessage = await submitUserMessage(value);
+        console.log("hi", responseMessage);
+
+        setMessages((currentMessages: any) => [
+          ...currentMessages,
+          responseMessage,
+        ]);
+      }}
+    >
       <div className="flex items-center space-x-2">
         <div className="grid flex-1 gap-2">
           <Label htmlFor="link" className="sr-only">

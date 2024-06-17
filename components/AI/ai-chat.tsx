@@ -1,19 +1,17 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
-import Message from "../ui/message";
+import React, { useEffect, useRef } from "react";
+import { Message } from "../ui/message";
 import AIForm from "./ai-form";
 import { useChat } from "@ai-sdk/react";
-
 interface msg {
   index: number;
-  isQuestion: boolean;
+  isUser: boolean;
   msg: string;
 }
 
 const AIChat = () => {
   const listRef: any = useRef(null);
-
-  const { error, messages, input, handleInputChange, handleSubmit } = useChat({
+  const { error, input, handleInputChange, setMessages, messages } = useChat({
     api: "/api/chat",
   });
   useEffect(() => {
@@ -24,10 +22,10 @@ const AIChat = () => {
       {error ? <div>{error.message}</div> : null}
 
       <div ref={listRef} className=" h-56 flex flex-col overflow-auto">
-        {messages.map((message, i) => {
+        {messages.map((message: any, i: number) => {
           return (
             <Message
-              isQuestion={message.role === "user"}
+              isUser={message.role === "user"}
               content={message.content}
               key={message.id}
             />
@@ -36,8 +34,8 @@ const AIChat = () => {
       </div>
 
       <AIForm
+        setMessages={setMessages}
         msgs={messages}
-        onSubmit={handleSubmit}
         value={input}
         onChange={handleInputChange}
       />

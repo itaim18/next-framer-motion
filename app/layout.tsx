@@ -1,5 +1,5 @@
 import "./globals.css";
-
+import AIWrapper from "@/components/AI/ai-wrapper";
 import type { Metadata } from "next";
 import { Rajdhani, Redacted_Script } from "next/font/google";
 import Footer from "@/src/components/Footer/Footer";
@@ -83,8 +83,12 @@ export default function RootLayout({
         <RespectMotionPreferences>
           <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
             <Header />
-            {children}
-            <DialogCloseButton />
+            <AIWrapper>
+              {children}
+
+              <DialogCloseButton />
+            </AIWrapper>
+
             <Footer />
             <TailwindIndicator />
           </ThemeProvider>

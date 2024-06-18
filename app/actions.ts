@@ -1,6 +1,20 @@
-// 'use server'
+// "use server";
 
-// import { revalidatePath } from 'next/cache'
+// import { revalidatePath } from "next/cache";
+// import { redirect } from "next/navigation";
+// import { kv } from "@vercel/kv";
+
+// import { type Chat } from "@/lib/types";
+
+// export async function saveChat(chat: Chat) {
+//   const pipeline = kv.pipeline();
+//   pipeline.hmset(`chat:${chat.id}`, chat);
+//   pipeline.zadd(`user:chat:12`, {
+//     score: Date.now(),
+//   });
+//   await pipeline.exec();
+// }
+// // import { revalidatePath } from 'next/cache'
 // import { redirect } from 'next/navigation'
 // import { kv } from '@vercel/kv'
 
@@ -125,22 +139,6 @@
 //   await kv.hmset(`chat:${chat.id}`, payload)
 
 //   return payload
-// }
-
-// export async function saveChat(chat: Chat) {
-//   const session = await auth()
-
-//   if (session && session.user) {
-//     const pipeline = kv.pipeline()
-//     pipeline.hmset(`chat:${chat.id}`, chat)
-//     pipeline.zadd(`user:chat:${chat.userId}`, {
-//       score: Date.now(),
-//       member: `chat:${chat.id}`
-//     })
-//     await pipeline.exec()
-//   } else {
-//     return
-//   }
 // }
 
 // export async function refreshHistory(path: string) {

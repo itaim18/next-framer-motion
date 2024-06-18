@@ -1,5 +1,4 @@
 import "./globals.css";
-import AIWrapper from "@/components/AI/ai-wrapper";
 import type { Metadata } from "next";
 import { Rajdhani, Redacted_Script } from "next/font/google";
 import Footer from "@/src/components/Footer/Footer";
@@ -10,6 +9,7 @@ import RespectMotionPreferences from "@/src/components/providers/RespectMotionPr
 import { TailwindIndicator } from "@/src/components/providers/Tailwind-indicator";
 import { CSSProperties } from "react";
 import { DialogCloseButton } from "@/components/AI/ai-dialog";
+import { AI } from "@/lib/chat/actions";
 const rajdhani = Rajdhani({ weight: "700", subsets: ["latin"] });
 
 const loadingFont = Redacted_Script({
@@ -71,29 +71,29 @@ export default function RootLayout({
   params: any;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={rajdhani.className}
-        style={
-          {
-            "--font-family-loading": loadingFont.style.fontFamily,
-          } as CSSProperties
-        }
-      >
-        <RespectMotionPreferences>
-          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-            <Header />
-            <AIWrapper>
+    <AI>
+      <html lang="en">
+        <body
+          className={rajdhani.className}
+          style={
+            {
+              "--font-family-loading": loadingFont.style.fontFamily,
+            } as CSSProperties
+          }
+        >
+          <RespectMotionPreferences>
+            <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+              <Header />
               {children}
 
               <DialogCloseButton />
-            </AIWrapper>
 
-            <Footer />
-            <TailwindIndicator />
-          </ThemeProvider>
-        </RespectMotionPreferences>
-      </body>
-    </html>
+              <Footer />
+              <TailwindIndicator />
+            </ThemeProvider>
+          </RespectMotionPreferences>
+        </body>
+      </html>
+    </AI>
   );
 }

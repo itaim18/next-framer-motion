@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import { Message } from "../ui/message";
-import AIForm from "./ai-form";
-import { useChat } from "@ai-sdk/react";
+import { useUIState } from "ai/rsc";
+// import { useChat } from "@ai-sdk/react";
 interface msg {
   index: number;
   isUser: boolean;
@@ -11,34 +11,25 @@ interface msg {
 
 const AIChat = () => {
   const listRef: any = useRef(null);
-  const { error, input, handleInputChange, setMessages, messages } = useChat({
-    api: "/api/chat",
-  });
+  const [messages] = useUIState<any>();
+
   useEffect(() => {
     listRef.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+  console.log(messages);
+
   return (
     <>
-      {error ? <div>{error.message}</div> : null}
-
       <div ref={listRef} className=" h-56 flex flex-col overflow-auto">
         {messages.map((message: any, i: number) => {
+          // return message.display;
           return (
-            <Message
-              isUser={message.role === "user"}
-              content={message.content}
-              key={message.id}
-            />
+            <Message isUser={message?.role === "user"} key={i}>
+              {message?.display}
+            </Message>
           );
         })}
       </div>
-
-      <AIForm
-        setMessages={setMessages}
-        msgs={messages}
-        value={input}
-        onChange={handleInputChange}
-      />
     </>
   );
 };

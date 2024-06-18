@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import Link from "next/link";
-import AIChat from "./ai-chat";
+import AIForm from "./ai-form";
 export function DialogCloseButton() {
   const [clicked, setClicked] = useState(false);
 
@@ -47,7 +47,7 @@ export function DialogCloseButton() {
           </DialogDescription>
         </DialogHeader>
 
-        <AIChat />
+        <AIForm />
         <DialogFooter className="sm:justify-start text-sm inline-block text-green-700">
           Have any questions for me? please
           <Link

@@ -9,7 +9,7 @@ interface projectProps {
 }
 
 const Project = ({ props: project }: { props: projectProps }) => {
-  return <div>project-card</div>;
+  return <div>{project.project}</div>;
 };
 
 export default Project;

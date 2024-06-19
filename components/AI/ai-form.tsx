@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { nanoid } from "@/lib/utils";
 
 import AIChat from "./ai-chat";
-const AIForm = ({ value }: any) => {
+const AIForm = () => {
   const { submitMessage } = useActions();
   const [input, setInput] = useState<string>("");
   const [_, setMessages] = useUIState();

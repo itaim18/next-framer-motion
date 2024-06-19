@@ -102,6 +102,7 @@ const WeatherComponent = (props: any) => (
 );
 async function submitMessage(content: string) {
   "use server";
+
   const aiState = getMutableAIState<typeof AI>();
   aiState.update({
     ...aiState.get(),

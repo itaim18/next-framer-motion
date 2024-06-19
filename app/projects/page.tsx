@@ -35,7 +35,7 @@ import {
   TbBrandCss3,
 } from "react-icons/tb";
 import { BiLogoTailwindCss } from "react-icons/bi";
-export const DATA: any[] = [
+const DATA: any[] = [
   {
     image: PriceExplorer,
     id: crypto.randomUUID(),

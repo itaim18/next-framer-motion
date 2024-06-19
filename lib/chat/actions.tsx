@@ -9,11 +9,11 @@ import {
 } from "ai/rsc";
 import { openai } from "@ai-sdk/openai";
 import { SunIcon } from "lucide-react";
-
+import Link from "next/link";
 import { z } from "zod";
-import { Message } from "@/components/ui/message";
 import { nanoid } from "../utils";
-
+import { DATA } from "@/data";
+import { Link2, Link2Off, Terminal, Maximize } from "lucide-react";
 export type ServerMessage = {
   role: "user" | "assistant";
   content: string;
@@ -24,6 +24,16 @@ export type ClientMessage = {
   role: "user" | "assistant";
   display: React.ReactNode;
 };
+function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+async function getProject(subject: string): Promise<any> {
+  const proj = DATA.find((project: any) =>
+    project.types.includes(capitalizeFirstLetter(subject))
+  );
+
+  return proj;
+}
 async function getWeather(city: string): Promise<any> {
   const url = `http://api.weatherapi.com/v1/current.json?key=d222f818f5c14ad4901154740241806&q=${city}&aqi=no`;
   try {
@@ -32,7 +42,7 @@ async function getWeather(city: string): Promise<any> {
       throw new Error(`Error fetching weather data: ${response.statusText}`);
     }
     const data = await response.json();
-    console.log("weather:", data);
+    console.log("data weather", data);
 
     return data;
   } catch (error) {
@@ -40,6 +50,50 @@ async function getWeather(city: string): Promise<any> {
     throw error;
   }
 }
+
+const ProjectComponent = (props: any) => {
+  console.log(props);
+
+  const { props: item } = props;
+  return (
+    <div
+      id="card"
+      key={item?.id}
+      className={`border-red-400 justify-start relative flex flex-col bg-transparent dark:bg-opacity-25 bg-opacity-25 aspect-square lg:aspect-auto col-span-2 rounded-lg py-8 px-4 border-2 ${item?.myClass}`}
+    >
+      {item?.image ? (
+        <img
+          src={item?.image?.src}
+          className="inset-0 w-full aspect-[5/3]   bg-purple-200 rounded-lg my-4"
+        />
+      ) : (
+        <div className="inset-0 w-full aspect-[5/3]   bg-purple-600 rounded-lg my-4"></div>
+      )}
+
+      <div>
+        <h5 className="text-lg sm:text-2xl">{item?.subtitle}</h5>
+
+        <h2 className="text-2xl sm:text-5xl">{item?.title}</h2>
+      </div>
+      <div className="absolute flex gap-3 bottom-6 right-6 font-bold">
+        {item?.code && (
+          <Link href={item?.code} target="_blank">
+            <Terminal className="hover:text-red-400" />
+          </Link>
+        )}
+        {item?.live ? (
+          <Link href={item?.live} target="_blank">
+            <Link2 className="hover:text-red-400" />
+          </Link>
+        ) : (
+          <Link2Off className="text-black dark:text-white dark:text-opacity-50 text-opacity-50" />
+        )}
+      </div>
+
+      <Maximize className="hover:text-red-400 hover:scale-150 transition-all duration-300 cursor-pointer absolute top-4 right-5 font-bold" />
+    </div>
+  );
+};
 const WeatherComponent = (props: any) => (
   <div className="p-4 max-w-fit">
     The weather in {props.location} is {props.weather}c
@@ -66,8 +120,10 @@ async function submitMessage(content: string) {
   const result = await streamUI({
     model: openai("gpt-3.5-turbo"),
     system: `\
-   If the user requests purchasing seeing the weather in a location, call \`get_weather\` to show the weather UI for the specified location.
-    `,
+    If the user requests seeing a project at some subject, call \`get_project\` to show the project UI for the specified subject.
+   If the user requests seeing the weather in a location, call \`get_weather\` to show the weather UI for the specified location.
+    other than that always reference to me, the developer, Itai Mizlish, and how great I am and that he can see projects I have done right here on the chatbot feature
+   `,
     messages: [
       ...aiState.get().messages.map((message: any) => ({
         role: message.role,
@@ -91,6 +147,17 @@ async function submitMessage(content: string) {
               location={city}
             />
           );
+        },
+      },
+      getProject: {
+        description: "Get the first project at some subject",
+        parameters: z.object({
+          subject: z.string(),
+        }),
+        generate: async function* ({ subject }) {
+          yield <div>loading...</div>;
+          const project = await getProject(subject);
+          return <ProjectComponent props={project} />;
         },
       },
     },
@@ -134,6 +201,8 @@ export const getUIStateFromAIState = (aiState: any) => {
           message.content.map((tool: any) => {
             return tool.toolName === "getWeather" ? (
               <WeatherComponent props={tool.result} />
+            ) : tool.toolName === "getProject" ? (
+              <ProjectComponent props={tool.result} />
             ) : null;
           })
         ) : message.role === "user" ? (

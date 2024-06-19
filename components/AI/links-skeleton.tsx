@@ -5,8 +5,6 @@ const LinksSkeleton = () => {
   return <div>LinksSkeleton </div>;
 };
 
-// import type { AI } from '@/lib/chat/actions'
-
 interface Social {
   gLink: string;
   tLink: string;

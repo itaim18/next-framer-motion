@@ -16,7 +16,6 @@ const AIChat = () => {
   useEffect(() => {
     listRef.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-  console.log(messages);
 
   return (
     <>

@@ -12,7 +12,9 @@ import AIChat from "./ai-chat";
 const AIForm = () => {
   const { submitMessage } = useActions();
   const [input, setInput] = useState<string>("");
-  const [_, setMessages] = useUIState();
+  const [messages, setMessages] = useUIState();
+  console.log(messages);
+
   return (
     <>
       <AIChat />

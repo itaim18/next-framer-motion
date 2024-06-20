@@ -21,8 +21,9 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
-      // "react": ["./node_modules/@types/react"]
+      "@/*": ["./*"],
+      "@ai-rsc/*": ["./src/*"],
+      "@ai-rsc/types/*": ["./types/*"]
     }
   },
   "include": [

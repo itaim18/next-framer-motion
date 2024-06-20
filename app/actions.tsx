@@ -11,6 +11,7 @@ import { nanoid } from "../lib/utils";
 import { DATA } from "@/data";
 import { z } from "zod";
 import { Link2, Link2Off, Terminal, Maximize } from "lucide-react";
+import { Message } from "@/components/ui/message";
 export type ServerMessage = {
   role: "user" | "assistant";
   content: string;
@@ -95,7 +96,7 @@ const WeatherComponent = (props: any) => (
     <SunIcon />
   </div>
 );
-async function submitMessage(content: string) {
+export async function submitMessage(content: string) {
   const history = getMutableAIState<typeof AI>();
 
   history.update([
@@ -122,7 +123,12 @@ async function submitMessage(content: string) {
       },
       ...history.get(),
     ] as CoreMessage[],
-    text: ({ content }) => <div>{content}</div>,
+    text: ({ content, done }) => {
+      if (done)
+        history.done([...history.get(), { role: "assistant", content }]);
+
+      return <Message isUser={false}>{content}</Message>;
+    },
     tools: {
       getWeather: {
         description: "Get the weather for a location",
@@ -152,9 +158,11 @@ async function submitMessage(content: string) {
         },
       },
     },
+    temperature: 0,
   });
   return {
     id: nanoid(),
+    role: "assistant" as const,
     display: result.value,
   };
 }

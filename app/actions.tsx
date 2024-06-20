@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import { streamUI } from "ai/rsc";
 import { SunIcon } from "lucide-react";
 import Link from "next/link";
-import { nanoid } from "../utils";
+import { nanoid } from "../lib/utils";
 import { DATA } from "@/data";
 import { z } from "zod";
 import { Link2, Link2Off, Terminal, Maximize } from "lucide-react";
@@ -96,7 +96,6 @@ const WeatherComponent = (props: any) => (
   </div>
 );
 async function submitMessage(content: string) {
-  "use server";
   const history = getMutableAIState<typeof AI>();
 
   history.update([

@@ -9,7 +9,7 @@ import RespectMotionPreferences from "@/src/components/providers/RespectMotionPr
 import { TailwindIndicator } from "@/src/components/providers/Tailwind-indicator";
 import { CSSProperties } from "react";
 import { DialogCloseButton } from "@/components/AI/ai-dialog";
-import { AI } from "@/lib/chat/actions";
+import { AI } from "./actions";
 const rajdhani = Rajdhani({ weight: "700", subsets: ["latin"] });
 
 const loadingFont = Redacted_Script({

@@ -139,6 +139,15 @@ export async function submitMessage(content: string) {
         generate: async function* ({ city }) {
           yield <div>loading...</div>;
           const weather = await getWeather(city);
+          await sleep(1000);
+          history.done([
+            ...history.get(),
+            {
+              role: "assistant",
+              name: "get_project",
+              content: `[${city}]`,
+            },
+          ]);
           return (
             <WeatherComponent
               weather={weather?.current?.temp_c}

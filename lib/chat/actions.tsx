@@ -127,35 +127,35 @@ async function submitMessage(content: string) {
       })),
     ],
     text: ({ content }) => <div>{content}</div>,
-    tools: {
-      getWeather: {
-        description: "Get the weather for a location",
-        parameters: z.object({
-          city: z.string(),
-        }),
-        generate: async function* ({ city }) {
-          yield <div>loading...</div>;
-          const weather = await getWeather(city);
-          return (
-            <WeatherComponent
-              weather={weather?.current?.temp_c}
-              location={city}
-            />
-          );
-        },
-      },
-      getProject: {
-        description: "Get the first project at some subject",
-        parameters: z.object({
-          subject: z.string(),
-        }),
-        generate: async function* ({ subject }) {
-          yield <div>loading...</div>;
-          const project = await getProject(subject);
-          return <ProjectComponent props={project} />;
-        },
-      },
-    },
+    // tools: {
+    //   getWeather: {
+    //     description: "Get the weather for a location",
+    //     parameters: z.object({
+    //       city: z.string(),
+    //     }),
+    //     generate: async function* ({ city }) {
+    //       yield <div>loading...</div>;
+    //       const weather = await getWeather(city);
+    //       return (
+    //         <WeatherComponent
+    //           weather={weather?.current?.temp_c}
+    //           location={city}
+    //         />
+    //       );
+    //     },
+    //   },
+    //   getProject: {
+    //     description: "Get the first project at some subject",
+    //     parameters: z.object({
+    //       subject: z.string(),
+    //     }),
+    //     generate: async function* ({ subject }) {
+    //       yield <div>loading...</div>;
+    //       const project = await getProject(subject);
+    //       return <ProjectComponent props={project} />;
+    //     },
+    //   },
+    // },
   });
   return {
     id: nanoid(),

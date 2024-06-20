@@ -34,6 +34,7 @@ const AIForm = () => {
             {
               id: nanoid(),
               display: value,
+              content: value,
               role: "user",
             },
           ]);

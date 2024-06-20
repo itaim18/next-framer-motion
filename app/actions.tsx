@@ -6,7 +6,7 @@ import { createAI, getMutableAIState, streamUI } from "ai/rsc";
 import type { ReactNode } from "react";
 import { SunIcon } from "lucide-react";
 import Link from "next/link";
-import { nanoid } from "../lib/utils";
+import { nanoid, sleep } from "../lib/utils";
 import { DATA } from "@/data";
 import { z } from "zod";
 import { Link2, Link2Off, Terminal, Maximize } from "lucide-react";
@@ -155,6 +155,15 @@ export async function submitMessage(content: string) {
         generate: async function* ({ subject }) {
           yield <div>loading...</div>;
           const project = await getProject(subject);
+          await sleep(1000);
+          history.done([
+            ...history.get(),
+            {
+              role: "assistant",
+              name: "get_project",
+              content: `[${subject}]`,
+            },
+          ]);
           return <ProjectComponent props={project} />;
         },
       },

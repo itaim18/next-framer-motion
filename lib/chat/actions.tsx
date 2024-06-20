@@ -1,16 +1,15 @@
-import {
-  createAI,
-  getMutableAIState,
-  getAIState,
-  streamUI,
-  createStreamableValue,
-} from "ai/rsc";
+"use server";
+
+import type { CoreMessage, ToolInvocation } from "ai";
 import { openai } from "@ai-sdk/openai";
+import { createAI, getMutableAIState } from "ai/rsc";
+import type { ReactNode } from "react";
+import { streamUI } from "ai/rsc";
 import { SunIcon } from "lucide-react";
 import Link from "next/link";
-import { z } from "zod";
 import { nanoid } from "../utils";
 import { DATA } from "@/data";
+import { z } from "zod";
 import { Link2, Link2Off, Terminal, Maximize } from "lucide-react";
 export type ServerMessage = {
   role: "user" | "assistant";
@@ -98,19 +97,15 @@ const WeatherComponent = (props: any) => (
 );
 async function submitMessage(content: string) {
   "use server";
+  const history = getMutableAIState<typeof AI>();
 
-  const aiState = getMutableAIState<typeof AI>();
-  aiState.update({
-    ...aiState.get(),
-    messages: [
-      ...aiState.get().messages,
-      {
-        id: nanoid(),
-        role: "user",
-        content,
-      },
-    ],
-  });
+  history.update([
+    ...history.get(),
+    {
+      role: "user",
+      content,
+    },
+  ]);
 
   const result = await streamUI({
     model: openai("gpt-3.5-turbo"),
@@ -119,43 +114,45 @@ async function submitMessage(content: string) {
    If the user requests seeing the weather in a location, call \`get_weather\` to show the weather UI for the specified location.
     other than that always reference to me, the developer, Itai Mizlish, and how great I am and that he can see projects I have done right here on the chatbot feature
    `,
+
     messages: [
-      ...aiState.get().messages.map((message: any) => ({
-        role: message.role,
-        content: message.content,
-        name: message.name,
-      })),
-    ],
+      {
+        role: "system",
+        content,
+        toolInvocations: [],
+      },
+      ...history.get(),
+    ] as CoreMessage[],
     text: ({ content }) => <div>{content}</div>,
-    // tools: {
-    //   getWeather: {
-    //     description: "Get the weather for a location",
-    //     parameters: z.object({
-    //       city: z.string(),
-    //     }),
-    //     generate: async function* ({ city }) {
-    //       yield <div>loading...</div>;
-    //       const weather = await getWeather(city);
-    //       return (
-    //         <WeatherComponent
-    //           weather={weather?.current?.temp_c}
-    //           location={city}
-    //         />
-    //       );
-    //     },
-    //   },
-    //   getProject: {
-    //     description: "Get the first project at some subject",
-    //     parameters: z.object({
-    //       subject: z.string(),
-    //     }),
-    //     generate: async function* ({ subject }) {
-    //       yield <div>loading...</div>;
-    //       const project = await getProject(subject);
-    //       return <ProjectComponent props={project} />;
-    //     },
-    //   },
-    // },
+    tools: {
+      getWeather: {
+        description: "Get the weather for a location",
+        parameters: z.object({
+          city: z.string(),
+        }),
+        generate: async function* ({ city }) {
+          yield <div>loading...</div>;
+          const weather = await getWeather(city);
+          return (
+            <WeatherComponent
+              weather={weather?.current?.temp_c}
+              location={city}
+            />
+          );
+        },
+      },
+      getProject: {
+        description: "Get the first project at some subject",
+        parameters: z.object({
+          subject: z.string(),
+        }),
+        generate: async function* ({ subject }) {
+          yield <div>loading...</div>;
+          const project = await getProject(subject);
+          return <ProjectComponent props={project} />;
+        },
+      },
+    },
   });
   return {
     id: nanoid(),
@@ -163,48 +160,25 @@ async function submitMessage(content: string) {
   };
 }
 
-export type UIState = ClientMessage[];
-export type AIState = {
+// export type UIState = ClientMessage[];
+export type UIState = Array<{
+  id: number;
+  role: "user" | "assistant";
+  display: ReactNode;
+  toolInvocations?: ToolInvocation[];
+}>;
+
+export type AIState = Array<{
+  id?: number;
+  role: "user" | "assistant" | "system";
   messages: any[];
-};
+  content: string;
+}>;
 // Create the AI provider with the initial states and allowed actions
-export const AI = createAI<AIState, UIState>({
-  initialAIState: { messages: [] },
-  initialUIState: [],
+export const AI: any = createAI({
+  initialAIState: [] as AIState,
+  initialUIState: [] as UIState,
   actions: {
     submitMessage,
   },
-  onGetUIState: async () => {
-    "use server";
-
-    const aiState = getAIState();
-
-    if (aiState) {
-      const uiState = getUIStateFromAIState(aiState);
-      return uiState;
-    }
-  },
 });
-
-export const getUIStateFromAIState = (aiState: any) => {
-  return aiState?.messages
-    ?.filter((message: any) => message.role !== "system")
-    .map((message: any, index: number) => ({
-      id: `${index}`,
-      display:
-        message.role === "tool" ? (
-          message.content.map((tool: any) => {
-            return tool.toolName === "getWeather" ? (
-              <WeatherComponent props={tool.result} />
-            ) : tool.toolName === "getProject" ? (
-              <ProjectComponent props={tool.result} />
-            ) : null;
-          })
-        ) : message.role === "user" ? (
-          <div>{message.content as string}</div>
-        ) : message.role === "assistant" &&
-          typeof message.content === "string" ? (
-          <div>{message.content as string}</div>
-        ) : null,
-    }));
-};

@@ -6,15 +6,14 @@ import { useUIState, useActions } from "ai/rsc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
+import type { AI } from "@/lib/chat/actions";
 import { nanoid } from "@/lib/utils";
 
 import AIChat from "./ai-chat";
 const AIForm = () => {
-  const { submitMessage } = useActions();
   const [input, setInput] = useState<string>("");
-  const [messages, setMessages] = useUIState();
-
+  const [_, setMessages] = useUIState<typeof AI>();
+  const { submitMessage } = useActions<typeof AI>();
   return (
     <>
       <AIChat />

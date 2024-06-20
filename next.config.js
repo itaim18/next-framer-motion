@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   images: {
     domains: [
@@ -14,9 +15,6 @@ const nextConfig = {
   env: {
     NEXT_PUBLIC_GOOGLE_API_KEY: process.env.NEXT_PUBLIC_GOOGLE_API_KEY,
   },
-  // experimental: {
-  //   serverActions: true,
-  // },
 };
 
 module.exports = nextConfig;

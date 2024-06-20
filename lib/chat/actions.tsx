@@ -50,8 +50,6 @@ async function getWeather(city: string): Promise<any> {
 }
 
 const ProjectComponent = (props: any) => {
-  console.log(props);
-
   const { props: item } = props;
   return (
     <div
@@ -114,8 +112,6 @@ async function submitMessage(content: string) {
     ],
   });
 
-  let textStream: undefined | ReturnType<typeof createStreamableValue<string>>;
-  let textNode: undefined | React.ReactNode;
   const result = await streamUI({
     model: openai("gpt-3.5-turbo"),
     system: `\

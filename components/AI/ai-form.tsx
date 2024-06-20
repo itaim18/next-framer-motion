@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { useUIState, useActions } from "ai/rsc";
@@ -13,7 +14,6 @@ const AIForm = () => {
   const { submitMessage } = useActions();
   const [input, setInput] = useState<string>("");
   const [messages, setMessages] = useUIState();
-  console.log(messages);
 
   return (
     <>
@@ -40,13 +40,15 @@ const AIForm = () => {
               role: "user",
             },
           ]);
-
-          const responseMessage = await submitMessage(value);
-
-          setMessages((currentMessages: any) => [
-            ...currentMessages,
-            responseMessage,
-          ]);
+          try {
+            const responseMessage = await submitMessage(value);
+            setMessages((currentMessages: any) => [
+              ...currentMessages,
+              responseMessage,
+            ]);
+          } catch (err) {
+            console.error(err);
+          }
         }}
       >
         <div className="flex items-center space-x-2">

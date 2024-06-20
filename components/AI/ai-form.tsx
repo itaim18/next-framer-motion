@@ -28,7 +28,7 @@ const AIForm = () => {
           if (window.innerWidth < 600) {
             e.target["message"]?.blur();
           }
-
+          console.log("heyyyyyy");
           if (!value) return;
           setInput("");
           setMessages((currentMessages: any) => [
@@ -41,12 +41,15 @@ const AIForm = () => {
             },
           ]);
           try {
+            console.log("heyyyyyy");
             const responseMessage = await submitMessage(value);
             setMessages((currentMessages: any) => [
               ...currentMessages,
               responseMessage,
             ]);
           } catch (err) {
+            console.log("heyyyyyy");
+
             console.error(err);
           }
         }}

@@ -2,9 +2,8 @@
 
 import type { CoreMessage, ToolInvocation } from "ai";
 import { openai } from "@ai-sdk/openai";
-import { createAI, getMutableAIState } from "ai/rsc";
+import { createAI, getMutableAIState, streamUI } from "ai/rsc";
 import type { ReactNode } from "react";
-import { streamUI } from "ai/rsc";
 import { SunIcon } from "lucide-react";
 import Link from "next/link";
 import { nanoid } from "../lib/utils";
@@ -12,6 +11,7 @@ import { DATA } from "@/data";
 import { z } from "zod";
 import { Link2, Link2Off, Terminal, Maximize } from "lucide-react";
 import { Message } from "@/components/ui/message";
+
 export type ServerMessage = {
   role: "user" | "assistant";
   content: string;
@@ -96,6 +96,7 @@ const WeatherComponent = (props: any) => (
     <SunIcon />
   </div>
 );
+
 export async function submitMessage(content: string) {
   const history = getMutableAIState<typeof AI>();
 

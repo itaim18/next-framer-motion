@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import FlexLesson from "@/src/components/FlexLesson/FlexLesson";
+import { AIDialog } from "@/components/AI/ai-dialog";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         <FlexLesson />
       </main>
       {/* <Toasty /> */}
+      <AIDialog />
     </>
   );
 }

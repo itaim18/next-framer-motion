@@ -19,7 +19,10 @@ const AIChat = () => {
 
   return (
     <>
-      <div ref={listRef} className=" h-56 flex flex-col overflow-auto">
+      <div
+        ref={listRef}
+        className=" h-56 flex flex-col overflow-auto overflow-x-hidden"
+      >
         {messages.map((message: any, i: number) => {
           return (
             <Message isUser={message?.role === "user"} key={i}>

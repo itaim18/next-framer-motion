@@ -11,6 +11,60 @@ import { DATA } from "@/data";
 import { z } from "zod";
 import { Link2, Link2Off, Terminal, Maximize } from "lucide-react";
 import { Message } from "@/components/ui/message";
+import { getBlogPostList } from "@/src/helpers/file-helper";
+import BlogSummaryCard from "@/src/components/BlogSummaryCard/BlogSummaryCard";
+
+import * as React from "react";
+
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+
+function ProjectsCarousel({ projects }: any) {
+  console.log(projects);
+
+  return (
+    <Carousel
+      opts={{
+        align: "start",
+      }}
+      className="w-full max-w-sm "
+    >
+      <CarouselContent>
+        {projects.map((project: any, index: number) => (
+          <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 ">
+            <div className="p-1 ">
+              <Card>
+                <CardContent className="flex aspect-square items-center justify-center h-fit sm:p-2 md:p-6">
+                  <Link
+                    target="_blank"
+                    href={
+                      project.live ??
+                      project.code ??
+                      "https://github.com/itaim18/"
+                    }
+                  >
+                    {" "}
+                    <span className="text-3xl md:text-xl font-semibold">
+                      {project.title}
+                    </span>
+                  </Link>
+                </CardContent>
+              </Card>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+}
 
 export type ServerMessage = {
   role: "user" | "assistant";
@@ -31,6 +85,15 @@ async function getProject(subject: string): Promise<any> {
   );
 
   return proj;
+}
+async function getProjects(): Promise<any> {
+  const projects = DATA.slice(0, 6);
+  return projects;
+}
+async function getBlog(): Promise<any> {
+  const blogs = await getBlogPostList();
+  const firstBlog = blogs[0];
+  return firstBlog;
 }
 async function getWeather(city: string): Promise<any> {
   const url = `http://api.weatherapi.com/v1/current.json?key=d222f818f5c14ad4901154740241806&q=${city}&aqi=no`;
@@ -111,8 +174,10 @@ export async function submitMessage(content: string) {
   const result = await streamUI({
     model: openai("gpt-3.5-turbo"),
     system: `\
-    If the user requests seeing a project at some subject, call \`get_project\` to show the project UI for the specified subject.
-   If the user requests seeing the weather in a location, call \`get_weather\` to show the weather UI for the specified location.
+    If the user requests seeing projects in general, call \`get_projects\` to show the scrollable projects UI of 6 projects.
+    If the user requests seeing a blog at some subject, call \`get_blog\` to show the blog UI for the last blog.
+    If the user requests seeing a project at some specific subject, call \`get_project\` to show the project UI for the specified subject.
+    If the user requests seeing the weather in a location, call \`get_weather\` to show the weather UI for the specified location.
     other than that always reference to me, the developer, Itai Mizlish, and how great I am and that he can see projects I have done right here on the chatbot feature
    `,
 
@@ -128,7 +193,7 @@ export async function submitMessage(content: string) {
       if (done)
         history.done([...history.get(), { role: "assistant", content }]);
 
-      return <Message isUser={false}>{content}</Message>;
+      return content;
     },
     tools: {
       getWeather: {
@@ -174,6 +239,49 @@ export async function submitMessage(content: string) {
             },
           ]);
           return <ProjectComponent props={project} />;
+        },
+      },
+      getProjects: {
+        description: "Get the 6 last projects",
+        parameters: z.object({}),
+        generate: async function* () {
+          yield <div>loading...</div>;
+          const projects = await getProjects();
+          await sleep(1000);
+          history.done([
+            ...history.get(),
+            {
+              role: "assistant",
+              name: "get_project",
+              content: `[projects]`,
+            },
+          ]);
+          return <ProjectsCarousel projects={projects} />;
+        },
+      },
+      getBlog: {
+        description: "Get a random blog post",
+        parameters: z.object({}),
+        generate: async function* () {
+          yield <div>loading...</div>;
+          const project = await getBlog();
+          await sleep(1000);
+          history.done([
+            ...history.get(),
+            {
+              role: "assistant",
+              name: "get_project",
+              content: `[blog]`,
+            },
+          ]);
+          return (
+            <BlogSummaryCard
+              slug={project?.slug}
+              title={project?.title}
+              publishedOn={project?.publishedOn}
+              abstract={project?.abstract}
+            />
+          );
         },
       },
     },

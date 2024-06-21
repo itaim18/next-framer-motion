@@ -8,7 +8,7 @@ import { siteConfig } from "@/src/config/site";
 import RespectMotionPreferences from "@/src/components/providers/RespectMotionPreferences";
 import { TailwindIndicator } from "@/src/components/providers/Tailwind-indicator";
 import { CSSProperties } from "react";
-import { DialogCloseButton } from "@/components/AI/ai-dialog";
+import { AIDialog } from "@/components/AI/ai-dialog";
 import { AI } from "./actions";
 const rajdhani = Rajdhani({ weight: "700", subsets: ["latin"] });
 
@@ -85,8 +85,6 @@ export default function RootLayout({
             <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
               <Header />
               {children}
-
-              <DialogCloseButton />
 
               <Footer />
               <TailwindIndicator />

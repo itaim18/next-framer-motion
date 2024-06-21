@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import Link from "next/link";
 import AIForm from "./ai-form";
-export function DialogCloseButton() {
+export function AIDialog() {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -24,9 +24,9 @@ export function DialogCloseButton() {
           <span className="ml-2">{"Ask AI"}</span>
         </button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md sm:min-h-full md:min-h-fit md:max-w-lg">
         <DialogHeader>
-          <DialogTitle>
+          <DialogTitle className="flex flex-row">
             <Wand2 /> Start the AI magic
           </DialogTitle>
           <DialogDescription>

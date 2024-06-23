@@ -10,7 +10,6 @@ import { nanoid, sleep } from "../lib/utils";
 import { DATA } from "@/data";
 import { z } from "zod";
 import { Link2, Link2Off, Terminal, Maximize } from "lucide-react";
-import { Message } from "@/components/ui/message";
 import { getBlogPostList } from "@/src/helpers/file-helper";
 import BlogSummaryCard from "@/src/components/BlogSummaryCard/BlogSummaryCard";
 
@@ -26,8 +25,6 @@ import {
 } from "@/components/ui/carousel";
 
 function ProjectsCarousel({ projects }: any) {
-  console.log(projects);
-
   return (
     <Carousel
       opts={{
@@ -264,22 +261,22 @@ export async function submitMessage(content: string) {
         parameters: z.object({}),
         generate: async function* () {
           yield <div>loading...</div>;
-          const project = await getBlog();
+          const blog = await getBlog();
           await sleep(1000);
           history.done([
             ...history.get(),
             {
               role: "assistant",
-              name: "get_project",
+              name: "get_blog",
               content: `[blog]`,
             },
           ]);
           return (
             <BlogSummaryCard
-              slug={project?.slug}
-              title={project?.title}
-              publishedOn={project?.publishedOn}
-              abstract={project?.abstract}
+              slug={blog?.slug}
+              title={blog?.title}
+              publishedOn={blog?.publishedOn}
+              abstract={blog?.abstract}
             />
           );
         },

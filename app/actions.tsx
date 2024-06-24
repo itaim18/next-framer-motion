@@ -263,7 +263,7 @@ export async function submitMessage(content: string) {
           const blog = await getBlog();
           console.log(blog);
 
-          await sleep(2000);
+          await sleep(1000);
           history.done([
             ...history.get(),
             {

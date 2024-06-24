@@ -88,8 +88,8 @@ async function getProjects(): Promise<any> {
   return projects;
 }
 async function getBlog(): Promise<any> {
-  const blogs = await getBlogPostList();
-  const firstBlog = blogs[0];
+  const blogs: any[] = await getBlogPostList();
+  const firstBlog = Array.isArray(blogs) && blogs.length > 0 ? blogs[0] : {};
   return firstBlog;
 }
 async function getWeather(city: string): Promise<any> {

@@ -27,6 +27,15 @@ import {
   TbBrandCss3,
 } from "react-icons/tb";
 import { BiLogoTailwindCss } from "react-icons/bi";
+export const blogs = [
+  {
+    title: "Celebrating the holidays with 'React-Pixelated'🍎​🍯​",
+    abstract:
+      "In this blog post, my goal is to demonstrate how to create pixelated React nodes that can be used as icons or featured elements in our upcoming blog about 'Jewish Holidays.'",
+    publishedOn: "2023-09-18T12:00:00-0400",
+    image: "/assets/holidays-pixelated.png",
+  },
+];
 export const DATA: any[] = [
   {
     image: PriceExplorer,

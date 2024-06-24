@@ -7,7 +7,7 @@ import type { ReactNode } from "react";
 import { SunIcon } from "lucide-react";
 import Link from "next/link";
 import { nanoid, sleep } from "../lib/utils";
-import { DATA } from "@/data";
+import { DATA, blogs } from "@/data";
 import { z } from "zod";
 import { Link2, Link2Off, Terminal, Maximize } from "lucide-react";
 import { getBlogPostList } from "@/src/helpers/file-helper";
@@ -88,7 +88,6 @@ async function getProjects(): Promise<any> {
   return projects;
 }
 async function getBlog(): Promise<any> {
-  const blogs: any[] = await getBlogPostList();
   const firstBlog = Array.isArray(blogs) && blogs.length > 0 ? blogs[0] : {};
   return firstBlog;
 }

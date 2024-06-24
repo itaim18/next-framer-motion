@@ -262,7 +262,9 @@ export async function submitMessage(content: string) {
         generate: async function* () {
           yield <div>loading...</div>;
           const blog = await getBlog();
-          await sleep(1000);
+          console.log(blog);
+
+          await sleep(2000);
           history.done([
             ...history.get(),
             {

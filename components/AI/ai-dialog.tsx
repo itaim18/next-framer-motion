@@ -11,10 +11,13 @@ import {
 } from "@/components/ui/dialog";
 import Link from "next/link";
 import AIForm from "./ai-form";
+import { useUIState } from "ai/rsc";
+import { AI } from "@/app/actions";
 export function AIDialog() {
+  const [_, setMessages] = useUIState<typeof AI>();
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      <DialogTrigger asChild onClick={() => setMessages([])}>
         <button className="inline-flex items-center justify-center fixed bottom-24 right-12 rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300">
           <span
             className={`relative inline-block h-5 w-5 transition-transform duration-300 ease-in-out group-hover:rotate-180 group-active:rotate-180`}
@@ -24,9 +27,9 @@ export function AIDialog() {
           <span className="ml-2">{"Ask AI"}</span>
         </button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md sm:min-h-full md:min-h-fit md:max-w-lg">
+      <DialogContent className="sm:max-w-md  min-h-fit md:max-w-lg">
         <DialogHeader>
-          <DialogTitle className="flex flex-row">
+          <DialogTitle className="flex flex-row items-end gap-2">
             <Wand2 /> Start the AI magic
           </DialogTitle>
           <DialogDescription>
@@ -40,7 +43,7 @@ export function AIDialog() {
         <DialogFooter className="sm:justify-start text-sm inline-block text-green-700">
           Have any questions for me? please
           <Link
-            href="https://wa.me/0542258899"
+            href="https://wa.me/+972542258899"
             target="_blank"
             className="text-emerald-600 hover:text-emerald-400"
           >

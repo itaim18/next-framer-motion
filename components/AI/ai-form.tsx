@@ -39,7 +39,6 @@ const AIForm = () => {
             },
           ]);
           try {
-            console.log("in try");
             const responseMessage = await submitMessage(value);
             setMessages((currentMessages: any) => [
               ...currentMessages,
@@ -49,6 +48,15 @@ const AIForm = () => {
             console.log("error");
 
             console.error(err);
+            setMessages((currentMessages: any) => [
+              ...currentMessages,
+              {
+                id: nanoid(),
+                role: "assistant" as const,
+                display:
+                  "sorry I didn't understand your request. try phrasing it differently",
+              },
+            ]);
           }
         }}
       >

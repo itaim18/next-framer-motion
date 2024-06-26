@@ -114,7 +114,7 @@ const ProjectComponent = (props: any) => {
     <div
       id="card"
       key={item?.id}
-      className={`border-red-400 justify-start relative flex flex-col bg-transparent dark:bg-opacity-25 bg-opacity-25 aspect-square lg:aspect-auto col-span-2 rounded-lg py-8 px-4 border-2 ${item?.myClass}`}
+      className={`border-red-400 justify-start relative flex flex-col bg-transparent dark:bg-opacity-25 bg-opacity-25 aspect-square lg:aspect-auto col-span-2 rounded-lg py-4 px-4 border-2 ${item?.myClass}`}
     >
       {item?.image ? (
         <img

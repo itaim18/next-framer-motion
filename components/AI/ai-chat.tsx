@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import { Message } from "../ui/message";
 import { useUIState } from "ai/rsc";
+import { AIQuestions } from "./ai-questions";
 // import { useChat } from "@ai-sdk/react";
 interface msg {
   index: number;
@@ -21,15 +22,21 @@ const AIChat = () => {
     <>
       <div
         ref={listRef}
-        className=" h-56 flex flex-col overflow-auto overflow-x-hidden"
+        className={` h-56 flex flex-col overflow-auto overflow-x-hidden ${
+          messages.length == 0 && "place-content-end"
+        }`}
       >
-        {messages.map((message: any, i: number) => {
-          return (
-            <Message isUser={message?.role === "user"} key={i}>
-              {message?.display}
-            </Message>
-          );
-        })}
+        {messages.length > 0 ? (
+          messages.map((message: any, i: number) => {
+            return (
+              <Message isUser={message?.role === "user"} key={i}>
+                {message?.display}
+              </Message>
+            );
+          })
+        ) : (
+          <AIQuestions />
+        )}
       </div>
     </>
   );

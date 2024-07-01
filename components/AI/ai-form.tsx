@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { useUIState, useActions } from "ai/rsc";
 import { Button } from "@/components/ui/button";
@@ -8,14 +8,49 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { AI } from "@/app/actions";
 import { nanoid } from "@/lib/utils";
-import AIChat from "./ai-chat";
+import { Message } from "../ui/message";
+import { AIQuestions } from "./ai-questions";
+// import AIChat from "./ai-chat";
+
 const AIForm = () => {
   const [input, setInput] = useState<string>("");
-  const [_, setMessages] = useUIState<typeof AI>();
+  const [messages, setMessages] = useUIState<typeof AI>();
   const { submitMessage } = useActions<typeof AI>();
+  const listRef: any = useRef(null);
+
+  useLayoutEffect(() => {
+    if (listRef.current) {
+      const lastElement = listRef.current.lastElementChild;
+
+      if (lastElement) {
+        setTimeout(() => {
+          lastElement.scrollIntoView({ behavior: "smooth" });
+          console.log("scrolling", lastElement);
+        }, 100); // Optional delay
+      }
+    }
+  }, [messages]);
+
   return (
     <>
-      <AIChat />
+      <div
+        ref={listRef}
+        className={` h-56 flex flex-col overflow-auto overflow-x-hidden ${
+          messages.length == 0 && "place-content-end"
+        }`}
+      >
+        {messages.length > 0 ? (
+          messages.map((message: any, i: number) => {
+            return (
+              <Message isUser={message?.role === "user"} key={i}>
+                {message?.display}
+              </Message>
+            );
+          })
+        ) : (
+          <AIQuestions />
+        )}
+      </div>
       <form
         method="post"
         onSubmit={async (e: any) => {

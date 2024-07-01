@@ -72,6 +72,7 @@ export type ClientMessage = {
   id: string;
   role: "user" | "assistant";
   display: React.ReactNode;
+  content: any;
 };
 function capitalizeFirstLetter(string: string) {
   return string.charAt(0).toUpperCase() + string.slice(1);

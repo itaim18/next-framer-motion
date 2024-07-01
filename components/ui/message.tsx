@@ -12,7 +12,7 @@ export const Message = ({
       className={` ${
         isUser
           ? "self-end rounded-se-none border rounded-lg m-1 w-44 p-2"
-          : " rounded-ss-none "
+          : "rounded-ss-none"
       }`}
     >
       {children}

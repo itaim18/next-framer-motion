@@ -10,6 +10,7 @@ const nextConfig = {
       "media0.giphy.com",
       "raw.githubusercontent.com",
       "user-images.githubusercontent.com",
+      "github.com",
     ],
   },
   env: {

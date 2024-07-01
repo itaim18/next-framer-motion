@@ -3,19 +3,17 @@ import React, { useEffect, useRef } from "react";
 import { Message } from "../ui/message";
 import { useUIState } from "ai/rsc";
 import { AIQuestions } from "./ai-questions";
-// import { useChat } from "@ai-sdk/react";
-interface msg {
-  index: number;
-  isUser: boolean;
-  msg: string;
-}
 
 const AIChat = () => {
   const listRef: any = useRef(null);
   const [messages] = useUIState<any>();
 
   useEffect(() => {
-    listRef.current?.lastElementChild?.scrollIntoView({ behavior: "smooth" });
+    if (listRef.current) {
+      console.log(listRef.current);
+
+      listRef.current.scrollTop = listRef.current.scrollHeight;
+    }
   }, [messages]);
 
   return (

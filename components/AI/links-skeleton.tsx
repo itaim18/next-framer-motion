@@ -19,13 +19,6 @@ const Socials = ({ props: socials }: { props: Social[] }) => {
           <button
             key={social.gLink}
             className="flex cursor-pointer flex-row gap-2 rounded-lg bg-zinc-800 p-2 text-left hover:bg-zinc-700 sm:w-52"
-            // onClick={async () => {
-            //   const response = await submitUserMessage(`View ${social.gLink}`);
-            //   setMessages((currentMessages: any) => [
-            //     ...currentMessages,
-            //     response,
-            //   ]);
-            // }}
           >
             {social.tLink}
           </button>

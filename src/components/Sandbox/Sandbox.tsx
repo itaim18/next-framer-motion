@@ -33,7 +33,10 @@ export default function Sandbox(props: any) {
             <CustomClearConsoleButton />
           </div>
         </div>
-        <SandpackCodeEditor showLineNumbers={showNumbers} />
+        <SandpackCodeEditor
+          showLineNumbers={showNumbers}
+          className="h-64 overflow-auto"
+        />
         <div>
           <div className="flex flex-row justify-between bg-[#0d0f12]">
             <div className="flex flex-row">

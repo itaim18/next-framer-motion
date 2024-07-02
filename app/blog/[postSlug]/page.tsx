@@ -6,6 +6,7 @@ import MDXImage from "@/src/components/MDXImage/MDXImage";
 import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
 import InterviewSandbox from "@/src/components/interview/interview";
 import BlogHero from "@/src/components/BlogHero/BlogHero";
+import { ImagesDrawer } from "@/src/components/ImagesDrawer";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
 import Strong from "@/src/components/Strong/Strong";
@@ -15,6 +16,7 @@ import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
 import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 import HolidaysTest from "@/src/components/HolidaysTest";
 import { Example } from "@/components/ui/Example";
+import { InterviewAccordion } from "@/src/components/InterviewAccordion";
 
 export async function generateMetadata({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
@@ -108,12 +110,14 @@ async function Home({ params }: any) {
                   className="text-xl mt-6 mb-4 scroll-smooth scroll-mt-24"
                 />
               ),
-              blockquote: BlockQuote,
+              BlockQuote,
+              InterviewAccordion,
               strong: Strong,
               MDXImage,
               PixelatedApple,
               InterviewSandbox,
               HolidaysTest,
+              ImagesDrawer,
               Example,
               a: (props: any) => (
                 <a

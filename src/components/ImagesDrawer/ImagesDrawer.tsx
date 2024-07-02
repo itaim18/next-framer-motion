@@ -64,8 +64,10 @@ export function CarouselDemo() {
 function ImagesDrawer() {
   return (
     <Drawer>
-      <DrawerTrigger asChild>
-        <Button variant="outline">You can open up some memories</Button>
+      <DrawerTrigger asChild className="m-auto">
+        <Button variant="outline" className="mx-auto my-6 h-24 p-4 text-2xl">
+          You can open up some memories 📖
+        </Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">

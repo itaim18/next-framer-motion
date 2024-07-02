@@ -10,7 +10,6 @@ import type { AI } from "@/app/actions";
 import { nanoid } from "@/lib/utils";
 import { Message } from "../ui/message";
 import { AIQuestions } from "./ai-questions";
-// import AIChat from "./ai-chat";
 
 const AIForm = () => {
   const [input, setInput] = useState<string>("");
@@ -25,8 +24,7 @@ const AIForm = () => {
       if (lastElement) {
         setTimeout(() => {
           lastElement.scrollIntoView({ behavior: "smooth" });
-          console.log("scrolling", lastElement);
-        }, 100); // Optional delay
+        }, 100);
       }
     }
   }, [messages]);

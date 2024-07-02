@@ -1,0 +1,13 @@
+@keyframes bounceTwice {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-25px);
+  }
+}
+
+.animate-bounce {
+  animation: bounceTwice 500ms ease-in-out 400ms 2;
+}

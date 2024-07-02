@@ -61,7 +61,7 @@ export function CarouselDemo() {
   );
 }
 
-export function ImagesDrawer() {
+function ImagesDrawer() {
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -86,3 +86,4 @@ export function ImagesDrawer() {
     </Drawer>
   );
 }
+export default ImagesDrawer;

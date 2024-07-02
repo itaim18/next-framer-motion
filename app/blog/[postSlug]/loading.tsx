@@ -31,7 +31,7 @@ export default function Loading() {
         </p>
       </div>
       <p className="border-t-2 text-lg leading-8 p-10 text-justify font-extrabold">
-        Hey there! 👋 I&apos;m Itai Mizlish , a passionate frontend web
+        Hey there! 👋 I&apos;m Itai Mizlish , a passionate fullstack web
         developer with a knack for crafting captivating digital experiences
         using the magical world of JS frameworks and magical UI libraries. 🚀
         When I&apos;m not immersed in lines of code, you&apos;ll find me

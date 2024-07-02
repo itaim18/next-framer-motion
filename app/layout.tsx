@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://itaimiz.com",
     title: "Itai Mizlish",
-    description: "Itai Mizlish - Frontend development done to the fullest 🪐",
+    description: "Itai Mizlish - Software Development done to the fullest 🪐",
     siteName: "Itai Mizlish",
     images: [
       {

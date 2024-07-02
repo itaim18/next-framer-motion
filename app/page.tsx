@@ -17,10 +17,10 @@ export default function Home() {
           className="flx flex-col p-6 gap-20 leading-9  mx-auto w-fit"
         >
           <h2 className="text-4xl mb-4  text-indigo-400">Itai Mizlish</h2>
-          <h1 className="text-5xl mb-4 z-0">Frontend Developer</h1>
+          <h1 className="text-5xl mb-4 z-0">Software Developer</h1>
           <h3 className="text-2xl  mb-8 text-indigo-400">
-            Always focused on UX, optimization and sharing great solutions with
-            developers.
+            Always focused on creating efficient, optimized solutions and
+            collaborating effectively with other developers.
           </h3>
         </motion.article>
         <FlexLesson />

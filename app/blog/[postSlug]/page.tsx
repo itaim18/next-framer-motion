@@ -145,7 +145,7 @@ async function Home({ params }: any) {
               Itai Mizlish
             </SpecialLink>
           </Strong>
-          , a passionate frontend web developer with a knack for crafting
+          , a passionate fullstack web developer with a knack for crafting
           captivating digital experiences using the magical world of JS
           frameworks and <Strong>magical</Strong> UI libraries. 🚀 When I&apos;m
           not immersed in lines of code, you&apos;ll find me exploring the

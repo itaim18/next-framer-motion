@@ -29,12 +29,12 @@ import {
 import { BiLogoTailwindCss } from "react-icons/bi";
 export const blogs = [
   {
-    title: "Celebrating the holidays with 'React-Pixelated'🍎​🍯​",
+    title: "One day in october🎗​",
     abstract:
-      "In this blog post, my goal is to demonstrate how to create pixelated React nodes that can be used as icons or featured elements in our upcoming blog about 'Jewish Holidays.'",
-    publishedOn: "2023-09-18T12:00:00-0400",
+      "ctober 7th was a turning point that set the tone for the following months. The sudden call to arms, the immediate danger, and the responsibility I felt reshaped my priorities and perspective. This day marked the beginning of a challenging journey, impacting every subsequent month in profound ways. It tested my resilience, altered my daily life, and defined my actions and thoughts in ways I never anticipated. The experiences from that day onwards have been a constant reminder of the fragility of peace and the importance of vigilance and courage.",
+    publishedOn: "2024-07-01T12:00:00-0400",
     image: "/assets/holidays-pixelated.png",
-    slug: "holidays-pixelated",
+    slug: "One-day-in-october",
   },
 ];
 export const DATA: any[] = [

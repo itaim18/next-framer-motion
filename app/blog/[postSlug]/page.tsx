@@ -4,6 +4,7 @@ import path from "path";
 import React from "react";
 import MDXImage from "@/src/components/MDXImage/MDXImage";
 import PixelatedApple from "@/src/components/PixelatedApple/PixelatedApple";
+import InterviewSandbox from "@/src/components/interview/interview";
 import BlogHero from "@/src/components/BlogHero/BlogHero";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import CodeSnippet from "@/src/components/CodeSnippet/CodeSnippet";
@@ -13,8 +14,8 @@ import matter from "gray-matter";
 import SpecialLink from "@/src/components/SpecialLink/SpecialLink";
 import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 import HolidaysTest from "@/src/components/HolidaysTest";
-import ReactCompareImage from "react-compare-image";
 import { Example } from "@/components/ui/Example";
+
 export async function generateMetadata({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
   const res = await fs.readFile(myPath, "utf8");
@@ -111,6 +112,7 @@ async function Home({ params }: any) {
               strong: Strong,
               MDXImage,
               PixelatedApple,
+              InterviewSandbox,
               HolidaysTest,
               Example,
               a: (props: any) => (

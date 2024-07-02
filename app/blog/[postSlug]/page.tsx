@@ -17,7 +17,7 @@ import TableOfContents from "@/src/components/TableOfContents/TableOfContents";
 import HolidaysTest from "@/src/components/HolidaysTest";
 import { Example } from "@/components/ui/Example";
 import Climbing from "@/src/components/Climbing";
-import { InterviewAccordion } from "@/src/components/InterviewAccordion";
+import InterviewAccordion from "@/src/components/InterviewAccordion";
 
 export async function generateMetadata({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);

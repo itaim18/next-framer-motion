@@ -42,18 +42,6 @@ const DATA: any[] = [
     subtitle: "The best tool for sales to handle their workforce",
     description:
       "The optimal solution for sales professionals to manage their company's workforce involves utilizing a combination of technologies including React, Airtable, Framer Motion, Next.js, Radix UI, UIShadcn, React Hook Form, and NextAuth.",
-    title: "AI-Mirror",
-    myClass: "col-span-6 md:col-span-3 lg:col-span-4 xl:col-span-4",
-    types: ["AI"],
-    live: "http://google.com/",
-    skills: [BiLogoTailwindCss],
-  },
-  {
-    image: PriceExplorer,
-    id: crypto.randomUUID(),
-    subtitle: "The best tool for sales to handle their workforce",
-    description:
-      "The optimal solution for sales professionals to manage their company's workforce involves utilizing a combination of technologies including React, Airtable, Framer Motion, Next.js, Radix UI, UIShadcn, React Hook Form, and NextAuth.",
     title: "Pricer",
     myClass: "col-span-6 md:col-span-3 lg:col-span-4 xl:col-span-4",
     types: ["Web"],

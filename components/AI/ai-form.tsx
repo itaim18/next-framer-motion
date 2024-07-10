@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { useUIState, useActions } from "ai/rsc";
 import { Button } from "@/components/ui/button";

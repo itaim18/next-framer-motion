@@ -10,7 +10,6 @@ import { nanoid, sleep } from "../lib/utils";
 import { DATA, blogs } from "@/data";
 import { z } from "zod";
 import { Link2, Link2Off, Terminal, Maximize } from "lucide-react";
-import { getBlogPostList } from "@/src/helpers/file-helper";
 import BlogSummaryCard from "@/src/components/BlogSummaryCard/BlogSummaryCard";
 
 import * as React from "react";
@@ -35,8 +34,8 @@ function ProjectsCarousel({ projects }: any) {
       <CarouselContent>
         {projects.map((project: any, index: number) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 ">
-            <div className="p-1 ">
-              <Card>
+            <div className="p-1 hover:border-red-500 card-wrapper ">
+              <Card className="relative rounded-2xl">
                 <CardContent className="flex aspect-square items-center justify-center h-fit sm:p-2 md:p-6">
                   <Link
                     target="_blank"

@@ -17,6 +17,10 @@ module.exports = {
     },
     extend: {
       keyframes: {
+        shine: {
+          from: { backgroundPosition: "200% 0" },
+          to: { backgroundPosition: "-200% 0" },
+        },
         "border-spin": {
           "100%": {
             transform: "rotate(-360deg)",
@@ -73,6 +77,7 @@ module.exports = {
       },
 
       animation: {
+        shine: "shine 4s ease-in-out infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "border-spin": "border-spin 7s linear infinite",

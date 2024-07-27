@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import FlexLesson from "@/src/components/FlexLesson/FlexLesson";
 import { AIDialog } from "@/components/AI/ai-dialog";
-
+import { Handle } from "@/src/components/Handle";
 export default function Home() {
   return (
     <>
@@ -15,7 +15,10 @@ export default function Home() {
           animate="visible"
           className="flx flex-col p-6 gap-20 leading-9  mx-auto w-fit"
         >
-          <h2 className="text-4xl mb-4  text-indigo-400">Itai Mizlish</h2>
+          <div className="flex flex-row items-center">
+            <h2 className="text-4xl mb-4  text-indigo-400">Itai Mizlish/</h2>
+            <Handle />
+          </div>
           <h1 className="text-5xl mb-4 z-0">Software Developer</h1>
           <h3 className="text-2xl  mb-8 text-indigo-400">
             Always dedicated to crafting efficient, optimized solutions and an

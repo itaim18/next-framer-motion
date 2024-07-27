@@ -8,8 +8,8 @@ import { siteConfig } from "@/src/config/site";
 import RespectMotionPreferences from "@/src/components/providers/RespectMotionPreferences";
 import { TailwindIndicator } from "@/src/components/providers/Tailwind-indicator";
 import { CSSProperties } from "react";
-import { AIDialog } from "@/components/AI/ai-dialog";
 import { AI } from "./actions";
+
 const rajdhani = Rajdhani({ weight: "700", subsets: ["latin"] });
 
 const loadingFont = Redacted_Script({

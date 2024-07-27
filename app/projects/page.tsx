@@ -24,17 +24,17 @@ import {
   SiFirebase,
   SiTailwindcss,
 } from "react-icons/si";
-import { FaReact, FaCss3 } from "react-icons/fa";
+import { FaReact } from "react-icons/fa";
 import { RiJavascriptFill } from "react-icons/ri";
 import {
   TbBrandNextjs,
   TbBrandFramerMotion,
   TbBrandFirebase,
   TbBrandReactNative,
-  TbBrandFlutter,
   TbBrandCss3,
 } from "react-icons/tb";
 import { BiLogoTailwindCss } from "react-icons/bi";
+
 const DATA: any[] = [
   {
     image: PriceExplorer,

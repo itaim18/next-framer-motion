@@ -18,6 +18,7 @@ import HolidaysTest from "@/src/components/HolidaysTest";
 import { Example } from "@/components/ui/Example";
 import Climbing from "@/src/components/Climbing";
 import InterviewAccordion from "@/src/components/InterviewAccordion";
+import ScrollProgress from "@/components/ui/scroll-progress";
 
 export async function generateMetadata({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
@@ -78,6 +79,7 @@ async function Home({ params }: any) {
   return (
     <>
       <article className="my-36 relative max-w-2xl m-auto py-24">
+        <ScrollProgress />
         <BlogHero
           title={frontmatter.title}
           publishedOn={frontmatter.publishedOn}

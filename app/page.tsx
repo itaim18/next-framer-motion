@@ -1,5 +1,4 @@
 "use client";
-// import Toasty from "@/src/components/Toasty/Toasty";
 import React from "react";
 import { motion } from "framer-motion";
 import FlexLesson from "@/src/components/FlexLesson/FlexLesson";
@@ -19,13 +18,12 @@ export default function Home() {
           <h2 className="text-4xl mb-4  text-indigo-400">Itai Mizlish</h2>
           <h1 className="text-5xl mb-4 z-0">Software Developer</h1>
           <h3 className="text-2xl  mb-8 text-indigo-400">
-            Always focused on creating efficient, optimized solutions and
-            collaborating effectively with other developers.
+            Always dedicated to crafting efficient, optimized solutions and an
+            avid open-source enthusiast
           </h3>
         </motion.article>
         <FlexLesson />
       </main>
-      {/* <Toasty /> */}
       <AIDialog />
     </>
   );

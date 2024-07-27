@@ -4,7 +4,7 @@ export const siteConfig = {
   name: "Portfolio",
   image:
     "https://madewithnetworkfra.fra1.digitaloceanspaces.com/spatie-space-production/19093/framer-motion.gif",
-  description: "The best solution for sale reps in SaaS companies!",
+  description: "Software Development to the fullest 🪐",
   mainNav: [
     {
       title: "Home",

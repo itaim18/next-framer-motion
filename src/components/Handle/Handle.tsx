@@ -1,8 +1,6 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-import { CalendarDays } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import {
   HoverCard,

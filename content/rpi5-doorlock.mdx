@@ -1,0 +1,183 @@
+---
+title: "RPI5-Door Lock with Face Recognition: Securing the Future"
+abstract: "Dive into an advanced embedded project where we integrate the Raspberry Pi 5 with state-of-the-art face recognition and deep learning techniques to build a smart door lock system. This post covers everything from hardware design (with Fritzing diagrams) and embedded AI to a full-stack integration using FastAPI and React for real-time entrance feeds."
+publishedOn: "2025-02-01T12:00:00-0400"
+image: "/assets/rpi5-door-lock.png"
+---
+
+# RPI5-Door Lock with Face Recognition
+
+In this post, we'll take you through our journey of building a secure door lock system powered by the Raspberry Pi 5. Leveraging embedded deep learning, an AI camera module, and a full-stack application, we’ve created a robust, real-time face recognition system that controls door access.
+
+> "Security is not a product, but a process."  
+> — _Bruce Schneier_
+
+---
+
+## Introduction
+
+The goal of this project was to create a secure door lock that only grants access when an authorized face is detected. The system is built on the Raspberry Pi 5 and leverages advanced deep learning techniques optimized for embedded devices. In addition, we integrate the door lock system into a full-stack application that provides:
+
+- **Real-time entrance feed:** Monitor the door access logs and live camera feed.
+- **Live feed from AI camera:** Visual confirmation of face recognition events.
+
+The project uses a combination of hardware prototyping (with Fritzing diagrams) and sophisticated software components, including Python, OpenCV, TensorFlow (or PyTorch), FastAPI, and React.
+
+---
+
+## Hardware Setup
+
+Our hardware configuration is centered on the Raspberry Pi 5 paired with an AI-optimized camera module. Below is a summary of the components used:
+
+- **Raspberry Pi 5** – The main processing unit.
+- **AI Camera Module** – For capturing real-time video and images.
+- **Electronic Door Lock** – Controlled via GPIO pins.
+- **Fritzing Diagram** – Detailed wiring and connections for the setup.
+
+### Fritzing Diagram
+
+Check out the detailed Fritzing diagram on GitHub:
+[View Fritzing Diagram](https://github.com/username/rpi5-door-lock/tree/main/fritzing)
+
+![Fritzing Diagram](/assets/fritzing-rpi5-diagram.jpg)
+
+> **Tip:** Ensure all connections are secure and double-check the GPIO pin assignments before powering up.
+
+---
+
+## Embedded Deep Learning & Face Recognition
+
+At the heart of the system is our face recognition model, optimized to run on the Raspberry Pi 5. We use a combination of OpenCV for image processing and a deep learning framework (TensorFlow Lite or PyTorch Mobile) to perform real-time inference.
+
+### Code Snippet: Face Recognition with OpenCV
+
+```python
+import cv2
+
+# Load the pre-trained face detection model
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+
+# Initialize camera
+cap = cv2.VideoCapture(0)
+
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.3, minNeighbors=5)
+
+    for (x, y, w, h) in faces:
+        # Draw rectangle around detected face
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+
+    cv2.imshow('Face Recognition', frame)
+
+    # Exit loop when 'q' key is pressed
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+```
+
+Deep Learning Optimization
+For deployment on the Raspberry Pi, we convert our model to a lightweight format using TensorFlow Lite. This ensures faster inference and lower power consumption.
+
+> Note: For a complete guide on model optimization and conversion, check out our model optimization tutorial.
+
+---
+
+## Full-Stack Integration
+
+To manage and monitor door lock activities, we developed a full-stack application that integrates:
+
+Backend: A FastAPI service that handles API requests and serves entrance feed data.
+Frontend: A React dashboard for real-time monitoring and control.
+Backend: FastAPI
+Below is an example of our FastAPI endpoint serving the entrance feed:
+
+```python
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/api/entrance")
+def get_entrance_feed(): # Placeholder for actual feed data
+return {"feed": "Live entrance feed data from door lock system"}
+
+if **name** == '**main**':
+import uvicorn
+uvicorn.run(app, host="0.0.0.0", port=8000)
+```
+
+Frontend: React Dashboard
+Our React dashboard displays both the entrance logs and the live camera feed. Below is a simplified version of our React component:
+
+```tsx
+import React, { useEffect, useState } from "react";
+
+const EntranceFeed = () => {
+  const [feed, setFeed] = useState(null);
+
+  useEffect(() => {
+    fetch("/api/entrance")
+      .then((response) => response.json())
+      .then((data) => setFeed(data.feed));
+  }, []);
+
+  return (
+    <div className="feed-container">
+      <h2>Entrance Feed</h2>
+      <p>{feed ? feed : "Loading entrance feed..."}</p>
+    </div>
+  );
+};
+
+export default EntranceFeed;
+```
+
+For a full view of our dashboard components, check out the GitHub repository: GitHub Repository
+
+Live Demo & UI Components
+We’ve also created a series of UI components to provide a rich user experience. Below are placeholders for some of our custom components:
+
+DoorLockDemo – A demo component that simulates the door lock mechanism.
+FaceRecognitionDemo – A live demo showing the face recognition in action.
+LiveFeed – Displays the real-time video feed from the AI camera.
+EntranceFeed – Shows the current entrance feed from our FastAPI backend. Feel
+free to interact with these components in our demo environment!
+
+Deployment & Troubleshooting
+Deploying an embedded deep learning application can be challenging. Here are a few tips:
+
+### Performance:
+
+Ensure that your model is optimized (using TensorFlow Lite or similar) to run efficiently on the Pi.
+
+### Hardware:
+
+Double-check all wiring against the Fritzing diagram. Loose connections can cause erratic behavior.
+
+### Software:
+
+Use logging extensively in both your FastAPI backend and your Python scripts to monitor system health and debug issues.
+
+## References & Further Reading
+
+- **[Raspberry Pi 5 Documentation](https://www.raspberrypi.com/documentation/)**
+
+- **[OpenCV Face Detection](https://docs.opencv.org/)**
+
+- **[TensorFlow Lite Guide](https://www.tensorflow.org/lite/)**
+
+- **[FastAPI Official Documentation](https://fastapi.tiangolo.com/)**
+
+- **[React Documentation](https://reactjs.org/)**
+
+## Conclusion
+
+This project represents the fusion of embedded systems, deep learning, and full-stack development to create a smart, secure door lock. By integrating a high-performance Raspberry Pi 5 with advanced AI capabilities and real-time monitoring tools, we’re pushing the boundaries of what can be achieved in edge computing.
+
+Would you like to be part of this journey and contribute to future innovations? Let's build the future of secure access together.

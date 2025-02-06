@@ -13,6 +13,9 @@ import sportodo from "../../public/assets/projects/sportodo.png";
 import startach from "../../public/assets/projects/startach.png";
 import unishield from "../../public/assets/projects/unishield.png";
 import zits from "../../public/assets/projects/zits.png";
+import PhishingDetection from "../../public/assets/projects/phishingDetection.png";
+import DoorLockRpi5 from "../../public/assets/projects/doorLockRpi5.png";
+import BookCoverBlurb from "../../public/assets/projects/bookCoverBlurb.png";
 import Link from "next/link";
 import {
   SiAirtable,
@@ -22,9 +25,16 @@ import {
   SiNextdotjs,
   SiFlutter,
   SiFirebase,
-  SiTailwindcss,
+  SiPython,
+  SiTensorflow,
+  SiOpencv,
+  SiScikitlearn,
+  SiPandas,
+  SiRaspberrypi,
+
+
 } from "react-icons/si";
-import { FaReact } from "react-icons/fa";
+import { FaReact, FaCamera } from "react-icons/fa";
 import { RiJavascriptFill } from "react-icons/ri";
 import {
   TbBrandNextjs,
@@ -33,9 +43,50 @@ import {
   TbBrandReactNative,
   TbBrandCss3,
 } from "react-icons/tb";
-import { BiLogoTailwindCss } from "react-icons/bi";
 
+import  { GiMovementSensor }  from "react-icons/gi";
+
+import { BiLogoTailwindCss } from "react-icons/bi";
+// import projectImages from "@/src/data/projectImages";
 const DATA: any[] = [
+  {
+    image: DoorLockRpi5,
+    id: crypto.randomUUID(),
+    title: "Smart Door Lock with Raspberry-Pi",
+    subtitle: "Secure your home with AI-powered door locking",
+    description:
+      "An innovative smart door lock system powered by Raspberry Pi 5 that integrates advanced hardware and software components. Utilizing Python for backend processing, the system features AI-driven facial recognition with OpenCV, leverages high-resolution camera input, and gathers sensor data for robust real-time access management and security monitoring.",
+    myClass: "col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3",
+    types: ["AI", "ML", "IoT", "Embedded"],
+    live: "https://astounding-sopapillas-4b902d.netlify.app/",
+    skills: [SiPython, SiRaspberrypi, SiOpencv, FaCamera, GiMovementSensor],
+  },
+  
+  
+  {
+    image: PhishingDetection,
+    id: crypto.randomUUID(),
+    live: "https://jocular-phoenix-72c9fe.netlify.app/",
+    title: "Advanced Phishing Detection Suite",
+    subtitle: "Comprehensive AI-driven system for phishing analysis",
+    description:
+      "An end-to-end phishing detection system that evolved from baseline models to sophisticated deep learning architectures. Leveraging TF-IDF for initial feature extraction and BERT for nuanced contextual analysis, this project was built in Python on Google Colab and visualized using matplotlib. It showcases a rigorous pipeline that detects and mitigates phishing threats with high accuracy.",
+    myClass: "col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3",
+    types: ["AI", "NLP", "ML","Data"],
+    skills: [SiPython, SiTensorflow, SiScikitlearn,SiPandas],
+  },  
+  {
+    image: BookCoverBlurb,
+    id: crypto.randomUUID(),
+    title: "Book Genre Validator",
+    subtitle: "Dual-model AI for cover classification & blurb verification",
+    description:
+      "An advanced AI system that integrates two deep learning models: the first analyzes book cover images to classify them by genre, while the second leverages OCR on the book blurb to perform binary verification of the predicted genre. This dual-model approach ensures robust and accurate genre identification.",
+    myClass: "col-span-6 md:col-span-3 lg:col-span-2",
+    types: ["Deep Learning", "Computer Vision", "NLP"],
+    skills: [SiPython, SiTensorflow, SiOpencv],
+  },
+  
   {
     image: PriceExplorer,
     id: crypto.randomUUID(),
@@ -43,7 +94,7 @@ const DATA: any[] = [
     description:
       "The optimal solution for sales professionals to manage their company's workforce involves utilizing a combination of technologies including React, Airtable, Framer Motion, Next.js, Radix UI, UIShadcn, React Hook Form, and NextAuth.",
     title: "Pricer",
-    myClass: "col-span-6 md:col-span-3 lg:col-span-4 xl:col-span-4",
+    myClass: "col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-4 xl:col-span-4", // Updated
     types: ["Web"],
     live: "http://pricer.itaimiz.com/",
     skills: [
@@ -83,8 +134,8 @@ const DATA: any[] = [
     image: chitchat,
     id: crypto.randomUUID(),
     description:
-      "Engage with individuals globally through Chit-Chat, a platform enabling text and image communication. Send messages and pictures, receive notifications for unread messages, and view images in their entirety when desired. This interactive experience is built using React, Firebase for backend functionality, and Jest for testing.",
-    subtitle: "Personally designed Chat web app ",
+      "Engage with individuals globally through Chit-Chat, a platform enabling text and image communication. Send messages and pictures, receive notifications for unread messages, and view images in full when desired. This interactive experience is built using React, Firebase for backend functionality, and Jest for testing.",
+    subtitle: "Personally designed Chat web app",
     title: "Chit Chat",
     myClass: "col-span-6 md:col-span-3 lg:col-span-2",
     types: ["Web"],
@@ -107,7 +158,7 @@ const DATA: any[] = [
     image: coop,
     id: crypto.randomUUID(),
     description:
-      "Develop an application using Flutter that empowers users to stay informed about ongoing protests. This app integrates Google Maps to provide location-based insights and uses Dio for efficient data fetching.    With this app, users can access comprehensive information about ongoing protests, their locations, and relevant details. The combination of Flutter, Google Maps, and Dio ensures a seamless and responsive user experience.",
+      "Develop an application using Flutter that empowers users to stay informed about ongoing protests. This app integrates Google Maps for location-based insights and uses Dio for efficient data fetching. Users can access comprehensive details about protests and their locations—all while enjoying a seamless and responsive experience.",
     subtitle: "An app that lets you know all about accruing protests",
     title: "Coop",
     myClass: "col-span-6 md:col-span-3 lg:col-span-2",
@@ -119,7 +170,7 @@ const DATA: any[] = [
     image: qwikui,
     id: crypto.randomUUID(),
     description:
-      "A meticulously curated component library, diligently maintained by the Qwik team, tailored specifically to complement the Qwik.js framework. This library offers a collection of reusable UI elements and components, seamlessly integrated with Qwik.js to enhance the development process and streamline the creation of efficient and performant web applications.",
+      "A meticulously curated component library, maintained by the Qwik team, tailored to complement the Qwik.js framework. It offers a collection of reusable UI elements that streamline the creation of efficient and performant web applications.",
     subtitle: "Component library suitable for Qwik.js",
     title: "Qwik-UI",
     myClass: "col-span-6 md:col-span-3 lg:col-span-2 xl:col-span-3",
@@ -132,7 +183,7 @@ const DATA: any[] = [
     image: portfolio,
     id: crypto.randomUUID(),
     description:
-      "Interactive web application designed to educate and guide users through the intricacies of Framer Motion, a powerful animation library.",
+      "Interactive web application designed to educate and guide users through the intricacies of Framer Motion—a powerful animation library.",
     subtitle: "Engaging web app educates on Framer-Motion.",
     title: "Portfolio",
     myClass: "col-span-6 md:col-span-3 lg:col-span-4 xl:col-span-3",
@@ -145,7 +196,7 @@ const DATA: any[] = [
     image: unishield,
     id: crypto.randomUUID(),
     description:
-      "A mobile application built with React Native that empowers women by providing them with the tools and information needed to identify and address instances of technology-related violence or abuse.",
+      "A mobile application built with React Native that empowers women by providing them with the tools and information needed to identify and address technology-related violence or abuse.",
     subtitle: "App that helps women under tech violence",
     title: "UniShield",
     live: "https://unishield.vercel.app/",
@@ -159,7 +210,7 @@ const DATA: any[] = [
     id: crypto.randomUUID(),
     live: "https://startach.org.il/",
     description:
-      "A dedicated app for 'Yedidim Badrachim,' catering to individuals facing roadblocks during their journeys. This platform connects drivers encountering difficulties with empathetic volunteers who offer assistance, ensuring they can overcome car-related issues and continue their travels seamlessly.",
+      "A dedicated app for 'Yedidim Badrachim,' catering to individuals facing roadblocks during their journeys. It connects drivers in need with empathetic volunteers, ensuring they overcome car-related issues and continue their travels seamlessly.",
     subtitle: "An app for 'Yedidim Badrachim'",
     title: "StartAch",
     myClass: "col-span-6 md:col-span-3 lg:col-span-2",
@@ -167,7 +218,10 @@ const DATA: any[] = [
     skills: [SiFlutter, SiHasura],
   },
 ];
-const topics = ["All", "Web", "Mobile", "Volunteer", "AI", "Data", "ML"];
+
+
+
+const topics = ["All", "Web", "Mobile", "Volunteer", "AI", "Data", "ML","Embedded"];
 export default function Projects() {
   const [items, setItems] = React.useState(DATA);
   const [selectedId, setSelectedId] = useState<any>(null);

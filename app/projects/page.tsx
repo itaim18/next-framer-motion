@@ -67,6 +67,7 @@ const DATA: any[] = [
     image: PhishingDetection,
     id: crypto.randomUUID(),
     live: "https://jocular-phoenix-72c9fe.netlify.app/",
+    code: "https://github.com/itaim18/Advanced-Phishing-Detection-Suite",
     title: "Advanced Phishing Detection Suite",
     subtitle: "Comprehensive AI-driven system for phishing analysis",
     description:

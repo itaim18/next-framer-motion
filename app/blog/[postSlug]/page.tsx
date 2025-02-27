@@ -19,6 +19,7 @@ import { Example } from "@/components/ui/Example";
 import Climbing from "@/src/components/Climbing";
 import InterviewAccordion from "@/src/components/InterviewAccordion";
 import ScrollProgress from "@/components/ui/scroll-progress";
+import DemoVideo from "@/src/components/DemoVideo";
 
 export async function generateMetadata({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
@@ -123,6 +124,7 @@ async function Home({ params }: any) {
               ImagesDrawer,
               Climbing,
               Example,
+              DemoVideo,
               a: (props: any) => (
                 <a
                   {...props}

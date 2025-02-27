@@ -10,44 +10,53 @@ In this post, we'll take you through our journey of building a secure door lock 
 > "Security is not a product, but a process."  
 > — _Bruce Schneier_
 
----
-
 ## Introduction 🤖
 
-The goal of this project was to create a secure door lock that only grants access when an authorized face is detected. The system is built on the Raspberry Pi 5 and leverages advanced deep learning techniques optimized for embedded devices. In addition, we integrate the door lock system into a full-stack application that provides:
+The goal of this project is to create a **secure door lock** that only grants access when an authorized face is detected. Built on the **Raspberry Pi 5** and powered by advanced deep learning techniques, our system not only secures your entryway but also delivers an engaging, real-time experience. Imagine this: the moment the camera sees your face, the door unlocks. That’s the big “wow” moment!
 
-- **Real-time entrance feed:** Monitor the door access logs and live camera feed. 📹
-- **Live feed from AI camera:** Visual confirmation of face recognition events. 👁️
-
-The project uses a combination of hardware prototyping (with Fritzing diagrams) and sophisticated software components, including Python, OpenCV, TensorFlow (or PyTorch), FastAPI, and React. 🚀
+> **Watch the Demo:**
+>
+> <DemoVideo />
+> *Notice how the door unlocks instantly upon face recognition.*
 
 ---
 
 ## Hardware Setup 🛠️
 
-Our hardware configuration is centered on the Raspberry Pi 5 paired with an AI-optimized camera module. Below is a summary of the components used:
+Our configuration revolves around the **Raspberry Pi 5** paired with an **AI-optimized camera module**. Key components include:
 
-- **Raspberry Pi 5** – The main processing unit. 💻
-- **AI Camera Module** – For capturing real-time video and images. 📸
-- **Electronic Door Lock** – Controlled via GPIO pins. 🔒
-- **Fritzing Diagram** – Detailed wiring and connections for the setup.
+- **Raspberry Pi 5** – Main processing unit. 💻
+- **AI Camera Module** – Captures real-time video and images (IMX500-compatible models supported). 📸
+- **5V Relay Module** – Controlled via GPIO, it toggles power for the lock.
+- **12V Electric Strike** – The locking mechanism that disengages when powered. 🔒
+- **12V AC-DC Adapter** – Powers the electric strike.
+- **(Optional) Servo** – An alternative mechanical lock mechanism.
 
-### Fritzing Diagram 📝
+**Wiring & Fritzing Diagram:**
 
-Check out the detailed Fritzing diagram on GitHub:  
-[View Fritzing Diagram](https://github.com/username/rpi5-door-lock/tree/main/fritzing)
+1. **Relay & Electric Strike:**
+
+   - Connect **COM** and **NO/NC** pins of the relay to the electric strike.
+   - Power the strike using the **12V adapter**.
+   - The relay coil is powered by the Pi’s **5V** and triggered via a **GPIO** pin (e.g., GPIO17).
+
+2. **Servo Alternative:**
+   - Replace the electric strike with a servo motor if preferred, with control signals still coming from a GPIO pin.
+
+View the detailed diagram on GitHub:  
+[View Fritzing Diagram](https://github.com/itaim18/RPI5-AI-Door-Lock/blob/main/images/fritzing.jpg)
 
 ![Fritzing Diagram](/assets/fritzing-rpi5-diagram.jpg)
 
-> **Tip:** Ensure all connections are secure and double-check the GPIO pin assignments before powering up. 🔌
+> **Tip:** Double-check all connections and GPIO assignments before powering up. 🔌
 
 ---
 
 ## Embedded Deep Learning & Face Recognition 🧠
 
-At the heart of the system is our face recognition model, optimized to run on the Raspberry Pi 5. We use a combination of OpenCV for image processing and a deep learning framework (TensorFlow Lite or PyTorch Mobile) to perform real-time inference.
+At the heart of our system is a highly optimized **face recognition** pipeline. We use **OpenCV** for detection and frameworks like **TensorFlow Lite** (or **PyTorch**) for recognition inference.
 
-### Code Snippet: Face Recognition with OpenCV
+### Face Recognition Code Snippet
 
 ```python
 import cv2
@@ -70,9 +79,11 @@ while True:
         # Draw rectangle around detected face
         cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
-    cv2.imshow('Face Recognition', frame)
+        # TODO: Integrate face recognition logic here
+        # If recognized -> Unlock door
+        # If unknown -> Invoke YOLOv8 for delivery classification
 
-    # Exit loop when 'q' key is pressed
+    cv2.imshow('Face Recognition', frame)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
@@ -80,42 +91,49 @@ cap.release()
 cv2.destroyAllWindows()
 ```
 
-### Deep Learning Optimization ⚡
+---
 
-For deployment on the Raspberry Pi, we convert our model to a lightweight format using TensorFlow Lite. This ensures faster inference and lower power consumption. ⚡
+## Delivery Classification with YOLOv8 🚚
 
-> Note: For a complete guide on model optimization and conversion, check out our model optimization tutorial. 📚
+For unknown faces, the system leverages a **YOLOv8** model to detect delivery-related objects (boxes, helmets, motorcycles, etc.). If such items are found, the visitor is flagged as a potential delivery person.
+
+### Key Points:
+
+- **Roboflow Integration:**  
+  Manage and annotate your dataset easily on Roboflow. Upload frames (20 seconds before/after unknown face events) for ongoing model retraining.
+- **IMX500 Export:**  
+  For edge inference directly on the camera, export your YOLOv8 model to an **IMX500-compatible** format—reducing load on the Pi.
+
+> **Note:** If your camera isn’t IMX500-compatible, you can run YOLOv8 on the Pi’s CPU or an attached accelerator (like Coral TPU).
 
 ---
 
-## Full-Stack Integration 💻📱
+## Full-Stack Integration (Node.js + React + MongoDB) 💻📱
 
-To manage and monitor door lock activities, we developed a full-stack application that integrates:
+To manage door lock activities and live feeds, we developed a full-stack solution:
 
-- **Backend**: A FastAPI service that handles API requests and serves entrance feed data.
-- **Frontend**: A React dashboard for real-time monitoring and control.
+### Backend: Node.js
 
-### Backend: FastAPI
+A simple **Node.js** server retrieves and serves entrance data from **MongoDB**:
 
-Below is an example of our FastAPI endpoint serving the entrance feed:
+```js
+const express = require("express");
+const app = express();
+const port = 8000;
 
-```python
-from fastapi import FastAPI
+app.get("/api/entrance", (req, res) => {
+  // Retrieve data from MongoDB
+  res.json({ feed: "Live entrance feed data from door lock system" });
+});
 
-app = FastAPI()
-
-@app.get("/api/entrance")
-def get_entrance_feed(): # Placeholder for actual feed data
-    return {"feed": "Live entrance feed data from door lock system"}
-
-if __name__ == '__main__':
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
 ```
 
-### Frontend: React Dashboard 🖥️
+### Frontend: React Dashboard
 
-Our React dashboard displays both the entrance logs and the live camera feed. Below is a simplified version of our React component:
+Our **React** dashboard displays live door activity and camera feeds:
 
 ```tsx
 import React, { useEffect, useState } from "react";
@@ -140,36 +158,24 @@ const EntranceFeed = () => {
 export default EntranceFeed;
 ```
 
-For a full view of our dashboard components, check out the GitHub repository: GitHub Repository
-
-### Live Demo & UI Components 🎥
-
-We’ve also created a series of UI components to provide a rich user experience. Below are placeholders for some of our custom components:
-
-- **DoorLockDemo** – A demo component that simulates the door lock mechanism. 🔐
-- **FaceRecognitionDemo** – A live demo showing the face recognition in action. 👁️
-- **LiveFeed** – Displays the real-time video feed from the AI camera. 📹
-- **EntranceFeed** – Shows the current entrance feed from our FastAPI backend.
-
-Feel free to interact with these components in our demo environment!
-
 ---
 
 ## Deployment & Troubleshooting ⚙️
 
-Deploying an embedded deep learning application can be challenging. Here are a few tips:
+Deploying an embedded deep learning application comes with its challenges. Here are some tips:
 
-### Performance 💨
+1. **Model Optimization:**  
+   Use lightweight frameworks (like **TensorFlow Lite**) for faster inference. Consider **IMX500 exports** if supported by your camera.
 
-Ensure that your model is optimized (using TensorFlow Lite or similar) to run efficiently on the Pi.
+2. **Hardware Checks:**  
+   Ensure the wiring for the **5V relay** and **12V electric strike** is secure. For servo setups, make sure the power supply is adequate.
 
-### Hardware 🛠️
+3. **Logging & Monitoring:**  
+   Implement logging in both your Node.js and Python scripts to quickly diagnose any issues.
 
-Double-check all wiring against the Fritzing diagram. Loose connections can cause erratic behavior.
-
-### Software 💻
-
-Use logging extensively in both your FastAPI backend and your Python scripts to monitor system health and debug issues.
+4. **Security Considerations:**
+   - Keep your Node.js endpoints private or behind a firewall.
+   - Use secure (HTTPS) connections if exposing your system online.
 
 ---
 
@@ -178,9 +184,24 @@ Use logging extensively in both your FastAPI backend and your Python scripts to 
 - **[Raspberry Pi 5 Documentation](https://www.raspberrypi.com/documentation/)**
 - **[OpenCV Face Detection](https://docs.opencv.org/)**
 - **[TensorFlow Lite Guide](https://www.tensorflow.org/lite/)**
-- **[FastAPI Official Documentation](https://fastapi.tiangolo.com/)**
+- **[YOLOv8 / Roboflow Documentation](https://roboflow.com/)**
+- **[Node.js Official Docs](https://nodejs.org/en/docs/)**
 - **[React Documentation](https://reactjs.org/)**
+- **[MongoDB Official Docs](https://www.mongodb.com/docs/)**
+- **[Sony IMX500 Sensor Overview](https://www.sony-semicon.co.jp/products_en/IS/sensor2/products/IMX500_501.html)**
+
+---
 
 ## Conclusion 🌟
 
-This project represents the fusion of embedded systems, deep learning, and full-stack development to create a smart, secure door lock. By integrating a high-performance Raspberry Pi 5 with advanced AI capabilities and real-time monitoring tools, we’re pushing the boundaries of what can be achieved in edge computing.
+This project seamlessly fuses **embedded systems**, **deep learning**, and **full-stack development** to deliver a smart, secure door lock. By combining the **Raspberry Pi 5**, an **AI-optimized camera**, and cutting-edge inference techniques like **YOLOv8** and **IMX500 exports**, we bring robust face recognition and delivery classification right to the edge. The integrated **Node.js** server, **MongoDB** database, and **React** front-end ensure you can monitor and control your door lock in real time.
+
+Ready to build your own? Fork our repo, grab a Pi, and start tinkering. The future of edge AI is here—watch the demo and see it for yourself!
+
+**Happy hacking and stay secure!**
+
+_For questions or feedback, feel free to reach out or open an issue on our GitHub repository._
+
+---
+
+This revised structure emphasizes the immediate impact of the demo video, ensuring that visitors instantly grasp the system’s real-world functionality.

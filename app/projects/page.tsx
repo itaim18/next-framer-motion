@@ -56,9 +56,10 @@ const DATA: any[] = [
     subtitle: "Secure your home with AI-powered door locking",
     description:
       "An innovative smart door lock system powered by Raspberry Pi 5 that integrates advanced hardware and software components. Utilizing Python for backend processing, the system features AI-driven facial recognition with OpenCV, leverages high-resolution camera input, and gathers sensor data for robust real-time access management and security monitoring.",
-    myClass: "col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3",
+    myClass: "col-span-6 md:col-span-4 lg:col-span-3",
     types: ["AI", "ML", "IoT", "Embedded"],
-    live: "https://astounding-sopapillas-4b902d.netlify.app/",
+    live: "https://www.youtube.com/watch?v=YSktRSgZsw4&list=LL&index=1&t=8s&ab_channel=ItaiMizlish",
+    code: "https://github.com/itaim18/RPI5-AI-Doorlock",
     skills: [SiPython, SiRaspberrypi, SiOpencv, FaCamera, GiMovementSensor],
   },
   
@@ -72,7 +73,7 @@ const DATA: any[] = [
     subtitle: "Comprehensive AI-driven system for phishing analysis",
     description:
       "An end-to-end phishing detection system that evolved from baseline models to sophisticated deep learning architectures. Leveraging TF-IDF for initial feature extraction and BERT for nuanced contextual analysis, this project was built in Python on Google Colab and visualized using matplotlib. It showcases a rigorous pipeline that detects and mitigates phishing threats with high accuracy.",
-    myClass: "col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3",
+    myClass: "col-span-6 md:col-span-4 lg:col-span-3",
     types: ["AI", "NLP", "ML","Data"],
     skills: [SiPython, SiTensorflow, SiScikitlearn,SiPandas],
   },  
@@ -95,7 +96,7 @@ const DATA: any[] = [
     description:
       "The optimal solution for sales professionals to manage their company's workforce involves utilizing a combination of technologies including React, Airtable, Framer Motion, Next.js, Radix UI, UIShadcn, React Hook Form, and NextAuth.",
     title: "Pricer",
-    myClass: "col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-4 xl:col-span-4", // Updated
+    myClass: "col-span-6 md:col-span-4 lg:col-span-4 xl:col-span-4", // Updated
     types: ["Web"],
     live: "http://pricer.itaimiz.com/",
     skills: [

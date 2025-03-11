@@ -1,0 +1,260 @@
+---
+title: "RPI5-Fridge Inventory Management with AI Product Recognition 🍽️🤖"
+abstract: "Build a smart fridge inventory system using the Raspberry Pi 5, an AI camera, and an ultrasonic sensor to monitor your fridge contents in real time. Integrated with Flask, SocketIO, and a React dashboard, keep track of what’s inside and what needs restocking."
+publishedOn: "2025-03-11T12:00:00-0400"
+image: "/assets/rpi5-door-lock.png"
+---
+
+In this post, we detail our journey of building a smart fridge inventory management system powered by the **Raspberry Pi 5** and an **AI camera**. Using an **ultrasonic sensor** mounted on the fridge side, our system determines when to start product detection and when to send updates. With our custom-trained YOLOv8n model (exported via Roboflow to IMX500 format), the camera recognizes key products—cheese, coke, eggs, ketchup, milk, pittas, and schnitzels—and categorizes them based on their location in the frame. The resulting "IN" and "OUT" lists are transmitted in real time through a Flask server with SocketIO to a React dashboard, helping you know what’s stocked and what needs restocking.
+
+> "An organized fridge is the first step to a healthier lifestyle."  
+> — _Anonymous_
+
+## Introduction 🧊
+
+Imagine opening your fridge and having an AI system instantly tell you what’s available and what’s missing. Our project automates fridge inventory tracking by using sensor triggers. When the **ultrasonic sensor** detects the fridge door is within 50cm, the AI camera kicks in to analyze product placement. Alternatively, with a **PIR motion sensor**, the camera starts detecting as soon as motion is sensed and sends updates after 5 seconds of inactivity. This seamless integration of embedded AI and full-stack development makes inventory management effortless.
+
+> **Watch the Demo:**
+>
+> <DemoVideo source="/assets/demo2.mp4" />
+> *Observe the system in action as it updates your fridge inventory in real time.*
+
+## Hardware Setup 🛠️
+
+Our configuration leverages a mix of sensors and cutting-edge AI:
+
+- **Raspberry Pi 5** – The processing hub.
+- **AI Camera Module** – Equipped with our custom YOLOv8n model (exported to IMX500) to detect products like cheese, coke, eggs, ketchup, milk, pittas, and schnitzels.
+- **Ultrasonic Sensor** – Mounted on the fridge side to measure the distance to the door. When the distance is less than 50cm, the system activates product detection.
+- **PIR Motion Sensor (Alternative)** – Triggers detection when motion is sensed and sends an update after 5 seconds of no motion.
+- **Flask Server with SocketIO** – Handles real-time communication.
+- **React Dashboard** – Displays two lists: items currently **IN** the fridge and those that are **OUT** (for restocking).
+
+**Wiring & Diagram:**
+
+1. **Ultrasonic Sensor Setup:**
+
+   - Place the sensor on the fridge side, facing the door.
+   - The sensor continuously monitors the distance. If the door is close (50cm), the system starts capturing frames for analysis. When the door moves away (>50cm), it triggers the update transmission.
+
+2. **PIR Motion Sensor Setup (Optional):**
+   - Mount the sensor to detect movement near the fridge.
+   - On motion detection, the camera begins product recognition. If no motion is detected for 5 seconds, an inventory update is sent.
+
+For detailed wiring, check out our [Fritzing Diagram](#).
+
+---
+
+## Embedded Deep Learning & Product Recognition 🧠
+
+At the core of our system is an AI camera using a custom-trained YOLOv8n network. This model, optimized and exported to an **IMX500-compatible** format via Roboflow, recognizes our key products and differentiates between items on the "IN" half (inside the fridge) and the "OUT" half (being removed or absent).
+
+### Product Recognition Logic Code Snippet
+
+```python
+import cv2
+import numpy as np
+
+# Load the custom product detection model (YOLOv8n exported to IMX500)
+model = load_model('path_to_imx500_model')
+
+def detect_products(frame):
+    # Preprocess the frame for the model
+    processed_frame = preprocess_frame(frame)
+    # Run inference
+    detections = model(processed_frame)
+    # Parse detections and categorize into 'in' and 'out'
+    in_products = []
+    out_products = []
+    for det in detections:
+        label = det['label']
+        x, y, w, h = det['bbox']
+        # Assume the frame is split vertically: left half is "IN", right half is "OUT"
+        if x + w / 2 < frame.shape[1] // 2:
+            in_products.append(label)
+        else:
+            out_products.append(label)
+    return in_products, out_products
+
+# Helper functions: preprocess_frame() and load_model() are implemented elsewhere.
+```
+
+---
+
+## Sensor Integration & SocketIO Communication 📡
+
+### Ultrasonic Sensor Logic
+
+The ultrasonic sensor measures the distance between the sensor and the fridge door. When the door is within 50cm, the system begins capturing frames for product detection. Once the door moves away (distance exceeds 50cm), the accumulated "IN" and "OUT" lists are sent to the server.
+
+```python
+import time
+import socketio
+
+# Initialize SocketIO client
+sio = socketio.Client()
+sio.connect('http://your-ngrok-url')
+
+THRESHOLD = 50  # Distance threshold in cm
+
+def read_ultrasonic_sensor():
+    # Simulated sensor reading; replace with actual sensor logic.
+    return get_distance()
+
+def sensor_loop():
+    detecting = False
+    in_list = []
+    out_list = []
+    while True:
+        distance = read_ultrasonic_sensor()
+        if distance < THRESHOLD and not detecting:
+            print("Fridge door detected! Starting inventory check...")
+            detecting = True
+            # Capture frame for product detection (simulate camera capture)
+            frame = capture_frame()  # Replace with actual camera capture logic
+            in_list, out_list = detect_products(frame)
+        elif distance >= THRESHOLD and detecting:
+            print("Fridge door closed. Sending inventory data to server.")
+            sio.emit('inventory_update', {'in': in_list, 'out': out_list})
+            detecting = False
+            in_list, out_list = [], []
+        time.sleep(0.5)  # Adjust sensor polling interval
+
+# Run sensor_loop() on the Raspberry Pi to continuously monitor door status.
+```
+
+### PIR Motion Sensor (Alternative) Logic
+
+For environments using a PIR sensor, the camera activates on motion detection and sends an inventory update if no motion is sensed for 5 seconds.
+
+```python
+def pir_sensor_loop():
+    detecting = False
+    last_motion_time = time.time()
+    in_list = []
+    out_list = []
+    while True:
+        motion_detected = read_pir_sensor()  # Replace with actual sensor reading logic
+        if motion_detected:
+            last_motion_time = time.time()
+            if not detecting:
+                print("Motion detected! Initiating product recognition...")
+                detecting = True
+                frame = capture_frame()  # Capture frame using the AI camera
+                in_list, out_list = detect_products(frame)
+        elif detecting and (time.time() - last_motion_time) > 5:
+            print("No motion for 5 seconds. Transmitting inventory update.")
+            sio.emit('inventory_update', {'in': in_list, 'out': out_list})
+            detecting = False
+            in_list, out_list = [], []
+        time.sleep(0.5)
+```
+
+### Flask Server with SocketIO
+
+Our Flask server receives these real-time inventory updates and broadcasts them to all connected clients, ensuring that the React dashboard displays the latest data.
+
+```python
+from flask import Flask
+from flask_socketio import SocketIO
+
+app = Flask(__name__)
+socketio = SocketIO(app, cors_allowed_origins="*")
+
+@socketio.on('inventory_update')
+def handle_inventory_update(data):
+    print("Received inventory update:", data)
+    # Broadcast the update to connected dashboard clients
+    socketio.emit('dashboard_update', data)
+
+if __name__ == '__main__':
+    socketio.run(app, host='0.0.0.0', port=5000)
+```
+
+---
+
+## Full-Stack Integration (Flask + React) 💻📱
+
+The real-time data pipeline flows from the Raspberry Pi through our Flask server (exposed via ngrok) to the React dashboard. The dashboard displays two lists: products **IN** the fridge and those **OUT** (for restocking).
+
+### React Dashboard Code Snippet
+
+```tsx
+import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
+
+const socket = io("http://your-ngrok-url");
+
+const FridgeInventory = () => {
+  const [inventory, setInventory] = useState({ in: [], out: [] });
+
+  useEffect(() => {
+    socket.on("dashboard_update", (data) => {
+      setInventory(data);
+    });
+    return () => {
+      socket.off("dashboard_update");
+    };
+  }, []);
+
+  return (
+    <div>
+      <h2>Fridge Inventory</h2>
+      <div>
+        <h3>In Fridge</h3>
+        <ul>
+          {inventory.in.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h3>Out for Restocking</h3>
+        <ul>
+          {inventory.out.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default FridgeInventory;
+```
+
+---
+
+## Deployment & Troubleshooting ⚙️
+
+Deploying an edge AI solution like this comes with its challenges:
+
+- **Sensor Calibration:**  
+  Fine-tune the ultrasonic sensor’s threshold (50cm) and ensure proper placement of the PIR sensor (if used).
+- **Network Stability:**  
+  Running the Flask server via ngrok demands a reliable internet connection. Monitor connection quality and latency.
+- **Model Optimization:**  
+  Leverage lightweight frameworks and ensure your custom model for product recognition is optimized for real-time inference.
+- **Logging & Monitoring:**  
+  Implement robust logging in your sensor loops and server to quickly diagnose any issues.
+
+---
+
+## Conclusion 🌟
+
+This project unites embedded systems, deep learning, and full-stack development to create a smart fridge inventory management solution. With the **Raspberry Pi 5**, an AI camera using a custom YOLOv8n model, and sensor-triggered detection, you can automatically track what’s in your fridge and what needs restocking—all in real time.
+
+Ready to automate your kitchen? Fork our repository, set up your Raspberry Pi, and start managing your fridge inventory like never before. Happy hacking and enjoy a smarter, more organized kitchen!
+
+_For questions or feedback, feel free to reach out or open an issue on our GitHub repository._
+
+---
+
+## References & Further Reading 📚
+
+- **[Raspberry Pi 5 Documentation](https://www.raspberrypi.com/documentation/)**
+- **[Flask Documentation](https://flask.palletsprojects.com/)**
+- **[Flask-SocketIO Guide](https://flask-socketio.readthedocs.io/)**
+- **[React Documentation](https://reactjs.org/)**
+- **[YOLOv8 & Roboflow Documentation](https://roboflow.com/)**
+- **[IMX500 Sensor Overview](https://www.sony-semicon.co.jp/products_en/IS/sensor2/products/IMX500_501.html)**

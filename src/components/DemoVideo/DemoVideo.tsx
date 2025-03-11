@@ -1,7 +1,11 @@
-const DemoVideo = () => {
+interface DemoVideoProps {
+    source: string;
+}
+
+const DemoVideo = ({ source }: DemoVideoProps) => {
     return (
         <video width="600" controls>
-            <source src="/assets/demo.mp4" type="video/mp4" />
+            <source src={source} type="video/mp4" />
             Your browser does not support the video tag.
         </video>
     );

@@ -21,6 +21,7 @@ import InterviewAccordion from "@/src/components/InterviewAccordion";
 import ScrollProgress from "@/components/ui/scroll-progress";
 import DemoVideo from "@/src/components/DemoVideo";
 
+
 export async function generateMetadata({ params }: any) {
   const myPath = path.join(process.cwd(), `/content/${params.postSlug}.mdx`);
   const res = await fs.readFile(myPath, "utf8");
